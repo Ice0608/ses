@@ -908,73 +908,126 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Determine form type
       const isInternship = e.target.closest('#internshipForm');
+      const isFulltime = e.target.closest('#fulltimeForm');
       const formType = isInternship ? 'Internship' : 'Fulltime';
       
-      // Your correct Google Sheets URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbzqajm45pYtmTg0AqqGj2D7bYe2XR24W5dqL2u7nHCdisPrOATnDao91NLzzvN8VyKp/exec";
+      // Get current timestamp
+      const now = new Date();
+      const timestamp = now.toLocaleString('en-MY', { 
+        timeZone: 'Asia/Kuala_Lumpur',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
       
       try {
-        // Collect all form data
-        const data = {
-          formType: formType,
-          'Nama Penuh': e.target.querySelector('[name="Nama Penuh"]')?.value || '',
-          Email: e.target.querySelector('[name="Email"]')?.value || '',
-          IC: e.target.querySelector('[name="IC"]')?.value || '',
-          Jantina: e.target.querySelector('[name="Jantina"]')?.value || '',
-          'No. Tel': e.target.querySelector('[name="No. Tel"]')?.value || '',
-          'No. Tel Kecemasan': e.target.querySelector('[name="No. Tel Kecemasan"]')?.value || '',
-          'Alamat terkini': e.target.querySelector('[name="Alamat terkini"]')?.value || '',
-          Institusi: e.target.querySelector('[name="Institusi"]')?.value || '',
-          Jurusan: e.target.querySelector('[name="Jurusan"]')?.value || '',
-          'Tarikh Lapor Diri': e.target.querySelector('[name="Tarikh Lapor Diri"]')?.value || '',
-          'Tarikh Akhir': e.target.querySelector('[name="Tarikh Akhir"]')?.value || '',
-          'Status Asrama': e.target.querySelector('[name="Status Asrama"]')?.value || ''
+        let data = {
+          Timestamp: timestamp
         };
+        
+        let scriptURL = "";
 
-        // Handle file uploads
-        const resumeInput = e.target.querySelector('#int-resume');
-        const transcriptInput = e.target.querySelector('#int-transcript');
-        const replyInput = e.target.querySelector('#int-reply');
+        // Handle INTERNSHIP form
+        if (isInternship) {
+          scriptURL = "https://script.google.com/macros/s/AKfycbzqajm45pYtmTg0AqqGj2D7bYe2XR24W5dqL2u7nHCdisPrOATnDao91NLzzvN8VyKp/exec";
+          
+          data = {
+            ...data,
+            'Nama Penuh': e.target.querySelector('[name="Nama Penuh"]')?.value || '',
+            Email: e.target.querySelector('[name="Email"]')?.value || '',
+            IC: e.target.querySelector('[name="IC"]')?.value || '',
+            Jantina: e.target.querySelector('[name="Jantina"]')?.value || '',
+            'No. Tel': e.target.querySelector('[name="No. Tel"]')?.value || '',
+            'No. Tel Kecemasan': e.target.querySelector('[name="No. Tel Kecemasan"]')?.value || '',
+            'Alamat terkini': e.target.querySelector('[name="Alamat terkini"]')?.value || '',
+            Institusi: e.target.querySelector('[name="Institusi"]')?.value || '',
+            Jurusan: e.target.querySelector('[name="Jurusan"]')?.value || '',
+            'Tarikh Lapor Diri': e.target.querySelector('[name="Tarikh Lapor Diri"]')?.value || '',
+            'Tarikh Akhir': e.target.querySelector('[name="Tarikh Akhir"]')?.value || '',
+            'Status Asrama': e.target.querySelector('[name="Status Asrama"]')?.value || ''
+          };
 
-        // Convert files to Base64
-        if (resumeInput && resumeInput.files[0]) {
-          const resumeFile = resumeInput.files[0];
-          data['Resume'] = await toBase64(resumeFile);
-          data['ResumeFileName'] = resumeFile.name;
+          // Handle internship file uploads
+          const resumeInput = e.target.querySelector('#int-resume');
+          const transcriptInput = e.target.querySelector('#int-transcript');
+          const replyInput = e.target.querySelector('#int-reply');
+
+          if (resumeInput && resumeInput.files[0]) {
+            const resumeFile = resumeInput.files[0];
+            data['Resume'] = await toBase64(resumeFile);
+            data['ResumeFileName'] = resumeFile.name;
+          }
+
+          if (transcriptInput && transcriptInput.files[0]) {
+            const transcriptFile = transcriptInput.files[0];
+            data['Transkrip Akademik'] = await toBase64(transcriptFile);
+            data['Transkrip AkademikFileName'] = transcriptFile.name;
+          }
+
+          if (replyInput && replyInput.files[0]) {
+            const replyFile = replyInput.files[0];
+            data['Reply Form'] = await toBase64(replyFile);
+            data['Reply FormFileName'] = replyFile.name;
+          }
         }
+        
+        // Handle FULLTIME form
+        else if (isFulltime) {
+          // Replace this with your FULLTIME Google Sheets URL
+          scriptURL = "https://script.google.com/macros/s/AKfycbwVxoDtK_UoXktldAu1p2wAjSESDxFgTPXW7rrOsgSlYDlLejUZ1fThWmI52nG_nCDj4Q/exec";
+          
+          data = {
+            ...data,
+            'Nama Penuh': e.target.querySelector('[name="Nama Penuh"]')?.value || '',
+            Email: e.target.querySelector('[name="Email"]')?.value || '',
+            IC: e.target.querySelector('[name="IC"]')?.value || '',
+            Jantina: e.target.querySelector('[name="Jantina"]')?.value || '',
+            'No. Tel': e.target.querySelector('[name="No. Tel"]')?.value || '',
+            'No. Tel Kecemasan': e.target.querySelector('[name="No. Tel Kecemasan"]')?.value || '',
+            Address: e.target.querySelector('[name="Address"]')?.value || '',
+            'Work Experience': e.target.querySelector('[name="Work Experience"]')?.value || '',
+            'Highest Qualification': e.target.querySelector('[name="Highest Qualification"]')?.value || '',
+            'Hostel Status': e.target.querySelector('[name="Hostel Status"]')?.value || '',
+            'Work Experience 1': e.target.querySelector('[name="Work Experience 1"]')?.value || '',
+            'Work Experience 2': e.target.querySelector('[name="Work Experience 2"]')?.value || '',
+            'Work Experience 3': e.target.querySelector('[name="Work Experience 3"]')?.value || ''
+          };
 
-        if (transcriptInput && transcriptInput.files[0]) {
-          const transcriptFile = transcriptInput.files[0];
-          data['Transkrip Akademik'] = await toBase64(transcriptFile);
-          data['Transkrip AkademikFileName'] = transcriptFile.name;
-        }
-
-        if (replyInput && replyInput.files[0]) {
-          const replyFile = replyInput.files[0];
-          data['Reply Form'] = await toBase64(replyFile);
-          data['Reply FormFileName'] = replyFile.name;
+          // Handle fulltime file upload (Resume/CV only)
+          const resumeInput = e.target.querySelector('#ft-resume');
+          if (resumeInput && resumeInput.files[0]) {
+            const resumeFile = resumeInput.files[0];
+            data['Resume/CV'] = await toBase64(resumeFile);
+            data['Resume/CVFileName'] = resumeFile.name;
+          }
         }
 
         console.log('Sending data to Google Sheets:', data);
 
-        // Send to Google Sheets
-        const response = await fetch(scriptURL, {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'text/plain'
-          }
-        });
-
-        console.log('Response received:', response);
-        
-        // Show success message
-        alert('Terima kasih! Permohonan anda telah diterima. Kami akan menghubungi anda tidak lama lagi.');
+        // Show success message immediately
+        alert('Thank you! Your application has been received. We will contact you soon.');
         
         // Reset form and close overlay
         e.target.reset();
         fulltimeForm.classList.remove('active');
         internshipForm.classList.remove('active');
+
+        // Send to Google Sheets in background
+        fetch(scriptURL, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'text/plain'
+          }
+        }).then(response => {
+          console.log('Response received:', response);
+        }).catch(error => {
+          console.error('Error sending to Google Sheets:', error);
+        });
         
       } catch (error) {
         console.error('Error submitting form:', error);
