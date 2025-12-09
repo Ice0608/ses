@@ -662,6 +662,168 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCarousel();
   console.log('Education carousel initialized with', carouselCells.length, 'cards');
 
+  // Sync career cards with carousel selection
+  let cardsToShow = 3; // Start with 3 cards
+  const cardsPerLoad = 3; // Load 3 more cards each time
+  
+  function updateCareerCards() {
+    const institutions = ['smtaa', 'tvet', 'uitm', 'um', 'utm', 'uic'];
+    const selectedInstitution = institutions[currentIndex];
+    cardsToShow = 3; // Reset to 3 cards when changing institution
+    
+    // Add pulse animation to career section
+    const careerSection = document.querySelector('.career-salary-section');
+    if (careerSection) {
+      careerSection.classList.add('updating');
+      setTimeout(() => {
+        careerSection.classList.remove('updating');
+      }, 400);
+    }
+    
+    // Get all career cards
+    const allCareerCards = document.querySelectorAll('.career-salary-card');
+    
+    // Hide all cards first
+    allCareerCards.forEach(card => {
+      card.style.display = 'none';
+      card.classList.remove('hidden-card');
+    });
+    
+    // Show only cards for selected institution
+    const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
+    
+    // Show cards up to cardsToShow, hide the rest
+    selectedCards.forEach((card, index) => {
+      card.style.display = 'flex';
+      if (index >= cardsToShow) {
+        card.classList.add('hidden-card');
+      }
+    });
+    
+    // Show/hide "Show More" button
+    const showMoreContainer = document.getElementById('showMoreContainer');
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    const showMoreText = document.getElementById('showMoreText');
+    
+    if (showMoreContainer && showMoreBtn) {
+      if (selectedCards.length > 3) {
+        showMoreContainer.style.display = 'block';
+        showMoreBtn.classList.remove('expanded');
+        
+        // Check if there are more cards to show
+        if (cardsToShow < selectedCards.length) {
+          showMoreText.textContent = 'View More Opportunities';
+          const icon = showMoreBtn.querySelector('i');
+          if (icon) icon.className = 'fas fa-chevron-down';
+        } else {
+          showMoreText.textContent = 'Show Less';
+          const icon = showMoreBtn.querySelector('i');
+          if (icon) icon.className = 'fas fa-chevron-up';
+          showMoreBtn.classList.add('expanded');
+        }
+      } else {
+        showMoreContainer.style.display = 'none';
+      }
+    }
+    
+    console.log('Showing career cards for:', selectedInstitution, '(' + selectedCards.length + ' total)');
+  }
+
+  // Update career cards on carousel change
+  const originalUpdateCarousel = updateCarousel;
+  updateCarousel = function() {
+    originalUpdateCarousel();
+    updateCareerCards();
+  };
+
+  // Initialize career cards
+  updateCareerCards();
+
+  // Smooth scroll to career section when clicking indicator
+  const scrollIndicator = document.getElementById('scrollIndicator');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const careerSection = document.querySelector('.career-salary-section');
+      if (careerSection) {
+        careerSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  }
+
+  // Hide scroll indicator when user scrolls past carousel
+  window.addEventListener('scroll', () => {
+    if (scrollIndicator) {
+      const carouselSection = document.querySelector('.education-choices-section');
+      if (carouselSection) {
+        const carouselBottom = carouselSection.offsetTop + carouselSection.offsetHeight;
+        const scrollPosition = window.scrollY + window.innerHeight;
+        
+        if (scrollPosition > carouselBottom + 100) {
+          scrollIndicator.style.opacity = '0';
+          scrollIndicator.style.pointerEvents = 'none';
+        } else {
+          scrollIndicator.style.opacity = '1';
+          scrollIndicator.style.pointerEvents = 'auto';
+        }
+      }
+    }
+  });
+
+  // Show More / Show Less button functionality
+  const showMoreBtn = document.getElementById('showMoreBtn');
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', () => {
+      const institutions = ['smtaa', 'tvet', 'uitm', 'um', 'utm', 'uic'];
+      const selectedInstitution = institutions[currentIndex];
+      const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
+      const showMoreText = document.getElementById('showMoreText');
+      const icon = showMoreBtn.querySelector('i');
+      
+      if (cardsToShow < selectedCards.length) {
+        // Show 3 more cards
+        cardsToShow += cardsPerLoad;
+        
+        selectedCards.forEach((card, index) => {
+          if (index < cardsToShow) {
+            card.classList.remove('hidden-card');
+          }
+        });
+        
+        // Check if all cards are now shown
+        if (cardsToShow >= selectedCards.length) {
+          showMoreBtn.classList.add('expanded');
+          if (showMoreText) showMoreText.textContent = 'Show Less';
+          if (icon) icon.className = 'fas fa-chevron-up';
+        }
+      } else {
+        // Collapse back to 3 cards
+        cardsToShow = 3;
+        
+        selectedCards.forEach((card, index) => {
+          if (index >= cardsToShow) {
+            card.classList.add('hidden-card');
+          }
+        });
+        
+        showMoreBtn.classList.remove('expanded');
+        if (showMoreText) showMoreText.textContent = 'View More Opportunities';
+        if (icon) icon.className = 'fas fa-chevron-down';
+        
+        // Scroll back to career section
+        const careerSection = document.querySelector('.career-salary-section');
+        if (careerSection) {
+          careerSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  }
+
   // Touch swipe support for mobile
   let touchStartX = 0;
   let touchEndX = 0;
@@ -839,8 +1001,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       fulltimeForm.classList.remove('active');
       internshipForm.classList.remove('active');
-    }
-  });
+    }
+  });
 });
 
 // Parallax scroll effects for corporate shapes
@@ -905,7 +1067,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Observe all business items
     document.querySelectorAll('.business-item').forEach(item => {
-      observer.observe(item);
+      itemObserver.observe(item);
     });
 
     // Add hover animation to cards
@@ -1282,6 +1444,7 @@ ScrollTrigger.matchMedia({
   }
 });
 
+
 // ===== Index Page Hero + Cards (no zoom) =====
 (function initIndexPage() {
   const isIndex = document.body.classList.contains('index-page');
@@ -1309,5 +1472,8 @@ ScrollTrigger.matchMedia({
       ease: 'power2.out'
     });
   }
-})();
 
+  // No scroll indicator on static layout
+
+  // Footer always clickable; no JS opacity/pointer-events changes
+})();

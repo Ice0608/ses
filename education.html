@@ -155,6 +155,641 @@
             <li></li>
           </ul>
         </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" id="scrollIndicator">
+          <span class="scroll-indicator-text">See Career Options</span>
+          <div class="scroll-indicator-arrow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Opportunities & Expected Salary Section -->
+  <section class="career-salary-section">
+    <div class="career-salary-container">
+      <h2 class="career-salary-title">Career Opportunities & Expected Salary</h2>
+      <p class="career-salary-subtitle">Explore career paths and salary expectations for each program</p>
+      
+      <!-- Career Cards Container - Will be dynamically populated based on selected institution -->
+      <div class="career-cards-wrapper">
+        <div class="career-cards-scroll" id="careerCardsContainer">
+          
+          <!-- SMTAA Careers (default visible) -->
+          <div class="career-salary-card" data-institution="smtaa">
+            <div class="career-card-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3 class="career-card-title">Business Management</h3>
+            <p class="career-card-course">Diploma in Business Administration</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Business Analyst</li>
+                <li>Marketing Manager</li>
+                <li>Human Resources Specialist</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,500 - RM 4,500</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="smtaa">
+            <div class="career-card-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="career-card-title">Information Technology</h3>
+            <p class="career-card-course">Diploma in IT</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Software Developer</li>
+                <li>System Administrator</li>
+                <li>IT Support Specialist</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,800 - RM 5,000</span>
+            </div>
+          </div>
+
+          <!-- TVET Careers -->
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-car"></i>
+            </div>
+            <h3 class="career-card-title">Automotive</h3>
+            <p class="career-card-course">Certificate in Automotive (Automotif)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Automotive Technician</li>
+                <li>Auto Mechanic</li>
+                <li>Vehicle Inspector</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,500</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-fire"></i>
+            </div>
+            <h3 class="career-card-title">Welding</h3>
+            <p class="career-card-course">Certificate in Welding (Kimpalan)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Welder</li>
+                <li>Welding Technician</li>
+                <li>Metal Fabricator</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3 class="career-card-title">Industrial Automation</h3>
+            <p class="career-card-course">Certificate in Industrial Automation Engineering (Kejuruteraan Automasi Industri)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Automation Technician</li>
+                <li>Control Systems Operator</li>
+                <li>Industrial Maintenance</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,000 - RM 4,000</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="career-card-title">Electrical</h3>
+            <p class="career-card-course">Certificate in Electrical (Elektrik)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Electrician</li>
+                <li>Electrical Installer</li>
+                <li>Wiring Technician</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-spa"></i>
+            </div>
+            <h3 class="career-card-title">Beauty Services</h3>
+            <p class="career-card-course">Certificate in Beauty Services (Kecantikan)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Beauty Therapist</li>
+                <li>Makeup Artist</li>
+                <li>Salon Manager</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,500 - RM 3,200</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <h3 class="career-card-title">Computer Systems Operations</h3>
+            <p class="career-card-course">Certificate in Computer Systems Operations (Operasi Sistem Komputer)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Computer Operator</li>
+                <li>IT Support Technician</li>
+                <li>Help Desk Officer</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,500</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-baby"></i>
+            </div>
+            <h3 class="career-card-title">Early Childhood Care & Education</h3>
+            <p class="career-card-course">Certificate in Early Childhood Care (Pengasuhan & Pendidikan Awal Kanak-Kanak)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Childcare Assistant</li>
+                <li>Kindergarten Teacher</li>
+                <li>Daycare Supervisor</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,500 - RM 2,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3 class="career-card-title">Food Preparation & Production</h3>
+            <p class="career-card-course">Certificate in Food Preparation (Penyediaan & Pembuatan Makanan)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Cook</li>
+                <li>Kitchen Assistant</li>
+                <li>Food Service Worker</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,500 - RM 3,000</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-hand-sparkles"></i>
+            </div>
+            <h3 class="career-card-title">Aesthetic Services</h3>
+            <p class="career-card-course">Single Tier Certificate in Aesthetic Services (Perkhidmatan Estetik)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Aesthetic Consultant</li>
+                <li>Skincare Specialist</li>
+                <li>Beauty Clinic Assistant</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,600 - RM 3,200</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-bread-slice"></i>
+            </div>
+            <h3 class="career-card-title">Bread Making</h3>
+            <p class="career-card-course">Single Tier Certificate in Bread Making (Pembuatan Roti)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Baker</li>
+                <li>Bread Production Worker</li>
+                <li>Bakery Assistant</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,500 - RM 2,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-concierge-bell"></i>
+            </div>
+            <h3 class="career-card-title">Culinary Arts Operations</h3>
+            <p class="career-card-course">Certificate in Culinary Arts Operations (Operasi Seni Kulinari)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Chef</li>
+                <li>Line Cook</li>
+                <li>Kitchen Supervisor</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="career-card-title">Computer Network Services</h3>
+            <p class="career-card-course">Certificate in Computer Network Services (Perkhidmatan Rangkaian Komputer)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Network Technician</li>
+                <li>IT Support Specialist</li>
+                <li>Network Administrator</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,000 - RM 4,200</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3 class="career-card-title">Executive Corporate Secretary</h3>
+            <p class="career-card-course">Certificate in Executive Corporate Secretary (Setiausaha Korporat Eksekutif)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Corporate Secretary</li>
+                <li>Executive Assistant</li>
+                <li>Administrative Officer</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h3 class="career-card-title">Office Administration</h3>
+            <p class="career-card-course">Certificate in Office Administration (Pejabat)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Office Clerk</li>
+                <li>Administrative Assistant</li>
+                <li>Data Entry Officer</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,500 - RM 3,000</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <h3 class="career-card-title">Computer Systems</h3>
+            <p class="career-card-course">Certificate in Computer Systems (Sistem Komputer)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>IT Technician</li>
+                <li>System Support Officer</li>
+                <li>Computer Maintenance</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-cookie-bite"></i>
+            </div>
+            <h3 class="career-card-title">Pastry Making</h3>
+            <p class="career-card-course">Certificate in Pastry Making (Pembuatan Pastri)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Pastry Chef</li>
+                <li>Pastry Baker</li>
+                <li>Dessert Specialist</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,600 - RM 3,500</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-hands-helping"></i>
+            </div>
+            <h3 class="career-card-title">Elderly Care Operations</h3>
+            <p class="career-card-course">Certificate in Elderly Care Operations (Operasi Penjagaan Warga Emas)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Caregiver</li>
+                <li>Elderly Care Assistant</li>
+                <li>Senior Care Coordinator</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,500 - RM 2,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="tvet" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-bug"></i>
+            </div>
+            <h3 class="career-card-title">Pest Control Services</h3>
+            <p class="career-card-course">Certificate in Pest Control Services (Operasi Perkhidmatan Haiwan Perosak)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Pest Control Technician</li>
+                <li>Fumigation Specialist</li>
+                <li>Pest Management Officer</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,600 - RM 3,200</span>
+            </div>
+          </div>
+
+          <!-- UTM Careers -->
+          <div class="career-salary-card" data-institution="utm" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h3 class="career-card-title">Technology Management</h3>
+            <p class="career-card-course">Diploma in Technology Management</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Technology Operations Manager</li>
+                <li>Project Coordinator</li>
+                <li>Business Analyst</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,500 - RM 4,500</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="utm" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <h3 class="career-card-title">Property Management</h3>
+            <p class="career-card-course">Diploma in Property Management</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Property Manager</li>
+                <li>Real Estate Agent</li>
+                <li>Facility Manager</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,300 - RM 4,200</span>
+            </div>
+          </div>
+
+          <!-- UITM Careers -->
+          <div class="career-salary-card" data-institution="uitm" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3 class="career-card-title">Accounting</h3>
+            <p class="career-card-course">Diploma in Accounting (Perakaunan)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Accounting Clerk</li>
+                <li>Junior Accountant</li>
+                <li>Finance Assistant</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,200 - RM 4,200</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="uitm" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="career-card-title">Business Studies</h3>
+            <p class="career-card-course">Diploma in Business Studies (Pengajian Perniagaan)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Business Executive</li>
+                <li>Marketing Officer</li>
+                <li>Administrative Manager</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,000 - RM 4,000</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="uitm" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-store"></i>
+            </div>
+            <h3 class="career-card-title">Retail Management</h3>
+            <p class="career-card-course">Pre-Diploma in Retail (Pra-Diploma Perdagangan)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Store Manager</li>
+                <li>Retail Operations Officer</li>
+                <li>Sales Supervisor</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 1,800 - RM 3,500</span>
+            </div>
+          </div>
+
+          <!-- UM Careers -->
+          <div class="career-salary-card" data-institution="um" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-flask"></i>
+            </div>
+            <h3 class="career-card-title">Biotechnology</h3>
+            <p class="career-card-course">Bachelor in Biotechnology</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Research Scientist</li>
+                <li>Lab Technologist</li>
+                <li>Quality Assurance Specialist</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 3,200 - RM 6,500</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="um" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <h3 class="career-card-title">Law</h3>
+            <p class="career-card-course">Bachelor of Laws (LLB)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Legal Advisor</li>
+                <li>Corporate Lawyer</li>
+                <li>Legal Officer</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 3,500 - RM 8,000</span>
+            </div>
+          </div>
+
+          <!-- UIC Careers -->
+          <div class="career-salary-card" data-institution="uic" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-child"></i>
+            </div>
+            <h3 class="career-card-title">Early Childhood Education</h3>
+            <p class="career-card-course">Diploma in Early Childhood Education</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Preschool Teacher</li>
+                <li>Childcare Center Manager</li>
+                <li>Early Education Coordinator</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,000 - RM 3,800</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="uic" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-hotel"></i>
+            </div>
+            <h3 class="career-card-title">Hotel Management</h3>
+            <p class="career-card-course">Diploma in Hotel Management</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Hotel Manager</li>
+                <li>Front Office Manager</li>
+                <li>Hospitality Coordinator</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,200 - RM 4,500</span>
+            </div>
+          </div>
+
+          <div class="career-salary-card" data-institution="uic" style="display: none;">
+            <div class="career-card-icon">
+              <i class="fas fa-mosque"></i>
+            </div>
+            <h3 class="career-card-title">Islamic Studies</h3>
+            <p class="career-card-course">Diploma in Islamic Studies (Syariah Islamiah)</p>
+            <div class="career-opportunities">
+              <h4>Career Paths:</h4>
+              <ul>
+                <li>Islamic Studies Teacher</li>
+                <li>Religious Affairs Officer</li>
+                <li>Islamic Center Coordinator</li>
+              </ul>
+            </div>
+            <div class="salary-range">
+              <span class="salary-label">Expected Salary</span>
+              <span class="salary-amount">RM 2,000 - RM 3,500</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- Show More Button -->
+      <div class="show-more-container" id="showMoreContainer" style="display: none;">
+        <button class="show-more-btn" id="showMoreBtn">
+          <span id="showMoreText">View More Opportunities</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
       </div>
     </div>
   </section>
