@@ -3929,6 +3929,41 @@ body:not(.index-page) {
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
+/* Hotel Management Card with Background Image */
+.career-card-hotel {
+  background-image: url('assets/hotel.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-hotel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-hotel > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-hotel .career-card-title,
+.career-card-hotel .career-card-course,
+.career-card-hotel .career-opportunities h4,
+.career-card-hotel .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
 /* Responsive - Mobile Friendly */
 @media screen and (max-width: 768px) {
   .career-salary-section {
