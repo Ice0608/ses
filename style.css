@@ -3125,6 +3125,810 @@ body:not(.index-page) {
   font-weight: 700;
 }
 
+/* Automotive Card with Background Image */
+.career-card-automotive {
+  background-image: url('assets/automotif.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-automotive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.career-card-automotive > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-automotive .career-card-title,
+.career-card-automotive .career-card-course,
+.career-card-automotive .career-opportunities h4,
+.career-card-automotive .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Welding Card with Background Image */
+.career-card-welding {
+  background-image: url('assets/welding.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-welding::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-welding > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-welding .career-card-title,
+.career-card-welding .career-card-course,
+.career-card-welding .career-opportunities h4,
+.career-card-welding .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Industrial Automation Card with Background Image */
+.career-card-automation {
+  background-image: url('assets/automotif.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-automation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-automation > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-automation .career-card-title,
+.career-card-automation .career-card-course,
+.career-card-automation .career-opportunities h4,
+.career-card-automation .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Electrical Card with Background Image */
+.career-card-elektrik {
+  background-image: url('assets/elektrik.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-elektrik::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-elektrik > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-elektrik .career-card-title,
+.career-card-elektrik .career-card-course,
+.career-card-elektrik .career-opportunities h4,
+.career-card-elektrik .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Beauty Services Card with Background Image */
+.career-card-beauty {
+  background-image: url('assets/beauty.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-beauty::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-beauty > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-beauty .career-card-title,
+.career-card-beauty .career-card-course,
+.career-card-beauty .career-opportunities h4,
+.career-card-beauty .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Computer System Card with Background Image */
+.career-card-computer-system {
+  background-image: url('assets/computer system.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-computer-system::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-computer-system > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-computer-system .career-card-title,
+.career-card-computer-system .career-card-course,
+.career-card-computer-system .career-opportunities h4,
+.career-card-computer-system .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Early Childhood Card with Background Image */
+.career-card-child {
+  background-image: url('assets/child.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-child::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-child > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-child .career-card-title,
+.career-card-child .career-card-course,
+.career-card-child .career-opportunities h4,
+.career-card-child .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Food Preparation Card with Background Image */
+.career-card-food-preparation {
+  background-image: url('assets/foodprepare.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-food-preparation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-food-preparation > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-food-preparation .career-card-title,
+.career-card-food-preparation .career-card-course,
+.career-card-food-preparation .career-opportunities h4,
+.career-card-food-preparation .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Bread Making Card with Background Image */
+.career-card-bread {
+  background-image: url('assets/bread.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-bread::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-bread > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-bread .career-card-title,
+.career-card-bread .career-card-course,
+.career-card-bread .career-opportunities h4,
+.career-card-bread .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Computer Network Card with Background Image */
+.career-card-computer-network {
+  background-image: url('assets/computer network.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-computer-network::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-computer-network > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-computer-network .career-card-title,
+.career-card-computer-network .career-card-course,
+.career-card-computer-network .career-opportunities h4,
+.career-card-computer-network .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Culinary Card with Background Image */
+.career-card-culinary {
+  background-image: url('assets/culinary.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-culinary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-culinary > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-culinary .career-card-title,
+.career-card-culinary .career-card-course,
+.career-card-culinary .career-opportunities h4,
+.career-card-culinary .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Secretary Card with Background Image */
+.career-card-secretary {
+  background-image: url('assets/secretary.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-secretary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-secretary > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-secretary .career-card-title,
+.career-card-secretary .career-card-course,
+.career-card-secretary .career-opportunities h4,
+.career-card-secretary .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Admin/Office Card with Background Image */
+.career-card-admin {
+  background-image: url('assets/admin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-admin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-admin > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-admin .career-card-title,
+.career-card-admin .career-card-course,
+.career-card-admin .career-opportunities h4,
+.career-card-admin .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Pastry Card with Background Image */
+.career-card-pastry {
+  background-image: url('assets/pastry.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-pastry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-pastry > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-pastry .career-card-title,
+.career-card-pastry .career-card-course,
+.career-card-pastry .career-opportunities h4,
+.career-card-pastry .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Elderly Care Card with Background Image */
+.career-card-elderly {
+  background-image: url('assets/elderly.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-elderly::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-elderly > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-elderly .career-card-title,
+.career-card-elderly .career-card-course,
+.career-card-elderly .career-opportunities h4,
+.career-card-elderly .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Pest Control Card with Background Image */
+.career-card-pest-control {
+  background-image: url('assets/pestcontrol.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-pest-control::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-pest-control > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-pest-control .career-card-title,
+.career-card-pest-control .career-card-course,
+.career-card-pest-control .career-opportunities h4,
+.career-card-pest-control .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Accounting Card with Background Image */
+.career-card-accounting {
+  background-image: url('assets/accounting.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-accounting::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-accounting > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-accounting .career-card-title,
+.career-card-accounting .career-card-course,
+.career-card-accounting .career-opportunities h4,
+.career-card-accounting .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Business Card with Background Image */
+.career-card-business {
+  background-image: url('assets/business.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-business::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-business > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-business .career-card-title,
+.career-card-business .career-card-course,
+.career-card-business .career-opportunities h4,
+.career-card-business .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Retail Card with Background Image */
+.career-card-retail {
+  background-image: url('assets/retail.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-retail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-retail > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-retail .career-card-title,
+.career-card-retail .career-card-course,
+.career-card-retail .career-opportunities h4,
+.career-card-retail .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Management Card with Background Image */
+.career-card-management {
+  background-image: url('assets/management.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-management::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-management > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-management .career-card-title,
+.career-card-management .career-card-course,
+.career-card-management .career-opportunities h4,
+.career-card-management .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Technology Management Card with Background Image */
+.career-card-techno-manage {
+  background-image: url('assets/technomanage.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-techno-manage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-techno-manage > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-techno-manage .career-card-title,
+.career-card-techno-manage .career-card-course,
+.career-card-techno-manage .career-opportunities h4,
+.career-card-techno-manage .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Property Management Card with Background Image */
+.career-card-property {
+  background-image: url('assets/property.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-property::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-property > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-property .career-card-title,
+.career-card-property .career-card-course,
+.career-card-property .career-opportunities h4,
+.career-card-property .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Islamic Studies Card with Background Image */
+.career-card-islamic {
+  background-image: url('assets/islamic.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-card-islamic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.career-card-islamic > * {
+  position: relative;
+  z-index: 2;
+}
+
+.career-card-islamic .career-card-title,
+.career-card-islamic .career-card-course,
+.career-card-islamic .career-opportunities h4,
+.career-card-islamic .career-opportunities ul li {
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
 /* Responsive - Mobile Friendly */
 @media screen and (max-width: 768px) {
   .career-salary-section {
