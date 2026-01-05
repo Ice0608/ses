@@ -17,6 +17,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css'>
+  <style>
+    /* Partners Grid Mobile - 3 Columns */
+    @media (max-width: 768px) {
+      .partners-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+        padding: 15px !important;
+      }
+      
+      .partners-grid > div img {
+        max-width: 70px !important;
+      }
+    }
+  </style>
 </head>
 <body class="index-page">
 
@@ -104,6 +118,63 @@
     </div>
   </section>
 
+  <!-- Partners Section -->
+  <section class="partners-section whoweare-section" style="padding: 40px 20px; background: transparent;">
+    <div class="partners-container whoweare-container" style="max-width: 1200px; margin: 0 auto;">
+      <h2 class="section-title" style="text-align: center; font-size: 2.5rem; margin-bottom: 30px; color: #fff;">Our Partners</h2>
+      <div class="glass-card-full partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; align-items: center; justify-items: center; padding: 30px;">
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/icepslogo.png" alt="ICEPS Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/jpalogo.png" alt="JPA Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/jpklogo.png" alt="JPK Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/ksmlogo.png" alt="KSM Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/kteblogo.png" alt="KTEB Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/ktislogo.png" alt="KTIS Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/mqalogo.png" alt="MQA Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/obclogo.png" alt="OBC Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/ptptnlogo.png" alt="PTPTN Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/smtaalogo.png" alt="SMTAA Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/tpklogo.png" alt="TPK Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/tvetlogo.png" alt="TVET Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/umlogo.png" alt="UM Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/unifieldlogo.png" alt="Unifiled Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/utmspacelogo.png" alt="UTM Space Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img src="assets/ypblogo.png" alt="YPB Logo" style="max-width: 180px; height: auto; object-fit: contain; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Informational Cards Section -->
   <section class="info-cards-section">
     <div class="info-cards-container">
@@ -156,18 +227,6 @@
             <div class="footer-logo-right">
               <p class="footer-titleline">Smart Education Society</p>
               <p class="footer-tagline">Power of Belief</p>
-                <div class="partner-logos">
-                  <!-- Space for 3-4 partner logos -->
-                  <div class="footer-logo-right">
-                    <img src="assets/logo smtaa rbg.png" alt="SES Logo" class="partner-logo-placeholder">
-                  </div>
-                  <div class="footer-logo-right">
-                    <img src="assets/upkb.png" alt="upkb Logo" class="partner-logo-placeholder">
-                  </div>
-                  <div class="footer-logo-right">
-                    <img src="assets/ypbrbg.png" alt="ypb Logo" class="partner-logo-placeholder">
-                  </div>
-                </div>
             </div>
           </div>
         </div>
@@ -193,11 +252,13 @@
               <li><a href="https://smtaa.vercel.app/">SMTAA</a></li>
               <li><a href="https://upkb.my/">TVET</a></li>
               <li><a href="https://iceps.uitm.edu.my/">UITM</a></li>
+              <li><a href="https://dch.edu.my/">KTEB</a></li>
             </ul>
             <ul class="footer-list">
               <li><a href="https://study.umcced.edu.my/">UM</a></li>
               <li><a href="https://space.utm.my/">UTM</a></li>
               <li><a href="https://uic.edu.my/">UIC</a></li>
+              <li><a href="https://dch.edu.my/">KTIS</a></li>
             </ul>
           </div>
         </div>
@@ -207,7 +268,7 @@
           <div class="footer-contact-row">
             <ul class="footer-list footer-contact">
               <li><i class="fas fa-phone"></i> +60 11-1855 8600</li>
-              <li><i class="fas fa-envelope"></i> info@ses.edu.my</li>
+              <li><i class="fas fa-envelope"></i> smartsocietysolution@gmail.com</li>
               <li><i class="fas fa-map-marker-alt"></i> Negeri Sembilan, Malaysia</li>
             </ul>
             <div class="footer-social-new">

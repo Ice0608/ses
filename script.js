@@ -978,7 +978,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle FULLTIME form
         else if (isFulltime) {
           // Replace this with your FULLTIME Google Sheets URL
-          scriptURL = "https://script.google.com/macros/s/AKfycbwVxoDtK_UoXktldAu1p2wAjSESDxFgTPXW7rrOsgSlYDlLejUZ1fThWmI52nG_nCDj4Q/exec";
+          scriptURL = "https://script.google.com/macros/s/AKfycbxu9fQfNsOGogd_yDZ-W2aENqn8W-Ii2_TshBX03-RTg5wGwSIRpebIdzgmN2JwZVn2hQ/exec";
           
           data = {
             ...data,
