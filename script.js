@@ -1001,33 +1001,37 @@ document.addEventListener('DOMContentLoaded', () => {
           const resumeInput = e.target.querySelector('#ft-resume');
           if (resumeInput && resumeInput.files[0]) {
             const resumeFile = resumeInput.files[0];
-            data['Resume/CV'] = await toBase64(resumeFile);
-            data['Resume/CVFileName'] = resumeFile.name;
+            data['Resume'] = await toBase64(resumeFile);
+            data['ResumeFileName'] = resumeFile.name;
           }
         }
 
         console.log('Sending data to Google Sheets:', data);
 
-        // Show success message immediately
-        alert('Thank you! Your application has been received. We will contact you soon.');
-        
-        // Reset form and close overlay
-        e.target.reset();
-        fulltimeForm.classList.remove('active');
-        internshipForm.classList.remove('active');
-
-        // Send to Google Sheets in background
-        fetch(scriptURL, {
+        // Send to Google Sheets and WAIT for response
+        const response = await fetch(scriptURL, {
           method: 'POST',
           body: JSON.stringify(data),
           headers: {
             'Content-Type': 'text/plain'
           }
-        }).then(response => {
-          console.log('Response received:', response);
-        }).catch(error => {
-          console.error('Error sending to Google Sheets:', error);
         });
+
+        console.log('Response received:', response);
+
+        const result = await response.json();
+        console.log('Result:', result);
+
+        if (result.result === 'success') {
+          alert('Thank you! Your application has been received. We will contact you soon.');
+          
+          // Reset form and close overlay AFTER success
+          e.target.reset();
+          fulltimeForm.classList.remove('active');
+          internshipForm.classList.remove('active');
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
         
       } catch (error) {
         console.error('Error submitting form:', error);
