@@ -418,7 +418,7 @@ body:not(.index-page) {
     }
 
     .education {
-      background: url('assets/educationn.png') center/cover no-repeat;
+      background: url('assets/ourteam.jpg') center/cover no-repeat;
       position: relative;
     }
 
@@ -434,7 +434,7 @@ body:not(.index-page) {
     }
 
     .career {
-      background: url('assets/career.png') center/cover no-repeat;
+      background: url('assets/ceoheader.jpg') center/cover no-repeat;
       position: relative;
     }
 
@@ -2002,11 +2002,17 @@ body:not(.index-page) {
 }
 
 .hero-team {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/ourteam.png') center/cover no-repeat !important;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/ourteam.jpg') center/cover no-repeat !important;
 }
 
 .hero-portfolio {
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/portfolio.png') center/cover no-repeat !important;
+}
+.hero-director{
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/ceoheader.jpg') center/cover no-repeat !important;
+}
+.hero-business{
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/businessheader.jpg') center/cover no-repeat !important;
 }
 
 /* Director Profile Section */
@@ -2016,14 +2022,37 @@ body:not(.index-page) {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  isolation: isolate;
+/*
   background: linear-gradient(to bottom, 
     transparent 0%, 
     transparent 40%, 
     rgba(0,0,0,0.3) 60%, 
     rgba(0,0,0,0.7) 80%, 
-    #000 100%);
+    #000 100%); */
+
+  background-image: url(assets/wallpaper.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+.director-section::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 15, 40, 0.85) 0%,
+    rgba(10, 15, 40, 0.75) 35%,
+    rgba(0, 0, 0, 0.7) 60%,
+    rgba(0, 0, 0, 0.85) 80%,
+    #000 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
 .director-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -2040,12 +2069,14 @@ body:not(.index-page) {
   overflow: visible;
   box-shadow: none;
   margin-left: -130px; /* Move image to the left */
+  z-index: 2;
 }
 
 .director-image img {
   width: 100%;
   height: auto;
   display: block;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
 }
 
 .director-content {
@@ -2058,19 +2089,21 @@ body:not(.index-page) {
 .glass-card-director {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba(255, 255, 255, 0.03) 100%
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 100%
   );
-  backdrop-filter: blur(2px) saturate(180%) brightness(1.05);
-  -webkit-backdrop-filter: blur(2px) saturate(180%) brightness(1.05);
-  border-radius: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 50px 40px;
+  backdrop-filter: blur(14px) saturate(180%) /*brightness(1.05)*/;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) /*brightness(1.05)*/;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 50px 45px;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
+     0 25px 60px rgba(0,0,0,0.55),
+     inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    /*0 8px 32px rgba(0, 0, 0, 0.4),
     0 2px 8px rgba(122, 78, 222, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);*/
 }
 
 .glass-card-director h2 {
@@ -2084,7 +2117,7 @@ body:not(.index-page) {
 .glass-card-director h3 {
   font-size: 1.3rem;
   font-weight: 500;
-  color: #a78bfa;
+  color: #b794f6;
   margin-bottom: 25px;
   text-align: left;
 }
@@ -2124,7 +2157,7 @@ body:not(.index-page) {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #a78bfa;
+  color: #c084fc;
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -2149,6 +2182,7 @@ body:not(.index-page) {
 
   .director-container {
     position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -2163,7 +2197,7 @@ body:not(.index-page) {
   .director-content {
     position: relative;
     z-index: 2;
-    margin-top: -500px; /* Overlap the image */
+    margin-top: -35vh; /* Overlap the image */
   }
 
   .glass-card-director {
