@@ -303,60 +303,6 @@ body:not(.index-page) {
       position: relative;
     }
 
-    /* Loading Spinner */
-    .spinner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #1a1a2e;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s, visibility 0.5s;
-    }
-
-    .spinner.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .spinner-content {
-      text-align: center;
-      color: #fff;
-    }
-
-    .cube-container {
-      display: inline-block;
-      position: relative;
-      width: 40px;
-      height: 40px;
-      margin-bottom: 20px;
-    }
-
-    .cube1, .cube2 {
-      background-color: #4CAF50;
-      width: 15px;
-      height: 15px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      animation: sk-cubemove 1.8s infinite ease-in-out;
-    }
-
-    .cube2 {
-      animation-delay: -0.9s;
-    }
-
-    @keyframes sk-cubemove {
-      25% { transform: translateX(25px) rotate(-90deg) scale(0.5); }
-      50% { transform: translateX(25px) translateY(25px) rotate(-180deg); }
-      75% { transform: translateX(0px) translateY(25px) rotate(-270deg) scale(0.5); }
-      100% { transform: rotate(-360deg); }
-    }
-
     /* Flex Container */
     .flex-container {
       display: flex;
@@ -593,33 +539,6 @@ body:not(.index-page) {
         inset 0 4px 8px 0 rgba(255, 255, 255, 1),
         inset 0 -4px 8px 0 rgba(0, 0, 0, 0.1);
       transform: translateY(-5px);
-    }
-
-    /* Branding */
-    .branding {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      background: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .branding:hover {
-      transform: scale(1.1);
-    }
-
-    .branding img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
     }
 
     /* Responsive */
@@ -1901,51 +1820,6 @@ body:not(.index-page) {
     }
   }
           
-/* Navigation Bar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: hsl(210 75% 40%);
-  padding: 15px 40px;
-  position: sticky;
-  top: 0;
-  z-index: 1100;
-  /* Consistent navbar height for dropdown offset */
-  --navbar-height: 72px;
-  min-height: var(--navbar-height);
-}
-
-.navbar .logo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.navbar .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar .nav-links li {
-  display: inline;
-}
-
-.navbar .nav-links a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.navbar .nav-links a:hover,
-.navbar .nav-links a.active {
-  color: #c8e6c9;
-}
-
 /* Smaller Hero for subpages */
 .small-hero {
   height: 250px;
