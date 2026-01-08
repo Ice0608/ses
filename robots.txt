@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sesoc.com.my/sitemap.xml
