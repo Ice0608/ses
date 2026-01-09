@@ -1,33 +1,5 @@
 console.log("script.js loaded successfully");
 
-// ===== Lightbox (click to enlarge) =====
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-const closeBtn = document.querySelector(".close");
-
-// Only run if lightbox elements exist on the page
-if (lightbox && lightboxImg) {
-  document.querySelectorAll(".enlargeable").forEach(img => {
-    img.addEventListener("click", () => {
-      lightbox.style.display = "flex"; // Changed from "block" to "flex"
-      lightboxImg.src = img.src;
-    });
-  });
-
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      lightbox.style.display = "none";
-    });
-  }
-
-  lightbox.addEventListener("click", (e) => {
-    // Close if clicking the background (but not the wrapper or image)
-    if (e.target === lightbox) {
-      lightbox.style.display = "none";
-    }
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const searchForm = document.getElementById("searchForm");
   const searchInput = document.getElementById("searchInput");
@@ -134,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!navLinks) {
     console.error("❌ navLinks element not found in DOM!");
     return;
-  // ```javascript
   }
 
   console.log("✅ Hamburger and navLinks found!");
@@ -206,18 +177,6 @@ function openModal(id) {
         }
       });
     }
-
-// === Lightbox logic ===
-document.querySelectorAll('.popup-img').forEach(img => {
-  img.addEventListener('click', () => {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    lightboxImg.src = img.src;
-    lightbox.style.display = 'block';
-  });
-});
-
-
 
 // === Support Widget Logic ===
 document.addEventListener('DOMContentLoaded', () => {
@@ -550,6 +509,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.querySelector('#education-carousel-nav .carousel-nav.prev');
   const nextBtn = document.querySelector('#education-carousel-nav .carousel-nav.next');
   let currentIndex = 0;
+  let cardsToShow = 3; // Start with 3 cards
+  const cardsPerLoad = 3; // Load 3 more cards each time
 
   // Only run if carousel exists
   if (carouselCells.length === 0) return;
@@ -590,6 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log('Carousel updated to index:', currentIndex);
+    updateCareerCards(); // Update career cards based on selected institution
   }
 
   // Next button
@@ -662,10 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCarousel();
   console.log('Education carousel initialized with', carouselCells.length, 'cards');
 
-  // Sync career cards with carousel selection
-  let cardsToShow = 3; // Start with 3 cards
-  const cardsPerLoad = 3; // Load 3 more cards each time
-  
+  // ===== UPDATED CAREER CARDS FUNCTION WITH TVET SEAMLESS LOOP =====
   function updateCareerCards() {
     const institutions = ['smtaa', 'tvet', 'uitm', 'um', 'utm', 'uic'];
     const selectedInstitution = institutions[currentIndex];
@@ -680,61 +639,196 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 400);
     }
     
-    // Get all career cards
-    const allCareerCards = document.querySelectorAll('.career-salary-card');
+    // Get all career elements
+    const allCareerCards = document.querySelectorAll('.career-salary-card[data-institution]');
+    const regularCardsContainer = document.querySelector('.career-cards-scroll');
+    const tvetCarouselSection = document.querySelector('.tvet-carousel-section');
+    const showMoreContainer = document.getElementById('showMoreContainer');
     
-    // Hide all cards first
+    // Hide all career sections first
     allCareerCards.forEach(card => {
       card.style.display = 'none';
       card.classList.remove('hidden-card');
     });
     
-    // Show only cards for selected institution
-    const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
+    if (regularCardsContainer) {
+      regularCardsContainer.style.display = 'none';
+    }
     
-    // Show cards up to cardsToShow, hide the rest
-    selectedCards.forEach((card, index) => {
-      card.style.display = 'flex';
-      if (index >= cardsToShow) {
-        card.classList.add('hidden-card');
-      }
-    });
+    if (tvetCarouselSection) {
+      tvetCarouselSection.style.display = 'none';
+    }
+
+    if (showMoreContainer) {
+      showMoreContainer.style.display = 'none';
+    }
     
-    // Show/hide "Show More" button
-    const showMoreContainer = document.getElementById('showMoreContainer');
-    const showMoreBtn = document.getElementById('showMoreBtn');
-    const showMoreText = document.getElementById('showMoreText');
-    
-    if (showMoreContainer && showMoreBtn) {
-      if (selectedCards.length > 3) {
-        showMoreContainer.style.display = 'block';
-        showMoreBtn.classList.remove('expanded');
+    // Show the appropriate content based on selected institution
+    if (selectedInstitution === 'tvet') {
+      // Show TVET carousel
+      if (tvetCarouselSection) {
+        tvetCarouselSection.style.display = 'block';
         
-        // Check if there are more cards to show
-        if (cardsToShow < selectedCards.length) {
-          showMoreText.textContent = 'View More Opportunities';
-          const icon = showMoreBtn.querySelector('i');
-          if (icon) icon.className = 'fas fa-chevron-down';
-        } else {
-          showMoreText.textContent = 'Show Less';
-          const icon = showMoreBtn.querySelector('i');
-          if (icon) icon.className = 'fas fa-chevron-up';
-          showMoreBtn.classList.add('expanded');
-        }
-      } else {
+        // Add spacing class to match other institutions
+        tvetCarouselSection.classList.add('tvet-carousel-active');
+        
+        // Initialize TVET carousel with seamless infinite loop
+        setTimeout(initTVETCarousel, 100);
+      }
+      // Hide "Show More" button for TVET
+      if (showMoreContainer) {
         showMoreContainer.style.display = 'none';
+      }
+    } else {
+      // Remove spacing class when not TVET
+      const tvetSection = document.querySelector('.tvet-carousel-section');
+      if (tvetSection) {
+        tvetSection.classList.remove('tvet-carousel-active');
+      }
+      
+      // Show regular cards for other institutions
+      if (regularCardsContainer) {
+        regularCardsContainer.style.display = 'grid';
+      }
+      
+      const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
+      
+      selectedCards.forEach((card, index) => {
+        card.style.display = 'flex';
+        if (index >= cardsToShow) {
+          card.classList.add('hidden-card');
+        }
+      });
+      
+      // Show/hide "Show More" button for non-TVET institutions
+      if (showMoreContainer && selectedCards.length > 3) {
+        showMoreContainer.style.display = 'block';
+        updateShowMoreButton(selectedCards.length);
       }
     }
     
-    console.log('Showing career cards for:', selectedInstitution, '(' + selectedCards.length + ' total)');
+    console.log('Showing career content for:', selectedInstitution);
   }
 
-  // Update career cards on carousel change
-  const originalUpdateCarousel = updateCarousel;
-  updateCarousel = function() {
-    originalUpdateCarousel();
-    updateCareerCards();
-  };
+  // ===== TVET SEAMLESS INFINITE LOOP CAROUSEL (OUROBOROS EFFECT) =====
+  function initTVETCarousel() {
+    const tvetSection = document.querySelector('.tvet-carousel-section');
+    if (!tvetSection) return;
+    
+    const tvetSlideTrack = tvetSection.querySelector('.tvet-slide-track');
+    
+    // Clear existing slides
+    tvetSlideTrack.innerHTML = '';
+    
+    // Get all TVET cards from template
+    const template = document.getElementById('tvet-cards-template');
+    if (!template) return;
+    
+    const tvetCards = Array.from(template.querySelectorAll('.career-salary-card'));
+    
+    // For seamless infinite loop, we need to duplicate the cards
+    // Create enough copies to fill the screen plus one extra set
+    const screenWidth = window.innerWidth;
+    const cardWidth = 350; // Base card width
+    const gap = 30; // Gap between cards
+    const cardsPerScreen = Math.ceil(screenWidth / (cardWidth + gap));
+    const setsNeeded = cardsPerScreen + 2; // Extra 2 sets for smooth looping
+    
+    // Create multiple sets for seamless looping
+    for (let i = 0; i < setsNeeded; i++) {
+      tvetCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.style.display = 'flex';
+        tvetSlideTrack.appendChild(clone);
+      });
+    }
+    
+    // Calculate total width of ONE set (18 original cards)
+    const totalSetWidth = (cardWidth + gap) * 18;
+    
+    // Reset animation to start position
+    tvetSlideTrack.style.animation = 'none';
+    void tvetSlideTrack.offsetWidth; // Force reflow
+    tvetSlideTrack.style.animation = 'tvet-scroll-seamless 60s linear infinite';
+    
+    // Pause/Resume functionality
+    let isPaused = false;
+    
+    // Reset animation when it ends to create seamless loop
+    tvetSlideTrack.addEventListener('animationiteration', () => {
+      // Reset position to create seamless loop
+      tvetSlideTrack.style.animation = 'none';
+      void tvetSlideTrack.offsetWidth; // Force reflow
+      tvetSlideTrack.style.animation = 'tvet-scroll-seamless 60s linear infinite';
+      
+      if (isPaused) {
+        tvetSlideTrack.style.animationPlayState = 'paused';
+      }
+    });
+    
+    // Pause on hover
+    tvetSlideTrack.addEventListener('mouseenter', () => {
+      if (!isPaused) {
+        tvetSlideTrack.style.animationPlayState = 'paused';
+      }
+    });
+    
+    tvetSlideTrack.addEventListener('mouseleave', () => {
+      if (!isPaused) {
+        tvetSlideTrack.style.animationPlayState = 'running';
+      }
+    });
+    
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    tvetSlideTrack.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      if (!isPaused) {
+        tvetSlideTrack.style.animationPlayState = 'paused';
+      }
+    }, { passive: true });
+    
+    tvetSlideTrack.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const swipeDistance = touchEndX - touchStartX;
+      
+      // Simple swipe to pause/resume
+      if (Math.abs(swipeDistance) >= 50) {
+        isPaused = !isPaused;
+        if (isPaused) {
+          tvetSlideTrack.style.animationPlayState = 'paused';
+        } else {
+          tvetSlideTrack.style.animationPlayState = 'running';
+        }
+      }
+    }, { passive: true });
+    
+    // Fix for animation stopping in Safari/iOS
+    const checkAnimationState = () => {
+      if (!isPaused && tvetSlideTrack.style.animationPlayState === 'paused') {
+        tvetSlideTrack.style.animationPlayState = 'running';
+      }
+    };
+    
+    // Check every 2 seconds
+    setInterval(checkAnimationState, 2000);
+  }
+
+  // Update Show More button text
+  function updateShowMoreButton(totalCards) {
+    const showMoreText = document.getElementById('showMoreText');
+    const icon = document.getElementById('showMoreBtn').querySelector('i');
+    
+    if (cardsToShow < totalCards) {
+      if (showMoreText) showMoreText.textContent = 'View More Opportunities';
+      if (icon) icon.className = 'fas fa-chevron-down';
+    } else {
+      if (showMoreText) showMoreText.textContent = 'Show Less';
+      if (icon) icon.className = 'fas fa-chevron-up';
+    }
+  }
 
   // Initialize career cards
   updateCareerCards();
@@ -778,6 +872,10 @@ document.addEventListener('DOMContentLoaded', () => {
     showMoreBtn.addEventListener('click', () => {
       const institutions = ['smtaa', 'tvet', 'uitm', 'um', 'utm', 'uic'];
       const selectedInstitution = institutions[currentIndex];
+      
+      // Don't do anything for TVET (it has carousel instead)
+      if (selectedInstitution === 'tvet') return;
+      
       const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
       const showMoreText = document.getElementById('showMoreText');
       const icon = showMoreBtn.querySelector('i');
@@ -795,8 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if all cards are now shown
         if (cardsToShow >= selectedCards.length) {
           showMoreBtn.classList.add('expanded');
-          if (showMoreText) showMoreText.textContent = 'Show Less';
-          if (icon) icon.className = 'fas fa-chevron-up';
+          updateShowMoreButton(selectedCards.length);
         }
       } else {
         // Collapse back to 3 cards
@@ -809,8 +906,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         showMoreBtn.classList.remove('expanded');
-        if (showMoreText) showMoreText.textContent = 'View More Opportunities';
-        if (icon) icon.className = 'fas fa-chevron-down';
+        updateShowMoreButton(selectedCards.length);
         
         // Scroll back to career section
         const careerSection = document.querySelector('.career-salary-section');
@@ -1124,7 +1220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Observe all business items
     document.querySelectorAll('.business-item').forEach(item => {
-      itemObserver.observe(item);
+      observer.observe(item);
     });
 
     // Add hover animation to cards
