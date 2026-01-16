@@ -1,9 +1,133 @@
-console.log("script.js loaded successfully");
+// Hero Slider Functionality
+const heroSliderInit = () => {
+  const slides = document.querySelectorAll('.hero-slide');
+  const indicators = document.querySelectorAll('.hero-indicator');
+  const prevBtn = document.getElementById('heroPrev');
+  const nextBtn = document.getElementById('heroNext');
+  
+  if (!slides.length) return; // Exit if no slides found
+  
+  let currentSlide = 0;
+  let autoSlideInterval;
+  const autoSlideDelay = 5000; // 5 seconds
 
-document.addEventListener("DOMContentLoaded", () => {
+  const showSlide = (index) => {
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    indicators[index].classList.add('active');
+    currentSlide = index;
+  };
+
+  const nextSlide = () => {
+    showSlide((currentSlide + 1) % slides.length);
+    resetAutoSlide();
+  };
+
+  const prevSlide = () => {
+    showSlide((currentSlide - 1 + slides.length) % slides.length);
+    resetAutoSlide();
+  };
+
+  const autoSlide = () => {
+    autoSlideInterval = setInterval(nextSlide, autoSlideDelay);
+  };
+
+  const resetAutoSlide = () => {
+    clearInterval(autoSlideInterval);
+    autoSlide();
+  };
+
+  // Event Listeners
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      showSlide(index);
+      resetAutoSlide();
+    });
+  });
+
+  // Start auto-slide
+  autoSlide();
+};
+
+// Intro Screen Functionality
+const introScreenInit = () => {
+  const intro = document.getElementById("introScreen");
+  const video = document.getElementById("introVideo");
+  const startButton = document.getElementById("startButton");
+
+  // Only run intro logic if the intro elements exist (home page)
+  if (!intro) {
+    console.log("❌ Intro screen not found");
+    return;
+  }
+  if (!video) {
+    console.log("❌ Video element not found");
+    return;
+  }
+  if (!startButton) {
+    console.log("❌ Start button not found");
+    return;
+  }
+
+  console.log("✅ All intro elements found");
+
+  // Check if intro was already shown
+  if (sessionStorage.getItem("introShown")) {
+    console.log("Intro already shown, hiding...");
+    intro.style.display = "none";
+    document.body.style.overflow = "auto";
+    return;
+  }
+
+  console.log("Showing intro screen");
+  document.body.style.overflow = "hidden";
+  
+  startButton.onclick = function(e) {
+    console.log("🎬 Start button clicked!");
+    e.preventDefault();
+    e.stopPropagation();
+    
+    startButton.style.display = "none";
+    video.style.display = "block";
+    
+    video.play().then(() => {
+      console.log("✅ Video playing");
+      video.volume = 1.0;
+    }).catch(err => {
+      console.error("❌ Video play error:", err);
+    });
+
+    video.onended = function() {
+      console.log("✅ Video ended");
+      intro.style.transition = "opacity 1s ease";
+      intro.style.opacity = "0";
+      setTimeout(() => {
+        intro.style.display = "none";
+        document.body.style.overflow = "auto";
+        sessionStorage.setItem("introShown", "true");
+        console.log("✅ Intro hidden");
+      }, 1000);
+    };
+  };
+  
+  console.log("✅ Click handler attached to button");
+};
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("DOM Content Loaded");
+  introScreenInit();
+  heroSliderInit();
+
+  // Search Form Functionality
   const searchForm = document.getElementById("searchForm");
   const searchInput = document.getElementById("searchInput");
-
+  
   if (searchForm && searchInput) {
     searchForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -64,6 +188,65 @@ document.addEventListener("DOMContentLoaded", () => {
   if (searchTerm) {
     highlightAndScroll(searchTerm);
   }
+
+  // Hamburger Menu & Navigation Functionality
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  if (hamburger && navLinks) {
+    console.log("✅ Hamburger and navLinks found!");
+
+    hamburger.addEventListener("click", () => {
+      console.log("🍔 Hamburger clicked!");
+      navLinks.classList.toggle("show");
+    });
+
+    // Dropdown menu toggle (for mobile click functionality)
+    const dropdownLinks = document.querySelectorAll('.dropdown > a');
+    
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Only prevent default and toggle on mobile/tablet
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const dropdown = link.parentElement;
+          
+          // Close other dropdowns
+          document.querySelectorAll('.dropdown').forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('active');
+            }
+          });
+          
+          // Toggle current dropdown
+          dropdown.classList.toggle('active');
+        }
+        // On desktop, let the link work normally (hover still works)
+      });
+    });
+
+    // Close dropdown and hamburger menu when clicking on any dropdown content link
+    const dropdownContentLinks = document.querySelectorAll('.dropdown-content a');
+    dropdownContentLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // Close all dropdowns
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+        // Close hamburger menu
+        navLinks.classList.remove('show');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      }
+    });
+  }
 });
 
 // Highlight + scroll to first match
@@ -91,77 +274,6 @@ function highlightAndScroll(term) {
     firstMatchElement.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("script.js loaded successfully");
-
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("navLinks");
-
-  if (!hamburger) {
-    console.error("❌ Hamburger element not found in DOM!");
-    return;
-  }
-
-  if (!navLinks) {
-    console.error("❌ navLinks element not found in DOM!");
-    return;
-  }
-
-  console.log("✅ Hamburger and navLinks found!");
-
-  hamburger.addEventListener("click", () => {
-    console.log("🍔 Hamburger clicked!");
-    navLinks.classList.toggle("show");
-  });
-
-  // Dropdown menu toggle (for mobile click functionality)
-  const dropdownLinks = document.querySelectorAll('.dropdown > a');
-  
-  dropdownLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Only prevent default and toggle on mobile/tablet
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        const dropdown = link.parentElement;
-        
-        // Close other dropdowns
-        document.querySelectorAll('.dropdown').forEach(otherDropdown => {
-          if (otherDropdown !== dropdown) {
-            otherDropdown.classList.remove('active');
-          }
-        });
-        
-        // Toggle current dropdown
-        dropdown.classList.toggle('active');
-      }
-      // On desktop, let the link work normally (hover still works)
-    });
-  });
-
-  // Close dropdown and hamburger menu when clicking on any dropdown content link
-  const dropdownContentLinks = document.querySelectorAll('.dropdown-content a');
-  dropdownContentLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Close all dropdowns
-      document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
-      // Close hamburger menu
-      navLinks.classList.remove('show');
-    });
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.dropdown')) {
-      document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
-    }
-  });
-});
-
 
 function openModal(id) {
       document.getElementById(id).style.display = "flex";
@@ -335,7 +447,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // Hide spinner after page load
     window.addEventListener('load', function() {
       setTimeout(function() {
-        document.getElementById('spinner').classList.add('hidden');
+        const spinner = document.getElementById('spinner');
+        if (spinner) {
+          spinner.classList.add('hidden');
+        }
       }, 1000);
     });
 
@@ -1166,10 +1281,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const shapes = document.querySelectorAll('.shape');
 
       // Navbar background on scroll
-      if (scrollPos + 100 >= window.innerHeight) {
-        navbar.classList.add('bg-active');
-      } else {
-        navbar.classList.remove('bg-active');
+      if (navbar) {
+        if (scrollPos + 100 >= window.innerHeight) {
+          navbar.classList.add('bg-active');
+        } else {
+          navbar.classList.remove('bg-active');
+        }
       }
 
       // Parallax shapes effect
@@ -1231,9 +1348,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-gsap.registerPlugin(ScrollTrigger);
+// Only load GSAP animations if library is available
+if (typeof gsap !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
 
-    const sections = gsap.utils.toArray('.section-panel');
+  const sections = gsap.utils.toArray('.section-panel');
     const indicators = document.querySelectorAll('.indicator-dot');
 
     // Horizontal scroll animation for all devices - manual scroll control
@@ -1596,9 +1715,11 @@ ScrollTrigger.matchMedia({
     });
   }
 });
+}
 
 
 // ===== Index Page Hero + Cards (no zoom) =====
+if (typeof gsap !== 'undefined') {
 (function initIndexPage() {
   const isIndex = document.body.classList.contains('index-page');
   if (!isIndex) return;
@@ -1625,8 +1746,12 @@ ScrollTrigger.matchMedia({
       ease: 'power2.out'
     });
   }
-
   // No scroll indicator on static layout
 
   // Footer always clickable; no JS opacity/pointer-events changes
 })();
+}
+
+document.addEventListener('DOMContentLoaded', heroSliderInit);
+
+// ...existing code...
