@@ -786,34 +786,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Show the appropriate content based on selected institution
-    if (selectedInstitution === 'tvet') {
-      // Show TVET carousel
+    // Check if institution has 5 or more cards - use carousel
+    const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
+    const useCarousel = selectedCards.length >= 5;
+    
+    if (useCarousel) {
+      // Use carousel for institutions with 5+ cards
       if (tvetCarouselSection) {
         tvetCarouselSection.style.display = 'block';
+        tvetCarouselSection.setAttribute('data-institution', selectedInstitution);
         
         // Add spacing class to match other institutions
         tvetCarouselSection.classList.add('tvet-carousel-active');
         
-        // Initialize TVET carousel with seamless infinite loop
-        setTimeout(initTVETCarousel, 100);
+        // Initialize carousel with current institution's cards
+        setTimeout(() => initAutoCarousel(selectedInstitution), 100);
       }
-      // Hide "Show More" button for TVET
+      // Hide "Show More" button for carousel
       if (showMoreContainer) {
         showMoreContainer.style.display = 'none';
       }
     } else {
-      // Remove spacing class when not TVET
+      // Remove spacing class when not using carousel
       const tvetSection = document.querySelector('.tvet-carousel-section');
       if (tvetSection) {
         tvetSection.classList.remove('tvet-carousel-active');
       }
       
-      // Show regular cards for other institutions
+      // Show regular cards for institutions with fewer than 5 cards
       if (regularCardsContainer) {
         regularCardsContainer.style.display = 'grid';
       }
-      
-      const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
       
       selectedCards.forEach((card, index) => {
         card.style.display = 'flex';
@@ -822,7 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       
-      // Show/hide "Show More" button for non-TVET institutions
+      // Show/hide "Show More" button for non-carousel institutions
       if (showMoreContainer && selectedCards.length > 3) {
         showMoreContainer.style.display = 'block';
         updateShowMoreButton(selectedCards.length);
@@ -832,8 +835,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Showing career content for:', selectedInstitution);
   }
 
-  // ===== TVET SEAMLESS INFINITE LOOP CAROUSEL (OUROBOROS EFFECT) =====
-  function initTVETCarousel() {
+  // ===== AUTO CAROUSEL FOR INSTITUTIONS WITH 5+ CARDS =====
+  function initAutoCarousel(institution) {
     const tvetSection = document.querySelector('.tvet-carousel-section');
     if (!tvetSection) return;
     
@@ -842,11 +845,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clear existing slides
     tvetSlideTrack.innerHTML = '';
     
-    // Get all TVET cards from template
-    const template = document.getElementById('tvet-cards-template');
-    if (!template) return;
-    
-    const tvetCards = Array.from(template.querySelectorAll('.career-salary-card'));
+    // Get cards for the selected institution
+    let institutionCards;
+    if (institution === 'tvet') {
+      // Get TVET cards from template
+      const template = document.getElementById('tvet-cards-template');
+      if (!template) return;
+      institutionCards = Array.from(template.querySelectorAll('.career-salary-card'));
+    } else {
+      // Get cards from the regular career cards container
+      institutionCards = Array.from(document.querySelectorAll(`.career-salary-card[data-institution="${institution}"]`));
+    }
     
     // For seamless infinite loop, we need to duplicate the cards
     // Create enough copies to fill the screen plus one extra set
@@ -858,20 +867,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Create multiple sets for seamless looping
     for (let i = 0; i < setsNeeded; i++) {
-      tvetCards.forEach(card => {
+      institutionCards.forEach(card => {
         const clone = card.cloneNode(true);
         clone.style.display = 'flex';
         tvetSlideTrack.appendChild(clone);
       });
     }
     
-    // Calculate total width of ONE set (18 original cards)
-    const totalSetWidth = (cardWidth + gap) * 18;
+    // Calculate total width of ONE set
+    const totalSetWidth = (cardWidth + gap) * institutionCards.length;
+    
+    // Calculate animation duration - ALL institutions use same timing as TVET (5 seconds per card)
+    // This ensures consistent visual speed: each card is visible for exactly 5 seconds
+    const secondsPerCard = 5;
+    const animationDuration = institutionCards.length * secondsPerCard;
     
     // Reset animation to start position
     tvetSlideTrack.style.animation = 'none';
     void tvetSlideTrack.offsetWidth; // Force reflow
-    tvetSlideTrack.style.animation = 'tvet-scroll-seamless 60s linear infinite';
+    tvetSlideTrack.style.animation = `tvet-scroll-seamless ${animationDuration}s linear infinite`;
     
     // Pause/Resume functionality
     let isPaused = false;
@@ -881,7 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Reset position to create seamless loop
       tvetSlideTrack.style.animation = 'none';
       void tvetSlideTrack.offsetWidth; // Force reflow
-      tvetSlideTrack.style.animation = 'tvet-scroll-seamless 60s linear infinite';
+      tvetSlideTrack.style.animation = `tvet-scroll-seamless ${animationDuration}s linear infinite`;
       
       if (isPaused) {
         tvetSlideTrack.style.animationPlayState = 'paused';

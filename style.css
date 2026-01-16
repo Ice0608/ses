@@ -7735,10 +7735,57 @@ footer {
 .career-card-hotel::before { background-image: url('assets/hotel.png'); }
 .career-card-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
 
+/* Dayatech College - Mechatronics */
+.career-card-dayatech-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
+
 /* Eco Autotronic Academy - No background images (to be added later) */
 .career-card-eco-auto::before { background-image: none; }
 .career-card-eco-maintenance::before { background-image: none; }
 .career-card-eco-workshop::before { background-image: none; }
+
+/* Noble School Engineering - No background images (to be added later) */
+.career-card-noble-auto::before { background-image: url('assets/automotif.png'); }
+.career-card-noble-welding::before { background-image: url('assets/welding.png'); }
+.career-card-noble-automation::before { background-image: url('assets/automotif.png'); }
+
+/* Noble School City Campus - No background images (to be added later) */
+.career-card-noble-food::before { background-image: url('assets/foodprepare.png'); }
+.career-card-noble-electrical::before { background-image: url('assets/elektrik.png'); }
+.career-card-noble-aesthetic::before { background-image: url('assets/beauty.png'); }
+.career-card-noble-bread::before { background-image: url('assets/bread.png'); }
+.career-card-noble-foodst::before { background-image: url('assets/foodprepare.png'); }
+.career-card-noble-electricst::before { background-image: url('assets/elektrik.png'); }
+.career-card-noble-culinary::before { background-image: url('assets/culinary.png'); }
+
+/* Workers Institute Technology - No background images (to be added later) */
+.career-card-wit-automotive::before { background-image: url('assets/automotif.png'); }
+.career-card-wit-electrical::before { background-image: url('assets/elektrik.png'); }
+.career-card-wit-beauty::before { background-image: url('assets/beauty.png'); }
+.career-card-wit-computer::before { background-image: url('assets/computer system.png'); }
+.career-card-wit-welding::before { background-image: url('assets/welding.png'); }
+
+/* KTIS - No background images (to be added later) */
+.career-card-ktis-office::before { background-image: url('assets/admin.png'); }
+.career-card-ktis-computer::before { background-image: url('assets/computer system.png'); }
+.career-card-ktis-culinary::before { background-image: url('assets/culinary.png'); }
+
+/* KTEB - No background images (to be added later) */
+.career-card-kteb-electrical::before { background-image: url('assets/elektrik.png'); }
+
+/* Ambitious Academy - No background images (to be added later) */
+.career-card-ambitious-childcare::before { background-image: url('assets/child.png'); }
+.career-card-ambitious-culinary::before { background-image: url('assets/culinary.png'); }
+
+/* Malaysian Business Academy (MBA) - No background images (to be added later) */
+.career-card-mba-childcare::before { background-image: url('assets/child.png'); }
+
+/* Silverspoon International College - No background images (to be added later) */
+.career-card-silverspoon-food::before { background-image: url('assets/foodprepare.png'); }
+.career-card-silverspoon-pastry::before { background-image: url('assets/pastry.png'); }
+
+/* Azmida Technical College - No background images (to be added later) */
+.career-card-azmida-boiler::before { background-image: url('assets/welding.png'); }
+.career-card-azmida-electrical::before { background-image: url('assets/elektrik.png'); }
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
