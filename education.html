@@ -15,6 +15,27 @@
 </head>
 <body>
 
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="assets/edusound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music Control Button -->
+  <button class="music-control-btn" id="musicControlBtn" title="Mute/Unmute Music">
+    <i class="fas fa-volume-up" id="volumeIcon"></i>
+  </button>
+
+  <!-- Click to Start Overlay -->
+  <div class="music-start-overlay" id="musicStartOverlay">
+    <div class="music-start-content">
+      <i class="fas fa-music"></i>
+      <h3>Welcome to SES Education</h3>
+      <p>Click anywhere to continue with music</p>
+      <button class="music-start-btn" id="musicStartBtn">Enter with Music</button>
+    </div>
+  </div>
+
   <!-- Navigation Bar -->
   <nav>
     <div class="logo">
@@ -68,6 +89,7 @@
   <!-- Hero section -->
   <header class="hero small-hero hero-education">
     <div class="hero-content">
+      <img src="assets/upkb.png" alt="UPKB Logo" class="hero-logo-left">
       <h1>EDUCATION</h1>
       <p>Guiding Students Toward Success</p>
     </div>
@@ -692,6 +714,70 @@
               </div>
           </div>
 
+          <!-- Eco Autotronic Academy Careers -->
+          <div class="career-salary-card career-card-eco-auto" data-institution="ecoautotronic" style="display: none;">
+            <div class="career-card-title-container">
+              <h3 class="career-card-title">Light Vehicle Autotronics</h3>
+              <p class="career-card-course">Diploma in Light Vehicle Autotronics</p>
+            </div>
+            <div class="career-card-details">
+              <div class="career-opportunities">
+                <h4>Career Paths</h4>
+                <ul>
+                  <li>Automotive Technician</li>
+                  <li>Vehicle Inspector</li>
+                  <li>Entrepreneur</li>
+                </ul>
+              </div>
+            </div>
+            <div class="salary-range">
+                <span class="salary-label">Expected Salary</span>
+                <span class="salary-amount">RM 2,000 - RM 3,000</span>
+              </div>
+          </div>
+
+          <div class="career-salary-card career-card-eco-maintenance" data-institution="ecoautotronic" style="display: none;">
+            <div class="career-card-title-container">
+              <h3 class="career-card-title">Light Vehicle Maintenance</h3>
+              <p class="career-card-course">Certificate in Light Vehicle Maintenance</p>
+            </div>
+            <div class="career-card-details">
+              <div class="career-opportunities">
+                <h4>Career Paths</h4>
+                <ul>
+                  <li>Mechanic</li>
+                  <li>Workshop Technician</li>
+                  <li>Entrepreneur</li>
+                </ul>
+              </div>
+            </div>
+            <div class="salary-range">
+                <span class="salary-label">Expected Salary</span>
+                <span class="salary-amount">RM 1,700 - RM 3,500</span>
+              </div>
+          </div>
+
+          <div class="career-salary-card career-card-eco-workshop" data-institution="ecoautotronic" style="display: none;">
+            <div class="career-card-title-container">
+              <h3 class="career-card-title">Workshop Management</h3>
+              <p class="career-card-course">Diploma in Workshop Management</p>
+            </div>
+            <div class="career-card-details">
+              <div class="career-opportunities">
+                <h4>Career Paths</h4>
+                <ul>
+                  <li>Workshop Coordinator</li>
+                  <li>Customer Relations (Workshop)</li>
+                  <li>Entrepreneur</li>
+                </ul>
+              </div>
+            </div>
+            <div class="salary-range">
+                <span class="salary-label">Expected Salary</span>
+                <span class="salary-amount">RM 2,500 - RM 4,000</span>
+              </div>
+          </div>
+
         </div>
       </div>
       
@@ -1252,5 +1338,91 @@
   </div>
 
   <script src="script.js"></script>
+  
+  <!-- Background Music Control Script -->
+  <script>
+    // Background Music Control for Education Page
+    const bgMusic = document.getElementById('bgMusic');
+    const musicControlBtn = document.getElementById('musicControlBtn');
+    const volumeIcon = document.getElementById('volumeIcon');
+    const musicStartOverlay = document.getElementById('musicStartOverlay');
+    const musicStartBtn = document.getElementById('musicStartBtn');
+    
+    let isMusicPlaying = false;
+    let userInteracted = false;
+
+    // Set initial volume
+    bgMusic.volume = 0.3; // 30% volume
+
+    // Function to play music
+    function playMusic() {
+      bgMusic.play().then(() => {
+        isMusicPlaying = true;
+        volumeIcon.className = 'fas fa-volume-up';
+        musicControlBtn.style.display = 'flex';
+      }).catch(error => {
+        console.log('Autoplay prevented:', error);
+        // Show overlay if autoplay is blocked
+        if (!userInteracted) {
+          musicStartOverlay.style.display = 'flex';
+        }
+      });
+    }
+
+    // Function to pause music
+    function pauseMusic() {
+      bgMusic.pause();
+      isMusicPlaying = false;
+      volumeIcon.className = 'fas fa-volume-mute';
+    }
+
+    // Toggle music on button click
+    musicControlBtn.addEventListener('click', () => {
+      if (isMusicPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    });
+
+    // Start music button in overlay
+    musicStartBtn.addEventListener('click', () => {
+      userInteracted = true;
+      musicStartOverlay.style.display = 'none';
+      playMusic();
+    });
+
+    // Click anywhere on overlay to start
+    musicStartOverlay.addEventListener('click', (e) => {
+      if (e.target === musicStartOverlay) {
+        userInteracted = true;
+        musicStartOverlay.style.display = 'none';
+        playMusic();
+      }
+    });
+
+    // Try to autoplay when page loads
+    window.addEventListener('load', () => {
+      playMusic();
+    });
+
+    // Pause music when user leaves the page
+    window.addEventListener('beforeunload', () => {
+      pauseMusic();
+    });
+
+    // Pause when page is hidden (tab switch)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (isMusicPlaying) {
+          bgMusic.pause();
+        }
+      } else {
+        if (isMusicPlaying) {
+          bgMusic.play();
+        }
+      }
+    });
+  </script>
 </body>
 </html>

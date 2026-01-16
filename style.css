@@ -350,6 +350,16 @@ body:not(.index-page) {
   justify-content: center;
   text-align: center;
   color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-logo-left {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
 }
 
 .hero-content h1 {
@@ -365,11 +375,19 @@ body:not(.index-page) {
 }
 
  @media (max-width: 768px) {
+      .hero-logo-left {
+        height: 75px;
+      }
+
       .hero-content h1 {
         font-size: 45px; /* tablet size */
       }
     }
     @media (max-width: 480px) {
+      .hero-logo-left {
+        height: 60px;
+      }
+
       .hero-content h1 {
         font-size: 35px; /* mobile size */
       }
@@ -7717,6 +7735,11 @@ footer {
 .career-card-hotel::before { background-image: url('assets/hotel.png'); }
 .career-card-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
 
+/* Eco Autotronic Academy - No background images (to be added later) */
+.career-card-eco-auto::before { background-image: none; }
+.career-card-eco-maintenance::before { background-image: none; }
+.career-card-eco-workshop::before { background-image: none; }
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .career-salary-card {
@@ -7977,4 +8000,157 @@ footer {
 /* FIX: Add more padding to slide track to prevent clipping during hover */
 .tvet-slide-track {
   padding: 30px 0 40px; /* Top and bottom padding for hover space */
+}
+
+/* ========== BACKGROUND MUSIC CONTROLS ========== */
+/* Music Control Button */
+.music-control-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.music-control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.music-control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Music Start Overlay */
+.music-start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.5s ease;
+}
+
+.music-start-content {
+  text-align: center;
+  color: white;
+  animation: slideUp 0.5s ease;
+}
+
+.music-start-content i {
+  font-size: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+.music-start-content h3 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.music-start-content p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30px;
+}
+
+.music-start-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.music-start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.music-start-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive adjustments for music controls */
+@media (max-width: 768px) {
+  .music-control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .music-start-content i {
+    font-size: 60px;
+  }
+
+  .music-start-content h3 {
+    font-size: 24px;
+  }
+
+  .music-start-content p {
+    font-size: 14px;
+  }
+
+  .music-start-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+  }
 }

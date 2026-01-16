@@ -741,8 +741,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== UPDATED CAREER CARDS FUNCTION WITH TVET SEAMLESS LOOP =====
   function updateCareerCards() {
-    const institutions = ['smtaa', 'tvet', 'uitm', 'um', 'utm', 'uic'];
-    const selectedInstitution = institutions[currentIndex];
+    // Get the selected institution from the current carousel card's data-education attribute
+    const currentCard = carouselCells[currentIndex];
+    const selectedInstitution = currentCard ? currentCard.getAttribute('data-education') : null;
+    
+    if (!selectedInstitution) {
+      console.log('No institution found for index:', currentIndex);
+      return;
+    }
+    
     cardsToShow = 3; // Reset to 3 cards when changing institution
     
     // Add pulse animation to career section
