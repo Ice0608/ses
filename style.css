@@ -3090,6 +3090,14 @@ body:not(.index-page) {
   overflow: hidden;
 }
 
+/* Hide mobile text on desktop, show desktop text */
+.desktop-text {
+  display: inline;
+}
+.mobile-text {
+  display: none;
+}
+
 /* Left Side - Fulltime (Deep purple fading to black) */
 .career-side.left-side {
   background: linear-gradient(to bottom, #3d1f5c 0%, #5a3c83 40%, #0a0a0a 100%);
@@ -3375,12 +3383,68 @@ body:not(.index-page) {
 
 /* Responsive Design */
 @media (max-width: 968px) {
+  /* Enable horizontal scrolling for mobile */
+  .career-split-section {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    min-height: 100vh;
+  }
+
   .career-container {
-    flex-direction: column;
+    flex-direction: row;
+    min-width: 200%; /* Makes container twice the viewport width */
+    min-height: 100vh;
   }
 
   .career-side {
-    min-height: 50vh;
+    min-width: 100vw; /* Each side takes full viewport width */
+    min-height: 100vh;
+    scroll-snap-align: start;
+    padding: 50px 30px;
+  }
+
+  /* Show mobile text, hide desktop text */
+  .desktop-text {
+    display: none;
+  }
+  .mobile-text {
+    display: inline;
+  }
+
+  .career-content {
+    max-width: 100%;
+  }
+
+  .career-content h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .career-tagline {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .career-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .career-benefits {
+    margin: 20px 0 30px;
+  }
+
+  .career-benefits li {
+    padding: 10px 0;
+    font-size: 0.95rem;
+  }
+
+  .apply-btn {
+    padding: 15px 35px;
+    font-size: 1rem;
   }
 
   .application-form-overlay {
@@ -3398,12 +3462,12 @@ body:not(.index-page) {
     transform: translateY(0);
   }
 
-  .career-content h2 {
-    font-size: 2.2rem;
-  }
-
   .career-form {
     grid-template-columns: 1fr;
+  }
+
+  .form-container {
+    padding: 35px 25px;
   }
 }
 
@@ -3413,14 +3477,23 @@ body:not(.index-page) {
   }
 
   .career-content h2 {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
   }
 
   .career-tagline {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .career-description {
+    font-size: 0.9rem;
+  }
+
+  .career-benefits li {
+    font-size: 0.9rem;
+  }
+
+  .apply-btn {
+    padding: 14px 30px;
     font-size: 0.95rem;
   }
 
@@ -7400,6 +7473,7 @@ footer {
 .career-card-property::before { background-image: url('assets/property.png'); }
 .career-card-islamic::before { background-image: url('assets/islamic.png'); }
 .career-card-hotel::before { background-image: url('assets/hotel.png'); }
+.career-card-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
