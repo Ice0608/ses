@@ -4,7 +4,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2f0442 0%, #420b4f 100%);
 }
 
 .hero-slider-container {
@@ -53,27 +53,22 @@
 
 /* Remove overlay for poster image slides */
 .poster-slide::before {
-  display: none;
+  display: none !important;
+}
+
+/* Remove background behind poster slides */
+.poster-slide {
+  background: transparent !important;
 }
 
 .hero-inner {
   position: relative;
-  text-align: center;
+  text-align: left;
   color: white;
   max-width: 800px;
   padding: 40px 20px;
   z-index: 2;
-}
-
-/* Left-aligned hero content with spacing from edge */
-.hero-inner.text-left {
-  text-align: left;
   margin-left: 100px;
-  margin-right: auto;
-}
-
-.hero-inner.text-left .hero-cta {
-  justify-content: flex-start;
 }
 
 .hero-title {
@@ -93,15 +88,7 @@
 .hero-cta {
   display: flex;
   gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Poster Image Styling */
-.hero-cta {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -156,37 +143,34 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 12px;
+  gap: 15px;
   z-index: 10;
 }
 
 .hero-indicator {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.7);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .hero-indicator.active {
-  background: rgba(255, 255, 255, 0.9);
-  transform: scale(1.3);
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.4);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
 .hero-indicator:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
 }
 
-/* Mobile Responsive */
+/* ===== TABLET (768px and below) ===== */
 @media (max-width: 768px) {
   .hero-header {
-    height: 400px;
-  }
-
-  .hero-slide {
-    object-fit: contain;
+    height: 450px;
   }
 
   .hero-inner {
@@ -197,13 +181,13 @@
   }
 
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 15px;
-    line-height: 1.2;
+    line-height: 1.3;
   }
 
   .hero-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 20px;
     opacity: 0.95;
     line-height: 1.4;
@@ -216,8 +200,67 @@
     flex-wrap: wrap;
   }
 
-  .hero-poster {
-    object-fit: contain;
+  .hero-cta .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .hero-nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .hero-prev {
+    left: 15px;
+  }
+
+  .hero-next {
+    right: 15px;
+  }
+
+  .hero-indicators {
+    bottom: 20px;
+    gap: 10px;
+  }
+
+  .hero-indicator {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* ===== MOBILE (576px and below) ===== */
+@media (max-width: 576px) {
+  .hero-header {
+    height: 380px;
+  }
+
+  .hero-inner {
+    padding: 25px 12px;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    line-height: 1.35;
+  }
+
+  .hero-cta {
+    gap: 8px;
+  }
+
+  .hero-cta .btn-primary {
+    padding: 9px 18px;
+    font-size: 0.85rem;
+    border-radius: 5px;
   }
 
   .hero-nav-btn {
@@ -245,26 +288,40 @@
   }
 }
 
+/* ===== EXTRA SMALL PHONES (480px and below) ===== */
 @media (max-width: 480px) {
   .hero-header {
-    height: 350px;
+    height: 340px;
+  }
+
+  .hero-inner {
+    padding: 20px 10px;
   }
 
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    line-height: 1.15;
   }
 
   .hero-subtitle {
     font-size: 0.8rem;
+    margin-bottom: 12px;
+    line-height: 1.3;
   }
 
-  .hero-poster {
-    object-fit: contain;
+  .hero-cta {
+    gap: 6px;
+  }
+
+  .hero-cta .btn-primary {
+    padding: 8px 16px;
+    font-size: 0.8rem;
   }
 
   .hero-nav-btn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     font-size: 14px;
   }
 
@@ -275,11 +332,176 @@
   .hero-next {
     right: 8px;
   }
+
+  .hero-indicators {
+    bottom: 12px;
+    gap: 6px;
+  }
+
+  .hero-indicator {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+/* Add these styles to your existing style.css */
+
+/* Desktop: Poster image fully fits the hero section */
+@media (min-width: 769px) {
+  .poster-slide .hero-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Changed from contain to cover for full fit */
+    object-position: center;
+  }
+  
+  /* Ensure poster slides take full space without overlay */
+  .poster-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Remove any margins that might be affecting desktop layout */
+  .poster-slide .hero-poster-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Mobile: Poster image centered in hero section */
+/* Quick mobile fix for posters */
+@media (max-width: 768px) {
+  .poster-slide {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #1c1b1c 0%, #352b35 100%) !important;
+  }
+  
+  .poster-slide .hero-poster {
+    width: auto !important;
+    height: auto !important;
+    max-width: 95% !important;
+    max-height: 80vh !important;
+    object-fit: contain !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+     margin: 40px auto !important; /* Adds 40px top and bottom */
+    max-height: 70vh !important;
+    display: block !important;
+  }
+}
+
+/* Adjust for small mobile screens */
+@media (max-width: 576px) {
+  .poster-slide {
+    padding: 15px;
+  }
+  
+  .poster-slide .hero-poster {
+    max-height: 85%;
+  }
+}
+
+/* Adjust for extra small mobile screens */
+@media (max-width: 480px) {
+  .poster-slide {
+    padding: 10px;
+  }
+  
+  .poster-slide .hero-poster {
+    max-height: 80%;
+  }
+}
+
+/* Ensure navigation buttons are visible over poster */
+.poster-slide ~ .hero-nav-btn,
+.poster-slide ~ .hero-indicators {
+  z-index: 10;
+}
+
+
+/* ===== PARTNERS SECTION ===== */
+.partners-section {
+  margin: 0 !important;
+  padding: 40px 20px !important;
+  background: transparent !important;
+  position: relative !important;
+}
+
+.partners-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.section-title {
+  text-align: center !important;
+  font-size: 2.5rem !important;
+  margin-bottom: 30px !important;
+  color: #fff !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+
+.glass-card-full {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  gap: 30px !important;
+  align-items: center !important;
+  justify-items: center !important;
+  padding: 30px !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.partners-grid {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 30px !important;
+}
+
+/* Mobile Responsive - Partners */
+@media (max-width: 768px) {
+  .partners-section {
+    padding: 30px 15px !important;
+  }
+
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+    padding: 15px !important;
+  }
+
+  .partners-grid > div img {
+    max-width: 70px !important;
+  }
+
+  .section-title {
+    font-size: 2rem !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-section {
+    padding: 20px 10px !important;
+  }
+
+  .section-title {
+    font-size: 1.5rem !important;
+  }
 }
 
 .btn-primary, .btn-secondary { 
   text-decoration: none; 
-  padding: 12px 20px; 
+  padding: 14px 24px; 
   border-radius: 8px; 
   font-weight: 600; 
 }
@@ -299,6 +521,8 @@
   mix-blend-mode: normal !important;
   box-shadow: 0 8px 24px #6408a2
 }
+
+
 
 
 /* Custom Fonts */
@@ -350,16 +574,6 @@ body:not(.index-page) {
   justify-content: center;
   text-align: center;
   color: #fff;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.hero-logo-left {
-  height: 100px;
-  width: auto;
-  object-fit: contain;
 }
 
 .hero-content h1 {
@@ -375,19 +589,11 @@ body:not(.index-page) {
 }
 
  @media (max-width: 768px) {
-      .hero-logo-left {
-        height: 75px;
-      }
-
       .hero-content h1 {
         font-size: 45px; /* tablet size */
       }
     }
     @media (max-width: 480px) {
-      .hero-logo-left {
-        height: 60px;
-      }
-
       .hero-content h1 {
         font-size: 35px; /* mobile size */
       }
@@ -7735,58 +7941,6 @@ footer {
 .career-card-hotel::before { background-image: url('assets/hotel.png'); }
 .career-card-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
 
-/* Dayatech College - Mechatronics */
-.career-card-dayatech-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
-
-/* Eco Autotronic Academy - No background images (to be added later) */
-.career-card-eco-auto::before { background-image: none; }
-.career-card-eco-maintenance::before { background-image: none; }
-.career-card-eco-workshop::before { background-image: none; }
-
-/* Noble School Engineering - No background images (to be added later) */
-.career-card-noble-auto::before { background-image: url('assets/automotif.png'); }
-.career-card-noble-welding::before { background-image: url('assets/welding.png'); }
-.career-card-noble-automation::before { background-image: url('assets/automotif.png'); }
-
-/* Noble School City Campus - No background images (to be added later) */
-.career-card-noble-food::before { background-image: url('assets/foodprepare.png'); }
-.career-card-noble-electrical::before { background-image: url('assets/elektrik.png'); }
-.career-card-noble-aesthetic::before { background-image: url('assets/beauty.png'); }
-.career-card-noble-bread::before { background-image: url('assets/bread.png'); }
-.career-card-noble-foodst::before { background-image: url('assets/foodprepare.png'); }
-.career-card-noble-electricst::before { background-image: url('assets/elektrik.png'); }
-.career-card-noble-culinary::before { background-image: url('assets/culinary.png'); }
-
-/* Workers Institute Technology - No background images (to be added later) */
-.career-card-wit-automotive::before { background-image: url('assets/automotif.png'); }
-.career-card-wit-electrical::before { background-image: url('assets/elektrik.png'); }
-.career-card-wit-beauty::before { background-image: url('assets/beauty.png'); }
-.career-card-wit-computer::before { background-image: url('assets/computer system.png'); }
-.career-card-wit-welding::before { background-image: url('assets/welding.png'); }
-
-/* KTIS - No background images (to be added later) */
-.career-card-ktis-office::before { background-image: url('assets/admin.png'); }
-.career-card-ktis-computer::before { background-image: url('assets/computer system.png'); }
-.career-card-ktis-culinary::before { background-image: url('assets/culinary.png'); }
-
-/* KTEB - No background images (to be added later) */
-.career-card-kteb-electrical::before { background-image: url('assets/elektrik.png'); }
-
-/* Ambitious Academy - No background images (to be added later) */
-.career-card-ambitious-childcare::before { background-image: url('assets/child.png'); }
-.career-card-ambitious-culinary::before { background-image: url('assets/culinary.png'); }
-
-/* Malaysian Business Academy (MBA) - No background images (to be added later) */
-.career-card-mba-childcare::before { background-image: url('assets/child.png'); }
-
-/* Silverspoon International College - No background images (to be added later) */
-.career-card-silverspoon-food::before { background-image: url('assets/foodprepare.png'); }
-.career-card-silverspoon-pastry::before { background-image: url('assets/pastry.png'); }
-
-/* Azmida Technical College - No background images (to be added later) */
-.career-card-azmida-boiler::before { background-image: url('assets/welding.png'); }
-.career-card-azmida-electrical::before { background-image: url('assets/elektrik.png'); }
-
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .career-salary-card {
@@ -7923,24 +8077,27 @@ footer {
 /* ===== SIMPLIFIED TVET AUTO-SCROLL CAROUSEL ===== */
 .tvet-carousel-section {
   width: 100%;
-  margin: 20px 0 40px;
+  margin: 0;
   padding: 0;
   background: transparent;
   position: relative;
-  overflow: hidden; /* Add overflow hidden to container */
+  overflow: hidden;
 }
 
 .tvet-carousel-container {
   width: 100%;
   position: relative;
-  overflow: hidden; /* Hide the edges for seamless effect */
-  padding: 20px 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 .tvet-slider {
   width: 100%;
   position: relative;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  background: transparent;
 }
 
 .tvet-slide-track {
@@ -7949,6 +8106,8 @@ footer {
   width: max-content;
   animation: tvet-scroll-seamless 60s linear infinite;
   padding: 20px 0;
+  margin: 0;
+  background: transparent;
 }
 
 @keyframes tvet-scroll-seamless {
@@ -8047,157 +8206,4 @@ footer {
 /* FIX: Add more padding to slide track to prevent clipping during hover */
 .tvet-slide-track {
   padding: 30px 0 40px; /* Top and bottom padding for hover space */
-}
-
-/* ========== BACKGROUND MUSIC CONTROLS ========== */
-/* Music Control Button */
-.music-control-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-  z-index: 999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.music-control-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-}
-
-.music-control-btn:active {
-  transform: scale(0.95);
-}
-
-/* Music Start Overlay */
-.music-start-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  animation: fadeIn 0.5s ease;
-}
-
-.music-start-content {
-  text-align: center;
-  color: white;
-  animation: slideUp 0.5s ease;
-}
-
-.music-start-content i {
-  font-size: 80px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 20px;
-  animation: pulse 2s infinite;
-}
-
-.music-start-content h3 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.music-start-content p {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 30px;
-}
-
-.music-start-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 15px 40px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.music-start-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-}
-
-.music-start-btn:active {
-  transform: translateY(0);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Responsive adjustments for music controls */
-@media (max-width: 768px) {
-  .music-control-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    bottom: 20px;
-    right: 20px;
-  }
-
-  .music-start-content i {
-    font-size: 60px;
-  }
-
-  .music-start-content h3 {
-    font-size: 24px;
-  }
-
-  .music-start-content p {
-    font-size: 14px;
-  }
-
-  .music-start-btn {
-    padding: 12px 30px;
-    font-size: 16px;
-  }
 }
