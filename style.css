@@ -2199,7 +2199,7 @@ body:not(.index-page) {
 }
 
 .hero-education {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/education.jpg') center/cover no-repeat !important;
+  background: /*linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),*/ url('assets/education.jpeg') center/cover no-repeat !important;
 }
 
 .hero-career {
