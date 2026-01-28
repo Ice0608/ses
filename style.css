@@ -2268,12 +2268,12 @@ body:not(.index-page) {
 }
 
 .director-image {
-  width: 160%;
+  width: 120%;
   height: auto; 
   border-radius: 0;
   overflow: visible;
   box-shadow: none;
-  margin-left: -130px; /* Move image to the left */
+  margin-left: -60px; /* Move image to the left */
   z-index: 2;
 }
 
@@ -2282,7 +2282,27 @@ body:not(.index-page) {
   height: auto;
   display: block;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+
+  /* Bottom fade */
+-webkit-mask-image: linear-gradient(
+to bottom,
+rgba(0,0,0,1) 0%,
+rgba(0,0,0,1) 65%,
+rgba(0,0,0,0) 100%
+);
+mask-image: linear-gradient(
+to bottom,
+rgba(0,0,0,1) 0%,
+rgba(0,0,0,1) 65%,
+rgba(0,0,0,0) 100%
+);
+
+
+filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+
 }
+
+
 
 .director-content {
     position: relative;
