@@ -4954,6 +4954,64 @@ input[type="checkbox"] {
   align-items: flex-end;
 }
 
+/* Social Widget Container */
+.social-widget {
+  display: flex;
+  flex-direction: column-reverse; /* drop-up effect */
+  align-items: center;
+  margin-top: 12px; /* spacing from Call/Support buttons */
+}
+
+/* Main Social Button */
+.main-social-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #5a3c83; /* choose a color, e.g., WhatsApp green or other */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  transition: transform 0.2s;
+}
+.main-social-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Drop-Up Menu */
+.social-dropdown {
+  display: none;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.social-item {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s, opacity 0.2s;
+}
+.social-item:hover {
+  transform: scale(1.1);
+}
+
+/* Platform Colors */
+.social-item.facebook { background: #1877f2; }
+.social-item.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.social-item.tiktok { background: #000; }
+
 /* Call Button */
 .call-icon {
   width: 60px;

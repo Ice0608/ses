@@ -1773,6 +1773,15 @@ if (typeof gsap !== 'undefined') {
 })();
 }
 
+// Elements
+const mainSocialBtn = document.getElementById('mainSocialBtn');
+const socialDropdown = document.getElementById('socialDropdown');
+
+// Toggle Drop-Up
+mainSocialBtn.addEventListener('click', () => {
+  socialDropdown.style.display = socialDropdown.style.display === 'flex' ? 'none' : 'flex';
+});
+
 document.addEventListener('DOMContentLoaded', heroSliderInit);
 
 // ...existing code...
