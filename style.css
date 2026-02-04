@@ -7867,7 +7867,7 @@ footer {
 .career-card-automotive::before { background-image: url('assets/automotif.png'); }
 .career-card-welding::before { background-image: url('assets/welding.png'); }
 .career-card-automation::before { background-image: url('assets/automotif.png'); }
-.career-card-elektrik::before { background-image: url('assets/elektrik.png'); }
+.career-card-elektrik::before { background-image: url('assets/elektrik.jpeg'); }
 .career-card-beauty::before { background-image: url('assets/beauty.png'); }
 .career-card-computer-system::before { background-image: url('assets/computer system.png'); }
 .career-card-child::before { background-image: url('assets/child.png'); }
@@ -7890,8 +7890,9 @@ footer {
 .career-card-hotel::before { background-image: url('assets/hotel.png'); }
 .career-card-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
 
-/* Dayatech College - Mechatronics */
+/* Dayatech College */
 .career-card-dayatech-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
+.career-card-dayatech-childcare::before { background-image: url('assets/dcpra.jpg'); }
 
 /* Eco Autotronic Academy - No background images (to be added later) */
 .career-card-eco-auto::before { background-image: none; }
@@ -7905,16 +7906,16 @@ footer {
 
 /* Noble School City Campus - No background images (to be added later) */
 .career-card-noble-food::before { background-image: url('assets/foodprepare.png'); }
-.career-card-noble-electrical::before { background-image: url('assets/elektrik.png'); }
+.career-card-noble-electrical::before { background-image: url('assets/elektrik.jpeg'); }
 .career-card-noble-aesthetic::before { background-image: url('assets/beauty.png'); }
 .career-card-noble-bread::before { background-image: url('assets/bread.png'); }
 .career-card-noble-foodst::before { background-image: url('assets/foodprepare.png'); }
-.career-card-noble-electricst::before { background-image: url('assets/elektrik.png'); }
+.career-card-noble-electricst::before { background-image: url('assets/elektrik.jpeg'); }
 .career-card-noble-culinary::before { background-image: url('assets/culinary.png'); }
 
 /* Workers Institute Technology - No background images (to be added later) */
 .career-card-wit-automotive::before { background-image: url('assets/automotif.png'); }
-.career-card-wit-electrical::before { background-image: url('assets/elektrik.png'); }
+.career-card-wit-electrical::before { background-image: url('assets/elektrik.jpeg'); }
 .career-card-wit-beauty::before { background-image: url('assets/beauty.png'); }
 .career-card-wit-computer::before { background-image: url('assets/computer system.png'); }
 .career-card-wit-welding::before { background-image: url('assets/welding.png'); }
@@ -7925,7 +7926,7 @@ footer {
 .career-card-ktis-culinary::before { background-image: url('assets/culinary.png'); }
 
 /* KTEB - No background images (to be added later) */
-.career-card-kteb-electrical::before { background-image: url('assets/elektrik.png'); }
+.career-card-kteb-electrical::before { background-image: url('assets/elektrik.jpeg'); }
 
 /* Ambitious Academy - No background images (to be added later) */
 .career-card-ambitious-childcare::before { background-image: url('assets/child.png'); }
@@ -7940,7 +7941,48 @@ footer {
 
 /* Azmida Technical College - No background images (to be added later) */
 .career-card-azmida-boiler::before { background-image: url('assets/welding.png'); }
-.career-card-azmida-electrical::before { background-image: url('assets/elektrik.png'); }
+.career-card-azmida-electrical::before { background-image: url('assets/elektrik.jpeg'); }
+
+/* Iman Motors Academy */
+.career-card-iman-automotive::before { background-image: url('assets/imapic.jpg'); }
+
+/* AF TVET Academy */
+.career-card-aftvet-beauty::before { background-image: url('assets/aftvetbeauty.jpg'); }
+.career-card-aftvet-graphic::before { background-image: url('assets/aftvetdigital.jpg'); }
+
+/* Eakon Academy */
+.career-card-eakon-hvac::before { background-image: url('assets/aekon.png'); }
+
+/* Future Edge College */
+.career-card-futureedge-networking::before { background-image: url('assets/cnsfec.png'); }
+.career-card-futureedge-welding::before { background-image: url('assets/weldingfec.png'); }
+.career-card-futureedge-childcare::before { background-image: url('assets/pakk.jpg'); }
+.career-card-futureedge-secretary::before { background-image: url('assets/fecsec.png'); }
+
+/* Titan Skill College */
+.career-card-titan-automotive::before { background-image: url('assets/jvauto.jpg'); }
+
+/* Dual Training Institute (DTI) */
+.career-card-dti-childcare::before { background-image: url('assets/dtipakk.jpg'); }
+
+/* IHM College */
+.career-card-ihm-security::before { background-image: url('assets/ihmsecurity.jpeg'); }
+.career-card-ihm-multimedia::before { background-image: url('assets/ihmmultimedia.jpg'); }
+.career-card-ihm-masscommunication::before { background-image: url('assets/ihmmasscomm.png'); }
+
+/* JV Skill Training Centre */
+.career-card-jvskill-automotive::before { background-image: url('assets/jvauto.jpg'); }
+.career-card-jvskill-automation::before { background-image: url('assets/jvautomasi.jpg'); }
+
+/* Malaysian Technical Skill Academy (MTSA) */
+.career-card-mtsa-automotive::before { background-image: url('assets/mtsaauto.png'); }
+.career-card-mtsa-electrical::before { background-image: url('assets/elektrik.jpeg'); }
+.career-card-mtsa-welding::before { background-image: url('assets/mtsakimpalan.png'); }
+.career-card-mtsa-culinary::before { background-image: url('assets/mtsakulinari.png'); }
+.career-card-mtsa-childcare::before { background-image: url('assets/pakk.jpg'); }
+
+/* Future Edge College */
+.career-card-futureedge-electrical::before { background-image: url('assets/elektrik.jpeg'); }
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
