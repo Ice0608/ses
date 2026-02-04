@@ -1863,15 +1863,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Lightbox Functionality
 const galleryData = [
-  { src: 'assets/gallery-1.jpg', title: 'Annual Ceremony 2024', desc: 'Celebrating Excellence' },
+  { src: 'assets/Annualevent.mp4', title: 'Annual SES 2025', desc: 'Celebrating Excellence Together', isVideo: true },
   { src: 'assets/gallery-2.jpg', title: 'Student Activities', desc: 'Learning Beyond Classroom' },
-  { src: 'assets/gallery-3.jpg', title: 'Award Winners', desc: 'Excellence Recognition' },
+  { src: 'assets/gallery-3.jpg', title: 'January Academic Tour', desc: 'New Year Educational Journey' },
   { src: 'assets/gallery-4.jpg', title: 'Campus Facilities', desc: 'Modern Learning Environment' },
-  { src: 'assets/gallery-5.jpg', title: 'Graduation Day', desc: 'Proud Moments' },
   { src: 'assets/gallery-6.jpg', title: 'Workshop Session', desc: 'Hands-on Learning' },
-  { src: 'assets/gallery-7.jpg', title: 'Competition Winners', desc: 'Champion Team' },
+  { src: 'assets/gallery-7.jpg', title: 'February Academic Tour', desc: 'Learning Excellence Month' },
   { src: 'assets/gallery-8.jpg', title: 'Library', desc: 'Knowledge Hub' },
-  { src: 'assets/gallery-9.jpg', title: 'Cultural Festival', desc: 'Diversity Celebration' }
+  { src: 'assets/gallery-3.jpg', title: 'March Academic Tour', desc: 'Spring Learning Adventure' },
+  { src: 'assets/gallery-4.jpg', title: 'April Academic Tour', desc: 'Knowledge Discovery Month' },
+  { src: 'assets/gallery-5.jpg', title: 'May Academic Tour', desc: 'Educational Exploration' },
+  { src: 'assets/gallery-6.jpg', title: 'June Academic Tour', desc: 'Summer Learning Journey' },
+  { src: 'assets/gallery-7.jpg', title: 'July Academic Tour', desc: 'Mid-Year Educational Trip' },
+  { src: 'assets/gallery-8.jpg', title: 'August Academic Tour', desc: 'Independence Learning Tour' },
+  { src: 'assets/gallery-9.jpg', title: 'September Academic Tour', desc: 'Back to Learning Tour' },
+  { src: 'assets/gallery-1.jpg', title: 'October Academic Tour', desc: 'Autumn Education Journey' },
+  { src: 'assets/gallery-2.jpg', title: 'November Academic Tour', desc: 'Year-End Learning Trip' },
+  { src: 'assets/gallery-3.jpg', title: 'December Academic Tour', desc: 'Holiday Learning Celebration' }
 ];
 
 let currentLightboxIndex = 0;
@@ -1884,9 +1892,42 @@ function openLightbox(index) {
   const lightboxDescription = document.getElementById('lightbox-description');
 
   if (lightbox && galleryData[index]) {
-    lightboxImage.src = galleryData[index].src;
-    lightboxTitle.textContent = galleryData[index].title;
-    lightboxDescription.textContent = galleryData[index].desc;
+    const item = galleryData[index];
+    
+    // Check if it's a video
+    if (item.isVideo) {
+      // Replace img with video element
+      const videoElement = document.createElement('video');
+      videoElement.src = item.src;
+      videoElement.controls = true;
+      videoElement.autoplay = true;
+      videoElement.loop = true;
+      videoElement.style.width = '100%';
+      videoElement.style.height = 'auto';
+      videoElement.style.maxHeight = '90vh';
+      videoElement.id = 'lightbox-image';
+      
+      lightboxImage.parentNode.replaceChild(videoElement, lightboxImage);
+      
+      // Hide title and description for video
+      lightboxTitle.textContent = '';
+      lightboxDescription.textContent = '';
+    } else {
+      // If previous was video, replace with img
+      if (lightboxImage.tagName === 'VIDEO') {
+        const imgElement = document.createElement('img');
+        imgElement.id = 'lightbox-image';
+        imgElement.src = item.src;
+        imgElement.alt = 'Gallery Image';
+        lightboxImage.parentNode.replaceChild(imgElement, lightboxImage);
+      } else {
+        lightboxImage.src = item.src;
+      }
+      
+      // Show title and description for images
+      lightboxTitle.textContent = item.title;
+      lightboxDescription.textContent = item.desc;
+    }
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -1894,7 +1935,15 @@ function openLightbox(index) {
 
 function closeLightbox() {
   const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  
   if (lightbox) {
+    // Stop video if it's playing
+    if (lightboxImage && lightboxImage.tagName === 'VIDEO') {
+      lightboxImage.pause();
+      lightboxImage.currentTime = 0;
+    }
+    
     lightbox.classList.remove('active');
     document.body.style.overflow = 'auto';
   }
@@ -1909,14 +1958,48 @@ function changeLightboxImage(direction) {
     currentLightboxIndex = 0;
   }
   
-  const lightboxImage = document.getElementById('lightbox-image');
+  const lightbox = document.getElementById('lightbox');
+  let lightboxImage = document.getElementById('lightbox-image');
   const lightboxTitle = document.getElementById('lightbox-title');
   const lightboxDescription = document.getElementById('lightbox-description');
 
   if (galleryData[currentLightboxIndex]) {
-    lightboxImage.src = galleryData[currentLightboxIndex].src;
-    lightboxTitle.textContent = galleryData[currentLightboxIndex].title;
-    lightboxDescription.textContent = galleryData[currentLightboxIndex].desc;
+    const item = galleryData[currentLightboxIndex];
+    
+    // Check if it's a video
+    if (item.isVideo) {
+      // Replace img with video element
+      const videoElement = document.createElement('video');
+      videoElement.src = item.src;
+      videoElement.controls = true;
+      videoElement.autoplay = true;
+      videoElement.loop = true;
+      videoElement.style.width = '100%';
+      videoElement.style.height = 'auto';
+      videoElement.style.maxHeight = '90vh';
+      videoElement.id = 'lightbox-image';
+      
+      lightboxImage.parentNode.replaceChild(videoElement, lightboxImage);
+      
+      // Hide title and description for video
+      lightboxTitle.textContent = '';
+      lightboxDescription.textContent = '';
+    } else {
+      // If previous was video, replace with img
+      if (lightboxImage.tagName === 'VIDEO') {
+        const imgElement = document.createElement('img');
+        imgElement.id = 'lightbox-image';
+        imgElement.src = item.src;
+        imgElement.alt = 'Gallery Image';
+        lightboxImage.parentNode.replaceChild(imgElement, lightboxImage);
+      } else {
+        lightboxImage.src = item.src;
+      }
+      
+      // Show title and description for images
+      lightboxTitle.textContent = item.title;
+      lightboxDescription.textContent = item.desc;
+    }
   }
 }
 
