@@ -1865,7 +1865,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const galleryData = [
   { src: 'assets/Annualevent.mp4', title: 'Annual SES 2025', desc: 'Celebrating Excellence Together', isVideo: true },
   { src: 'assets/gallery-2.jpg', title: 'Student Activities', desc: 'Learning Beyond Classroom' },
-  { src: 'assets/talkjan.mov', title: 'January Academic Tour', desc: 'New Year Educational Journey', isVideo: true },
+  { src: 'assets/talkjan.mp4', title: 'January Academic Tour', desc: 'New Year Educational Journey', isVideo: true },
   { src: 'assets/gallery-4.jpg', title: 'Campus Facilities', desc: 'Modern Learning Environment' },
   { src: 'assets/gallery-6.jpg', title: 'Workshop Session', desc: 'Hands-on Learning' },
   { src: 'assets/gallery-7.jpg', title: 'February Academic Tour', desc: 'Learning Excellence Month' },
