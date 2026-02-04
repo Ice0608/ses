@@ -1864,22 +1864,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Lightbox Functionality
 const galleryData = [
   { src: 'assets/Annualevent.mp4', title: 'Annual SES 2025', desc: 'Celebrating Excellence Together', isVideo: true },
-  { src: 'assets/gallery-2.jpg', title: 'Student Activities', desc: 'Learning Beyond Classroom' },
-  { src: 'assets/talkjan.mp4', title: 'January Academic Tour', desc: 'New Year Educational Journey', isVideo: true },
-  { src: 'assets/gallery-4.jpg', title: 'Campus Facilities', desc: 'Modern Learning Environment' },
-  { src: 'assets/gallery-6.jpg', title: 'Workshop Session', desc: 'Hands-on Learning' },
-  { src: 'assets/gallery-7.jpg', title: 'February Academic Tour', desc: 'Learning Excellence Month' },
-  { src: 'assets/gallery-8.jpg', title: 'Library', desc: 'Knowledge Hub' },
-  { src: 'assets/gallery-3.jpg', title: 'March Academic Tour', desc: 'Spring Learning Adventure' },
-  { src: 'assets/gallery-4.jpg', title: 'April Academic Tour', desc: 'Knowledge Discovery Month' },
-  { src: 'assets/gallery-5.jpg', title: 'May Academic Tour', desc: 'Educational Exploration' },
-  { src: 'assets/gallery-6.jpg', title: 'June Academic Tour', desc: 'Summer Learning Journey' },
-  { src: 'assets/gallery-7.jpg', title: 'July Academic Tour', desc: 'Mid-Year Educational Trip' },
-  { src: 'assets/gallery-8.jpg', title: 'August Academic Tour', desc: 'Independence Learning Tour' },
-  { src: 'assets/gallery-9.jpg', title: 'September Academic Tour', desc: 'Back to Learning Tour' },
-  { src: 'assets/gallery-1.jpg', title: 'October Academic Tour', desc: 'Autumn Education Journey' },
-  { src: 'assets/gallery-2.jpg', title: 'November Academic Tour', desc: 'Year-End Learning Trip' },
-  { src: 'assets/gallery-3.jpg', title: 'December Academic Tour', desc: 'Holiday Learning Celebration' }
+  { src: 'assets/talkjan.mp4', title: 'January Academic Tour', desc: 'New Year Educational Journey', isVideo: true }
 ];
 
 let currentLightboxIndex = 0;
