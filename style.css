@@ -8405,7 +8405,7 @@ footer {
 
 /* Gallery Hero */
 .hero-gallery {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/') center/cover no-repeat;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/galleryheader.png') center/cover no-repeat;
   position: relative;
   overflow: hidden;
 }
