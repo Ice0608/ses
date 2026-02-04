@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="Explore our gallery showcasing Smart Education Society's journey, achievements, and memorable moments.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gallery - Smart Education Society</title>
+  <link rel="canonical" href="https://sesoc.com.my/gallery.html">
+  <link rel="icon" href="/assets/seslogoo.png" sizes="any">
+  <link rel="shortcut icon" href="/assets/seslogoo.png">
+  <link rel="apple-touch-icon" href="/assets/seslogoo.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://kit.fontawesome.com/351048854e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="assets/ses logo white.png" alt="SES Logo">
+        
+      </a>
+    </div>
+
+    <!-- Hamburger Menu Button -->
+    <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation" aria-expanded="false" tabindex="0">
+      <i class="fas fa-bars" aria-hidden="true"></i>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="about.html" class="active dropdown-toggle">
+          About
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="business.html" class="dropdown-toggle">
+          Business <i class="fas fa-chevron-down dropdown-arrow"></i>
+        </a>
+        <div class="dropdown-content">
+          <a href="education.html">Education</a>
+          <a href="https://www.tiktok.com/@kopisaigon.paroi?_r=1&_t=ZS-91k9AVJUCEK" target="_blank" rel="noopener">Kopi Saigon</a>
+        </div>
+      </li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="career.html">Career</a></li>
+      <li>
+        <form id="searchForm" class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </li>
+    </ul>
+  </nav> 
+
+  <!-- Back Button (Mobile Only) -->
+  <button class="back-button" onclick="window.history.back()" aria-label="Go back">
+    <i class="fa fa-angle-left"></i>
+  </button>
+
+  <!-- Hero Section -->
+  <header class="hero small-hero hero-gallery">
+    <div class="hero-content">
+      <h1>GALLERY</h1>
+      <p>Capturing Our Journey & Achievements</p>
+    </div>
+  </header>
+
+  <!-- Gallery Filter Section -->
+  <section class="gallery-filter-section">
+    <div class="container">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fas fa-th"></i> All
+        </button>
+        <button class="filter-btn" data-filter="events">
+          <i class="fas fa-calendar-alt"></i> Events
+        </button>
+        <button class="filter-btn" data-filter="achievements">
+          <i class="fas fa-trophy"></i> Achievements
+        </button>
+        <button class="filter-btn" data-filter="campus">
+          <i class="fas fa-building"></i> Campus
+        </button>
+        <button class="filter-btn" data-filter="students">
+          <i class="fas fa-user-graduate"></i> Students
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid Section -->
+  <section class="gallery-grid-section">
+    <div class="container">
+      <div class="gallery-grid">
+        
+        <!-- Gallery Item 1 -->
+        <div class="gallery-item" data-category="events">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-1.jpg" alt="Annual Ceremony" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Annual Ceremony 2024</h3>
+                  <p>Celebrating Excellence</p>
+                  <button class="view-btn" onclick="openLightbox(0)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 2 -->
+        <div class="gallery-item" data-category="students">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-2.jpg" alt="Student Activities" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Student Activities</h3>
+                  <p>Learning Beyond Classroom</p>
+                  <button class="view-btn" onclick="openLightbox(1)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 3 -->
+        <div class="gallery-item" data-category="achievements">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-3.jpg" alt="Award Winners" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Award Winners</h3>
+                  <p>Excellence Recognition</p>
+                  <button class="view-btn" onclick="openLightbox(2)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 4 -->
+        <div class="gallery-item" data-category="campus">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-4.jpg" alt="Campus Facilities" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Campus Facilities</h3>
+                  <p>Modern Learning Environment</p>
+                  <button class="view-btn" onclick="openLightbox(3)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 5 -->
+        <div class="gallery-item" data-category="events">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-5.jpg" alt="Graduation Day" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Graduation Day</h3>
+                  <p>Proud Moments</p>
+                  <button class="view-btn" onclick="openLightbox(4)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 6 -->
+        <div class="gallery-item" data-category="students">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-6.jpg" alt="Workshop Session" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Workshop Session</h3>
+                  <p>Hands-on Learning</p>
+                  <button class="view-btn" onclick="openLightbox(5)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 7 -->
+        <div class="gallery-item" data-category="achievements">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-7.jpg" alt="Competition Winners" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Competition Winners</h3>
+                  <p>Champion Team</p>
+                  <button class="view-btn" onclick="openLightbox(6)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 8 -->
+        <div class="gallery-item" data-category="campus">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-8.jpg" alt="Library" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Library</h3>
+                  <p>Knowledge Hub</p>
+                  <button class="view-btn" onclick="openLightbox(7)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Item 9 -->
+        <div class="gallery-item" data-category="events">
+          <div class="gallery-card">
+            <div class="gallery-image">
+              <img src="assets/gallery-9.jpg" alt="Cultural Festival" loading="lazy">
+              <div class="gallery-overlay">
+                <div class="gallery-info">
+                  <h3>Cultural Festival</h3>
+                  <p>Diversity Celebration</p>
+                  <button class="view-btn" onclick="openLightbox(8)">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">
+      <i class="fas fa-times"></i>
+    </button>
+    <button class="lightbox-prev" onclick="changeLightboxImage(-1)">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="lightbox-next" onclick="changeLightboxImage(1)">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="Gallery Image">
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <section class="gallery-stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-camera"></i>
+          </div>
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-label">Photos Captured</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stat-number" data-target="150">0</div>
+          <div class="stat-label">Events Organized</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="stat-number" data-target="75">0</div>
+          <div class="stat-label">Awards Won</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-smile"></i>
+          </div>
+          <div class="stat-number" data-target="1000">0</div>
+          <div class="stat-label">Happy Moments</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wave-container">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+        <div class="wave wave-4"></div>
+        <div class="interference interference-1"></div>
+        <div class="interference interference-2"></div>
+        <div class="interference interference-3"></div>
+    </div>
+    <div class="footer-content-new">
+      <div class="footer-grid">
+        <!-- Logo & Partners Section -->
+        <div class="footer-column footer-logo-section">
+          <div class="footer-logo-row">
+            <div class="footer-logo-left">
+              <!-- <h3 class="footer-company-name">Smart Education Society</h3> -->
+              <img src="assets/SES LOGO RENEW.png" alt="SES Logo" class="footer-main-logo">
+            </div>
+            <div class="footer-logo-right">
+              <p class="footer-titleline">Smart Education Society</p>
+              <p class="footer-tagline">Power of Believe</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-column footer-links-column">
+        <!-- Quick Links -->
+        <h4>Quick Links</h4>
+          <div class="footer-list-grid">
+            <ul class="footer-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <ul class="footer-list">
+              <li><a href="business.html">Business</a></li>
+              <li><a href="career.html">Career</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Programs -->
+        <div class="footer-column footer-programs-column">
+          <h4>Our Programs</h4>
+          <div class="footer-programs-grid">
+            <ul class="footer-list">
+              <li><a href="https://smtaa.vercel.app/">SMTAA</a></li>
+              <li><a href="https://upkb.my/">TVET</a></li>
+              <li><a href="https://iceps.uitm.edu.my/">UITM</a></li>
+              <li><a href="https://dch.edu.my/">KTEB</a></li>
+            </ul>
+            <ul class="footer-list">
+              <li><a href="https://study.umcced.edu.my/">UM</a></li>
+              <li><a href="https://space.utm.my/">UTM</a></li>
+              <li><a href="https://uic.edu.my/">UIC</a></li>
+              <li><a href="https://dch.edu.my/">KTIS</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Contact Info -->
+        <div class="footer-column footer-contact-column ">
+          <h4>Contact Us</h4>
+          <div class="footer-contact-row">
+            <ul class="footer-list footer-contact">
+              <li><i class="fas fa-phone"></i> 011 2672 5795</li>
+              <li><i class="fas fa-envelope"></i> smartsocietysolution@gmail.com</li>
+              <li><i class="fas fa-map-marker-alt"></i> Negeri Sembilan, Malaysia</li>
+            </ul>
+            <div class="footer-social-new">
+                <a href="https://www.facebook.com/smarteducationsocietyofficial/" target="_blank" rel="noopener" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.tiktok.com/@smartedusocietyofficial?_r=1&_t=ZS-93Up4THF4hM" target="_blank" rel="noopener" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/smtaa.uic/" target="_blank" rel="noopener" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="footer-bottom">
+        <p>© 2026 Smart Education Society. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Support Widget -->
+  <div class="support-widget">
+    <!-- Social Drop-Up -->
+    <div class="social-widget">
+    <!-- Main Social Button -->
+      <div class="main-social-btn" id="mainSocialBtn">
+        <i class="fa-sharp fa-solid fa-link"></i>
+      </div>
+
+    <!-- Drop-Up Options -->
+      <div class="social-dropdown" id="socialDropdown">
+       <a href="https://web.facebook.com/smarteducationsocietyofficial?_rdc=1&_rdr#" target="_blank" class="social-item facebook">
+      <i class="fab fa-facebook-f"></i>
+      </a>
+       <a href="https://www.instagram.com/smartedusocietyofficial" target="_blank" class="social-item instagram">
+      <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@smartedusocietyofficial" target="_blank" class="social-item tiktok">
+      <i class="fab fa-tiktok"></i>
+     </a>
+      </div>
+    </div>
+    <!-- Call Button -->
+    <a href="tel:+60112672579‪5" class="call-icon" id="callIcon">
+      <i class="fas fa-phone-alt"></i>
+    </a>
+    
+    <!-- Support Form Icon -->
+    <div class="support-icon" id="supportIcon">
+      <i class="fas fa-headset"></i>
+    </div>
+    
+    <div class="support-form-container" id="supportFormContainer">
+      <div class="support-form-header">
+        <h3>Ada Pertanyaan?</h3>
+        <span class="support-close" id="supportClose">&times;</span>
+      </div>
+      <form id="supportForm" class="support-form">
+        <div class="support-field">
+          <label for="supportName">Nama</label>
+          <input type="text" id="supportName" required placeholder="Masukkan nama anda">
+        </div>
+        <div class="support-field">
+          <label for="supportPhone">No. Telefon Bimbit</label>
+          <input type="tel" id="supportPhone" required placeholder="01xxxxxxxx">
+        </div>
+        <div class="support-field">
+          <label for="supportEmail">E-mel</label>
+          <input type="email" id="supportEmail" placeholder="email@example.com (optional)">
+        </div>
+        <div class="support-field">
+          <label for="supportQuestion">Soalan / Pertanyaan</label>
+          <textarea id="supportQuestion" rows="4" required placeholder="Tulis soalan anda di sini..."></textarea>
+        </div>
+        <button type="submit" class="support-submit-btn">
+          <i class="fas fa-paper-plane"></i> Hantar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

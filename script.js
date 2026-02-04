@@ -1784,4 +1784,162 @@ mainSocialBtn.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', heroSliderInit);
 
+// ===============================================
+// GALLERY PAGE FUNCTIONALITY
+// ===============================================
+
+// Gallery Filter Functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        galleryItems.forEach(item => {
+          const category = item.getAttribute('data-category');
+          
+          if (filter === 'all' || category === filter) {
+            item.classList.remove('hidden');
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 10);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+              item.classList.add('hidden');
+            }, 300);
+          }
+        });
+      });
+    });
+  }
+
+  // Animated Counter for Stats
+  const statNumbers = document.querySelectorAll('.stat-number');
+  
+  if (statNumbers.length > 0) {
+    const animateCounter = (element) => {
+      const target = parseInt(element.getAttribute('data-target'));
+      const duration = 2000; // 2 seconds
+      const increment = target / (duration / 16); // 60 FPS
+      let current = 0;
+
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          element.textContent = Math.floor(current) + '+';
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target + '+';
+        }
+      };
+
+      updateCounter();
+    };
+
+    // Intersection Observer for counter animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(stat => observer.observe(stat));
+  }
+});
+
+// Lightbox Functionality
+const galleryData = [
+  { src: 'assets/gallery-1.jpg', title: 'Annual Ceremony 2024', desc: 'Celebrating Excellence' },
+  { src: 'assets/gallery-2.jpg', title: 'Student Activities', desc: 'Learning Beyond Classroom' },
+  { src: 'assets/gallery-3.jpg', title: 'Award Winners', desc: 'Excellence Recognition' },
+  { src: 'assets/gallery-4.jpg', title: 'Campus Facilities', desc: 'Modern Learning Environment' },
+  { src: 'assets/gallery-5.jpg', title: 'Graduation Day', desc: 'Proud Moments' },
+  { src: 'assets/gallery-6.jpg', title: 'Workshop Session', desc: 'Hands-on Learning' },
+  { src: 'assets/gallery-7.jpg', title: 'Competition Winners', desc: 'Champion Team' },
+  { src: 'assets/gallery-8.jpg', title: 'Library', desc: 'Knowledge Hub' },
+  { src: 'assets/gallery-9.jpg', title: 'Cultural Festival', desc: 'Diversity Celebration' }
+];
+
+let currentLightboxIndex = 0;
+
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDescription = document.getElementById('lightbox-description');
+
+  if (lightbox && galleryData[index]) {
+    lightboxImage.src = galleryData[index].src;
+    lightboxTitle.textContent = galleryData[index].title;
+    lightboxDescription.textContent = galleryData[index].desc;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function changeLightboxImage(direction) {
+  currentLightboxIndex += direction;
+  
+  if (currentLightboxIndex < 0) {
+    currentLightboxIndex = galleryData.length - 1;
+  } else if (currentLightboxIndex >= galleryData.length) {
+    currentLightboxIndex = 0;
+  }
+  
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDescription = document.getElementById('lightbox-description');
+
+  if (galleryData[currentLightboxIndex]) {
+    lightboxImage.src = galleryData[currentLightboxIndex].src;
+    lightboxTitle.textContent = galleryData[currentLightboxIndex].title;
+    lightboxDescription.textContent = galleryData[currentLightboxIndex].desc;
+  }
+}
+
+// Keyboard navigation for lightbox
+document.addEventListener('keydown', (e) => {
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox && lightbox.classList.contains('active')) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+      changeLightboxImage(-1);
+    } else if (e.key === 'ArrowRight') {
+      changeLightboxImage(1);
+    }
+  }
+});
+
+// Close lightbox on background click
+document.addEventListener('click', (e) => {
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox && e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
 // ...existing code...
