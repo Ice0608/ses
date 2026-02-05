@@ -2163,6 +2163,19 @@ body:not(.index-page) {
   position: relative;
 }
 
+/* Mobile adjustments for small hero */
+@media (max-width: 768px) {
+  .small-hero {
+    height: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .small-hero {
+    height: 150px;
+  }
+}
+
 /* Back Button (Mobile Only) */
 .back-button {
   display: none;
@@ -2459,14 +2472,14 @@ filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
 /* Extra small mobile devices */
 @media (max-width: 481px) {
   .director-content {
-    margin-top: calc(-33vh - 20px); /* Less overlap on very small screens naikkan liquid glass en arip */
+    margin-top: calc(-23vh - 20px); /* Less overlap on very small screens naikkan liquid glass en arip */
   }
 }
 
 /* Larger mobile/small tablets */
 @media (min-width: 481px) and (max-width: 768px) {
   .director-content {
-    margin-top: calc(-40vh - 20px); /* More overlap on larger mobile screens */
+    margin-top: calc(-30vh - 20px); /* More overlap on larger mobile screens */
   }
 }
 
