@@ -1864,7 +1864,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Lightbox Functionality
 const galleryData = [
   { src: 'assets/Annualevent.mp4', title: 'Annual SES 2025', desc: 'Celebrating Excellence Together', isVideo: true },
-  { src: 'assets/talkjan.mp4', title: 'January Academic Tour', desc: 'New Year Educational Journey', isVideo: true }
+  { src: 'assets/talkjan.mp4', title: 'January Academic Tour', desc: 'New Year Educational Journey', isVideo: true },
+  { src: 'assets/talkipoh.mp4', title: 'February Academic Tour', desc: 'Learning Excellence Month', isVideo: true }
 ];
 
 let currentLightboxIndex = 0;
