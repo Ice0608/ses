@@ -1777,10 +1777,32 @@ if (typeof gsap !== 'undefined') {
 const mainSocialBtn = document.getElementById('mainSocialBtn');
 const socialDropdown = document.getElementById('socialDropdown');
 
-// Toggle Drop-Up
-mainSocialBtn.addEventListener('click', () => {
-  socialDropdown.style.display = socialDropdown.style.display === 'flex' ? 'none' : 'flex';
-});
+// Social widget container for hover detection
+const socialWidget = document.querySelector('.social-widget');
+
+// Toggle Drop-Up on Hover with staggered animation
+if (mainSocialBtn && socialDropdown) {
+  // Show dropdown on hover with staggered rise animation
+  socialWidget.addEventListener('mouseenter', () => {
+    socialDropdown.style.display = 'flex';
+    socialDropdown.classList.remove('hide');
+    socialDropdown.classList.add('show');
+  });
+
+  // Hide dropdown when leaving the entire social widget area
+  socialWidget.addEventListener('mouseleave', () => {
+    socialDropdown.classList.remove('show');
+    socialDropdown.classList.add('hide');
+    
+    // Hide after animation completes - all items animate together now
+    setTimeout(() => {
+      if (socialDropdown.classList.contains('hide')) {
+        socialDropdown.style.display = 'none';
+        socialDropdown.classList.remove('hide');
+      }
+    }, 500); // Match the 0.5s animation duration since no staggered delays
+  });
+}
 
 document.addEventListener('DOMContentLoaded', heroSliderInit);
 

@@ -397,6 +397,7 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #2e043b; /* fallback color */
   background-image: url(assets/wallpaper01.png); /* your image file name or URL */
   background-size: cover;       /* make it cover the whole page */
   background-repeat: no-repeat; /* don’t repeat the image */
@@ -3157,7 +3158,7 @@ filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
 /* ===== CAREER OPPORTUNITIES & SALARY SECTION ===== */
 .career-salary-section {
   background: transparent;
-  padding: 80px 20px 60px;
+  padding: 20px 20px 60px;
   font-family: 'Poppins', sans-serif;
   position: relative;
   animation: slideInUp 0.6s ease-out;
@@ -3297,7 +3298,7 @@ filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
 /* Responsive - Mobile Friendly */
 @media screen and (max-width: 768px) {
   .career-salary-section {
-    padding: 60px 15px;
+    padding: 15px 15px;
   }
   
   .career-salary-title {
@@ -5007,6 +5008,10 @@ input[type="checkbox"] {
   margin-bottom: 10px;
 }
 
+.social-dropdown.show {
+  display: flex;
+}
+
 .social-item {
   width: 45px;
   height: 45px;
@@ -5021,9 +5026,66 @@ input[type="checkbox"] {
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   transition: transform 0.2s, opacity 0.2s;
+  transform: translateY(20px);
+  opacity: 0;
 }
+
 .social-item:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) !important;
+}
+
+.social-dropdown.show .social-item {
+  animation: riseUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.social-dropdown.show .social-item:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.social-dropdown.show .social-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.social-dropdown.show .social-item:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.social-dropdown.hide .social-item {
+  animation: slideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.social-dropdown.hide .social-item:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.social-dropdown.hide .social-item:nth-child(2) {
+  animation-delay: 0s;
+}
+
+.social-dropdown.hide .social-item:nth-child(3) {
+  animation-delay: 0s;
+}
+
+@keyframes riseUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
 }
 
 /* Platform Colors */
@@ -6880,7 +6942,7 @@ input[type="checkbox"] {
 body {
   color: #121212;
   font-family: "Outfit", sans-serif;
-  background-color: #f9ffe7;
+  background-color: #2e043b;
 }
 
 /* ===== BUSINESS PAGE STYLES ===== */
@@ -7137,7 +7199,7 @@ html {
 }
 
 body {
-  background-color: var(--color-black);
+  background-color: #2e043b;
   color: var(--color-white);
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
@@ -7907,10 +7969,10 @@ footer {
 .career-card-dayatech-mechatronics::before { background-image: url('assets/mekatronik.jpeg'); }
 .career-card-dayatech-childcare::before { background-image: url('assets/dcpra.jpg'); }
 
-/* Eco Autotronic Academy - No background images (to be added later) */
-.career-card-eco-auto::before { background-image: none; }
-.career-card-eco-maintenance::before { background-image: none; }
-.career-card-eco-workshop::before { background-image: none; }
+/* Eco Autotronic Academy */
+.career-card-eco-auto::before { background-image: url('assets/lightvehicleautotronics.jpg'); }
+.career-card-eco-maintenance::before { background-image: url('assets/lightvehiclemaintenance.jpg'); }
+.career-card-eco-workshop::before { background-image: url('assets/workshopmanagement.png'); }
 
 /* Noble School Engineering - No background images (to be added later) */
 .career-card-noble-auto::before { background-image: url('assets/automotif.png'); }
@@ -8473,7 +8535,8 @@ footer {
 /* Gallery Grid Section */
 .gallery-grid-section {
   padding: 40px 20px 80px;
-  background: transparent;
+  padding-bottom: 12rem;
+  background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.8) 90%, #000 100%);
 }
 
 .gallery-grid {

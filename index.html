@@ -20,8 +20,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css'>
   <script src="https://kit.fontawesome.com/351048854e.js" crossorigin="anonymous"></script>
-  <!--
   <style>
+    /* Hide navigation elements by default */
+    .hero-nav-btn,
+    .hero-indicators {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    /* Show navigation on hover over hero header */
+    .hero-header:hover .hero-nav-btn,
+    .hero-header:hover .hero-indicators {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     /* Partners Grid Mobile - 3 Columns */
     @media (max-width: 768px) {
       .partners-grid {
@@ -35,7 +49,6 @@
       }
     }
   </style>
-  -->
 </head>
 <body class="index-page">
 
@@ -127,33 +140,28 @@
         </div>
       </div>
 
-      <!-- Image-only Poster Slide - Simposium Taiping -->
-      <div class="hero-slide poster-slide">
+       <!-- Image-only Poster Slide 1 - ADD CONTAINER -->
+       <div class="hero-slide poster-slide">
         <div class="hero-poster-container">
-          <img src="assets/simposiumpendidikanbayanlepas.png" alt="Simposium Pendidikan Bayan Lepas" class="hero-poster">
+          <img src="assets/festiv.png" alt="Marhaban Ramadhan" class="hero-poster">
         </div>
-      </div>
-
-      <!-- Image-only Poster Slide 1 - ADD CONTAINER -->
-      <div class="hero-slide poster-slide">
-        <div class="hero-poster-container">
-          <img src="assets/simposiumpendidikanbutterworth.png" alt="Simposium Pendidikan Butterworth" class="hero-poster">
-        </div>
-      </div>
+      </div> 
 
       <!-- Image-only Poster Slide 2 - ADD CONTAINER -->
       <div class="hero-slide poster-slide">
         <div class="hero-poster-container">
-          <img src="assets/simposiumpendidikannibongtebal.png" alt="Simposium Pendidikan Nibong Tebal" class="hero-poster">
+          <img src="assets/simposiumjempol.png" alt="Simposium Jempol" class="hero-poster">
         </div>
       </div>
 
-       <!-- Image-only Poster Slide 2 - ADD CONTAINER -->
+      <!-- Image-only Poster Slide 3 - ADD CONTAINER -->
       <div class="hero-slide poster-slide">
         <div class="hero-poster-container">
-          <img src="assets/simposiumpendidikanpermatangpauh.png" alt="Simposium Pendidikan Permatang Pauh" class="hero-poster">
+          <img src="assets/simposiumpedas.png" alt="Simposium Pedas" class="hero-poster">
         </div>
       </div>
+
+      
       
     </div>
       <!-- Navigation Arrows -->
@@ -170,7 +178,6 @@
         <button class="hero-indicator" data-slide="1" aria-label="Go to slide 2"></button>
         <button class="hero-indicator" data-slide="2" aria-label="Go to slide 3"></button>
         <button class="hero-indicator" data-slide="3" aria-label="Go to slide 4"></button>
-        <button class="hero-indicator" data-slide="4" aria-label="Go to slide 5"></button>
       </div>
     </div>
   </section>
@@ -295,10 +302,11 @@
             <ul class="footer-list">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="career.html">Career</a></li>
             </ul>
             <ul class="footer-list">
               <li><a href="business.html">Business</a></li>
-              <li><a href="career.html">Career</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
             </ul>
           </div>
         </div>
@@ -329,17 +337,6 @@
               <li><i class="fas fa-envelope"></i> smartsocietysolution@gmail.com</li>
               <li><i class="fas fa-map-marker-alt"></i> Negeri Sembilan, Malaysia</li>
             </ul>
-            <div class="footer-social-new">
-                <a href="https://www.facebook.com/smarteducationsocietyofficial/" target="_blank" rel="noopener" aria-label="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.tiktok.com/@smartedusocietyofficial?_r=1&_t=ZS-93Up4THF4hM" target="_blank" rel="noopener" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-                <a href="https://www.instagram.com/smtaa.uic/" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
           </div>
         </div>
       </div>
