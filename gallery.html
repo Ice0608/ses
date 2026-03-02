@@ -9,10 +9,171 @@
   <link rel="icon" href="/assets/seslogoo.png" sizes="any">
   <link rel="shortcut icon" href="/assets/seslogoo.png">
   <link rel="apple-touch-icon" href="/assets/seslogoo.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=9">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Force gallery layout - overrides any cached/conflicting rules */
+
+    /* FIX: background-attachment:fixed causes full repaint on every scroll frame */
+    body {
+      background-attachment: scroll !important;
+    }
+
+    .interactive-gallery-section {
+      display: block !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 60px 40px 80px !important;
+      background: transparent !important;
+    }
+
+    /* Header - centered */
+    .gallery-header {
+      text-align: center !important;
+      margin-bottom: 40px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      display: block !important;
+      width: 100% !important;
+    }
+    .gallery-title {
+      text-align: center !important;
+      display: block !important;
+      color: #ffffff !important;
+      font-size: 2rem !important;
+      font-weight: 700 !important;
+      margin-bottom: 10px !important;
+    }
+    .gallery-title::after {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+    .gallery-subtitle {
+      text-align: center !important;
+      display: block !important;
+      color: rgba(255,255,255,0.75) !important;
+      font-size: 1rem !important;
+    }
+
+    /* Filter buttons */
+    .gallery-filters {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 100% !important;
+      gap: 12px !important;
+      margin: 0 auto 40px !important;
+      max-width: 1200px !important;
+      padding: 0 !important;
+    }
+    .filter-btn {
+      display: inline-flex !important;
+      width: auto !important;
+      flex: 0 0 auto !important;
+      white-space: nowrap !important;
+    }
+
+    /* Gallery grid */
+    .modern-gallery-grid {
+      display: grid !important;
+      width: 100% !important;
+      max-width: 1400px !important;
+      margin: 0 auto !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 28px !important;
+    }
+    @media (max-width: 1024px) {
+      .modern-gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .interactive-gallery-section {
+        padding: 40px 16px 60px !important;
+      }
+      .modern-gallery-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Card */
+    .gallery-card {
+      background: #ffffff !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      opacity: 1 !important;
+      transform: translateZ(0) !important;
+      animation: none !important;
+      will-change: transform !important;
+      contain: layout style paint !important;
+      transition: transform 0.2s ease !important;
+      cursor: default !important;
+    }
+    .gallery-card:hover {
+      transform: translateY(-6px) translateZ(0) !important;
+    }
+    .gallery-card-image {
+      height: 220px !important;
+      overflow: hidden !important;
+      flex-shrink: 0 !important;
+    }
+    .gallery-card-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+    /* Card text content */
+    .gallery-card-content {
+      background: #ffffff !important;
+      padding: 18px 20px !important;
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+    .gallery-card-title {
+      color: #1a202c !important;
+      font-size: 1.05rem !important;
+      font-weight: 700 !important;
+      margin: 0 !important;
+      line-height: 1.4 !important;
+    }
+    .gallery-card-description {
+      color: #4a5568 !important;
+      font-size: 0.88rem !important;
+      line-height: 1.5 !important;
+      margin: 0 !important;
+    }
+    .gallery-card-meta {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 10px !important;
+      margin-top: 4px !important;
+    }
+    .meta-item {
+      color: #718096 !important;
+      font-size: 0.8rem !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+    .meta-item i {
+      color: #667eea !important;
+    }
+    .category-badge {
+      color: #667eea !important;
+    }
+  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <script src="https://kit.fontawesome.com/351048854e.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 </head>
 <body>
 
@@ -70,405 +231,27 @@
     </div>
   </header>
 
-  <!-- Gallery Filter Section -->
-  <section class="gallery-filter-section">
-    <div class="container">
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">
-          <i class="fas fa-th"></i> All
-        </button>
-        <button class="filter-btn" data-filter="events">
-          <i class="fas fa-calendar-alt"></i> Events
-        </button>
-        <button class="filter-btn" data-filter="academic-tour">
-          <i class="fas fa-route"></i> Academic Tour
-        </button>
-        <button class="filter-btn" data-filter="campus">
-          <i class="fas fa-building"></i> Campus
-        </button>
-        <button class="filter-btn" data-filter="students">
-          <i class="fas fa-user-graduate"></i> Students
-        </button>
-      </div>
+  <!-- Interactive Gallery Section -->
+  <section class="interactive-gallery-section">
+    <div class="gallery-header">
+      <h2 class="gallery-title">Our Gallery</h2>
+      <p class="gallery-subtitle">Explore our memorable moments and achievements</p>
     </div>
+    
+    <!-- Category Filter -->
+    <div class="gallery-filters">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="events">Events</button>
+      <button class="filter-btn" data-category="tours">Academic Tours</button>
+    </div>
+    
+    <!-- Gallery Grid -->
+    <div class="modern-gallery-grid" id="galleryGrid">
+      <!-- Gallery items will be dynamically loaded -->
+    </div>
+    
+    <div id="loadMoreBtn" style="display:none;"></div>
   </section>
-
-  <!-- Gallery Grid Section -->
-  <section class="gallery-grid-section">
-    <div class="container">
-      <div class="gallery-grid">
-        
-        <!-- EVENTS CATEGORY -->
-        <!-- Gallery Item 1 - Annual SES 2025 -->
-        <div class="gallery-item" data-category="events">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/ANNUAL.webp" alt="Annual SES 2025" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>Annual SES 2025</h3>
-                  <p>Celebrating Excellence Together</p>
-                  <button class="view-btn" onclick="openLightbox(0)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ACADEMIC TOUR CATEGORY -->
-        <!-- Gallery Item 2 - January -->
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/tourtalkjan.webp" alt="January Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>January Academic Tour</h3>
-                  <p>Start off 2026 with UKM and USIM</p>
-                  <button class="view-btn" onclick="openLightbox(1)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Gallery Item 3 - February -->
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/tourtalkfebipoh.webp" alt="February Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>February Academic Tour</h3>
-                  <p>ADTEC JTM Ipoh Tour</p>
-                  <button class="view-btn" onclick="openLightbox(2)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Gallery Item 4 - February (Program Tekno) -->
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/programteknomaklumatkv.webp" alt="February Academic Tour - Program Tekno" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>February Academic Tour</h3>
-                  <p>Program Tekno Educational Visit</p>
-                  <button class="view-btn" onclick="openLightbox(3)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Gallery Item 5 - February (Penang Tour) 
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/penangtourd1.png" alt="February Academic Tour - Penang" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>February Academic Tour</h3>
-                  <p>Penang Educational Journey</p>
-                  <button class="view-btn" onclick="openLightbox(4)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
-        Gallery Item 4 - March
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-3.jpg" alt="March Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>March Academic Tour</h3>
-                  <p>Spring Learning Adventure</p>
-                  <button class="view-btn" onclick="openLightbox(9)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 5 - April
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-4.jpg" alt="April Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>April Academic Tour</h3>
-                  <p>Knowledge Discovery Month</p>
-                  <button class="view-btn" onclick="openLightbox(10)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 6 - May
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-5.jpg" alt="May Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>May Academic Tour</h3>
-                  <p>Educational Exploration</p>
-                  <button class="view-btn" onclick="openLightbox(11)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 7 - June
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-6.jpg" alt="June Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>June Academic Tour</h3>
-                  <p>Summer Learning Journey</p>
-                  <button class="view-btn" onclick="openLightbox(12)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 8 - July
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-7.jpg" alt="July Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>July Academic Tour</h3>
-                  <p>Mid-Year Educational Trip</p>
-                  <button class="view-btn" onclick="openLightbox(13)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 9 - August
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-8.jpg" alt="August Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>August Academic Tour</h3>
-                  <p>Independence Learning Tour</p>
-                  <button class="view-btn" onclick="openLightbox(14)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 10 - September
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-9.jpg" alt="September Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>September Academic Tour</h3>
-                  <p>Back to Learning Tour</p>
-                  <button class="view-btn" onclick="openLightbox(15)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 11 - October
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-1.jpg" alt="October Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>October Academic Tour</h3>
-                  <p>Autumn Education Journey</p>
-                  <button class="view-btn" onclick="openLightbox(16)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 12 - November
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-2.jpg" alt="November Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>November Academic Tour</h3>
-                  <p>Year-End Learning Trip</p>
-                  <button class="view-btn" onclick="openLightbox(17)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 13 - December
-        <div class="gallery-item" data-category="academic-tour">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-3.jpg" alt="December Academic Tour" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>December Academic Tour</h3>
-                  <p>Holiday Learning Celebration</p>
-                  <button class="view-btn" onclick="openLightbox(18)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        CAMPUS CATEGORY
-        Gallery Item 14 - Campus Facilities
-        <div class="gallery-item" data-category="campus">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-4.jpg" alt="Campus Facilities" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>Campus Facilities</h3>
-                  <p>Modern Learning Environment</p>
-                  <button class="view-btn" onclick="openLightbox(3)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 15 - Library
-        <div class="gallery-item" data-category="campus">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-8.jpg" alt="Library" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>Library</h3>
-                  <p>Knowledge Hub</p>
-                  <button class="view-btn" onclick="openLightbox(7)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        STUDENTS CATEGORY
-        Gallery Item 16 - Student Activities
-        <div class="gallery-item" data-category="students">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-2.jpg" alt="Student Activities" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>Student Activities</h3>
-                  <p>Learning Beyond Classroom</p>
-                  <button class="view-btn" onclick="openLightbox(1)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        Gallery Item 17 - Workshop Session
-        <div class="gallery-item" data-category="students">
-          <div class="gallery-card">
-            <div class="gallery-image">
-              <img src="assets/gallery-6.jpg" alt="Workshop Session" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h3>Workshop Session</h3>
-                  <p>Hands-on Learning</p>
-                  <button class="view-btn" onclick="openLightbox(5)">
-                    <i class="fas fa-search-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        -->
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Lightbox Modal -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">
-      <i class="fas fa-times"></i>
-    </button>
-    <button class="lightbox-prev" onclick="changeLightboxImage(-1)">
-      <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="lightbox-next" onclick="changeLightboxImage(1)">
-      <i class="fas fa-chevron-right"></i>
-    </button>
-    <div class="lightbox-content">
-      <img id="lightbox-image" src="" alt="Gallery Image">
-      <div class="lightbox-caption">
-        <h3 id="lightbox-title"></h3>
-        <p id="lightbox-description"></p>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer>
@@ -568,6 +351,9 @@
       </a>
       <a href="https://www.tiktok.com/@smartedusocietyofficial" target="_blank" class="social-item tiktok">
       <i class="fab fa-tiktok"></i>
+     </a>
+      <a href="https://www.youtube.com/@SMARTEDUCATIONSOCIETY" target="_blank" class="social-item youtube" rel="noopener">
+      <i class="fab fa-youtube"></i>
      </a>
       </div>
     </div>

@@ -2035,4 +2035,180 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// Interactive Gallery Implementation
+(() => {
+  // Gallery data with categories and metadata
+  const interactiveGalleryData = [
+    {
+      id: 1,
+      image: "assets/ANNUAL.png",
+      title: "Annual SES 2025",
+      description: "Celebrating Excellence Together - A momentous gathering showcasing achievements and milestones.",
+      category: "events",
+      date: "2025",
+      location: "SES Main Hall"
+    },
+    {
+      id: 2,
+      image: "assets/tourtalkjan.png",
+      title: "Tour Talk January",
+      description: "Educational journey embarking on discovery and learning in the new year.",
+      category: "tours",
+      date: "January 2026",
+      location: "Educational Tour"
+    },
+    {
+      id: 3,
+      image: "assets/tourtalkfebipoh.png",
+      title: "Tour Talk February - Ipoh",
+      description: "Academic exploration through cultural landmarks and educational institutions.",
+      category: "tours",
+      date: "February 2026",
+      location: "Ipoh"
+    },
+    {
+      id: 4,
+      image: "assets/programteknomaklumatkv.png",
+      title: "Program Tekno Maklumat",
+      description: "Educational technology visit exploring the intersection of education and technology.",
+      category: "tours",
+      date: "2026",
+      location: "Technology Center"
+    },
+    {
+      id: 5,
+      image: "assets/penangtourd1.png",
+      title: "Penang Educational Tour",
+      description: "Enriching educational experience in the historic city of Penang.",
+      category: "tours",
+      date: "2026",
+      location: "Penang"
+    },
+    {
+      id: 10,
+      image: "assets/PINANGD2.png",
+      title: "Penang Educational Tour Day 2",
+      description: "Continuing the enriching educational experience in the historic city of Penang.",
+      category: "tours",
+      date: "2026",
+      location: "Penang"
+    },
+    {
+      id: 6,
+      image: "assets/simposiumjempol.png",
+      title: "Simposium Jempol",
+      description: "Educational symposium bringing together students and educators.",
+      category: "events",
+      date: "2026",
+      location: "Jempol"
+    },
+    {
+      id: 7,
+      image: "assets/simposiumpedas.png",
+      title: "Simposium Pedas",
+      description: "Academic gathering focusing on educational excellence and innovation.",
+      category: "events",
+      date: "2026",
+      location: "Pedas"
+    },
+    {
+      id: 8,
+      image: "assets/SIMPOSIUMPENDIDIKANKL.png",
+      title: "Simposium Pendidikan KL",
+      description: "Educational symposium in Kuala Lumpur promoting academic excellence.",
+      category: "events",
+      date: "2026",
+      location: "Kuala Lumpur"
+    },
+    {
+      id: 9,
+      image: "assets/SIMPOSIUMPENDIDIKANSHAHALAM.png",
+      title: "Simposium Shah Alam",
+      description: "Major educational event showcasing innovations in learning and teaching.",
+      category: "events",
+      date: "2026",
+      location: "Shah Alam"
+    }
+  ];
+
+  // State management
+  let currentFilter = 'all';
+  let itemsToShow = Infinity; // Show all items
+
+  // DOM Elements
+  const galleryGrid = document.getElementById('galleryGrid');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+  // Skip if not on gallery page
+  if (!galleryGrid) {
+    return;
+  }
+
+  // Create gallery card HTML
+  function createGalleryCard(item) {
+    const categoryLabel = item.category.charAt(0).toUpperCase() + item.category.slice(1);
+    
+    return `
+      <div class="gallery-card" data-category="${item.category}" data-id="${item.id}">
+        <div class="gallery-card-image">
+          <img src="${item.image}" alt="${item.title}" loading="lazy">
+          <span class="category-badge">${categoryLabel}</span>
+        </div>
+        <div class="gallery-card-content">
+          <h3 class="gallery-card-title">${item.title}</h3>
+          <p class="gallery-card-description">${item.description}</p>
+          <div class="gallery-card-meta">
+            <span class="meta-item">
+              <i class="fas fa-calendar-alt"></i>
+              ${item.date}
+            </span>
+            <span class="meta-item">
+              <i class="fas fa-map-marker-alt"></i>
+              ${item.location}
+            </span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Filter gallery items
+  function filterGallery(category) {
+    currentFilter = category;
+    renderGallery();
+  }
+
+  // Render gallery
+  function renderGallery() {
+    const filteredData = currentFilter === 'all' 
+      ? interactiveGalleryData 
+      : interactiveGalleryData.filter(item => item.category === currentFilter);
+
+    galleryGrid.innerHTML = filteredData.map(item => createGalleryCard(item)).join('');
+  }
+
+  // Filter button event listeners
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Remove active class from all buttons
+      filterButtons.forEach(b => b.classList.remove('active'));
+      
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      // Get category and filter
+      const category = this.getAttribute('data-category');
+      filterGallery(category);
+    });
+  });
+
+  // Initialize gallery
+  console.log('Initializing interactive gallery...');
+  renderGallery();
+  console.log('Gallery initialized successfully');
+
+})();
+
+
 // ...existing code...
