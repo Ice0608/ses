@@ -2128,6 +2128,24 @@ document.addEventListener('click', (e) => {
       category: "events",
       date: "2026",
       location: "Shah Alam"
+    },
+    {
+      id: 11,
+      image: "assets/spmuar.png",
+      title: "Simposium Muar",
+      description: "Educational symposium in Muar bringing together students and educators.",
+      category: "events",
+      date: "2026",
+      location: "Muar"
+    },
+    {
+      id: 12,
+      image: "assets/sppontian.png",
+      title: "Simposium Pontian",
+      description: "Academic gathering in Pontian focusing on educational excellence and innovation.",
+      category: "events",
+      date: "2026",
+      location: "Pontian"
     }
   ];
 
