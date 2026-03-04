@@ -14,9 +14,10 @@
   <style>
     /* Force gallery layout - overrides any cached/conflicting rules */
 
-    /* FIX: background-attachment:fixed causes full repaint on every scroll frame */
+    /* Scroll performance: promote background to its own composited layer */
     body {
-      background-attachment: scroll !important;
+      will-change: transform;
+      transform: translateZ(0);
     }
 
     .interactive-gallery-section {
@@ -24,7 +25,15 @@
       width: 100% !important;
       box-sizing: border-box !important;
       padding: 60px 40px 80px !important;
-      background: transparent !important;
+      /* Body wallpaper shows through — only add the bottom black fade */
+      background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0,0,0,0.65) 80%, #000000 100%) !important;
+    }
+
+    /* GPU-accelerate gallery cards to reduce scroll paint cost */
+    .modern-gallery-grid,
+    .gallery-card {
+      will-change: transform;
+      transform: translateZ(0);
     }
 
     /* Header - centered */

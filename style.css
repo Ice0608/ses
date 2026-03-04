@@ -1366,7 +1366,7 @@ body:not(.index-page) {
                 min-height: 300px; /* Changed from fixed height to min-height */
                 height: auto; /* Allow footer to expand */
                 overflow: hidden; /* Clip footer at its boundaries */
-                background: black;
+                background: linear-gradient(to top, #2e043b 0%, #1a0222 50%, #000000 100%);
                 /* Prevent footer waves from causing horizontal scroll */
                 max-width: 100vw;
                 /* z-index: -1 !important;
