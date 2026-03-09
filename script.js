@@ -2146,6 +2146,33 @@ document.addEventListener('click', (e) => {
       category: "events",
       date: "2026",
       location: "Pontian"
+    },
+    {
+      id: 13,
+      image: "assets/simposiumpendidikanpontian.png",
+      title: "Simposium Pendidikan Pontian",
+      description: "Educational symposium in Pontian bringing together students and educators.",
+      category: "events",
+      date: "2026",
+      location: "Pontian"
+    },
+    {
+      id: 14,
+      image: "assets/simposiumpendidikanjb.png",
+      title: "Simposium Pendidikan Johor Bahru",
+      description: "Academic gathering in Johor Bahru focusing on educational excellence.",
+      category: "events",
+      date: "2026",
+      location: "Johor Bahru"
+    },
+    {
+      id: 15,
+      image: "assets/simposiumpendidikanbatupahat.png",
+      title: "Simposium Pendidikan Batu Pahat",
+      description: "Educational symposium in Batu Pahat promoting academic excellence and innovation.",
+      category: "events",
+      date: "2026",
+      location: "Batu Pahat"
     }
   ];
 
