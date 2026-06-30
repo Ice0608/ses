@@ -1,3 +1,7 @@
+// ===============================================
+// SHARED UI: HOME HERO
+// ===============================================
+
 // Hero Slider Functionality
 const heroSliderInit = () => {
   const slides = document.querySelectorAll('.hero-slide');
@@ -117,6 +121,10 @@ const introScreenInit = () => {
   
   console.log("✅ Click handler attached to button");
 };
+
+// ===============================================
+// SHARED UI: NAVIGATION, SEARCH, AND PAGE SETUP
+// ===============================================
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -276,19 +284,25 @@ function highlightAndScroll(term) {
 }
 
 function openModal(id) {
-      document.getElementById(id).style.display = "flex";
+  document.getElementById(id).style.display = "flex";
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+window.onclick = function(e) {
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    if (e.target === modal) {
+      modal.style.display = "none";
     }
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-    window.onclick = function(e) {
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    }
+  });
+};
+
+// ===============================================
+// SHARED UI: SUPPORT WIDGET
+// ===============================================
 
 // === Support Widget Logic ===
 document.addEventListener('DOMContentLoaded', () => {
@@ -407,76 +421,80 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-  const intro = document.getElementById("introScreen");
-  const video = document.getElementById("introVideo");
-  const startButton = document.getElementById("startButton");
+const intro = document.getElementById("introScreen");
+const video = document.getElementById("introVideo");
+const startButton = document.getElementById("startButton");
 
-  // Only run intro logic if the intro elements exist (home page)
-  if (intro && startButton && video) {
-    // Check session
-    if (sessionStorage.getItem("introShown")) {
-      intro.style.display = "none";
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-      startButton.addEventListener("click", () => {
-        startButton.style.display = "none";
-        video.style.display = "block";
-        video.play().then(() => {
-          video.volume = 1.0;
-        }).catch(err => {
-          console.log("Autoplay blocked:", err);
-        });
-
-        video.addEventListener("ended", () => {
-          intro.style.transition = "opacity 1s ease";
-          intro.style.opacity = "0";
-          setTimeout(() => {
-            intro.style.display = "none";
-            document.body.style.overflow = "auto";
-            sessionStorage.setItem("introShown", "true");
-          }, 1000);
-        });
-      });
-    }
+// Only run intro logic if the intro elements exist (home page)
+if (intro && startButton && video) {
+  // Check session
+  if (sessionStorage.getItem("introShown")) {
+    intro.style.display = "none";
+    document.body.style.overflow = "auto";
   } else {
-    // If intro elements are not present, ensure body can scroll
-    document.body.style.overflow = document.body.style.overflow || 'auto';
+    document.body.style.overflow = "hidden";
+    startButton.addEventListener("click", () => {
+      startButton.style.display = "none";
+      video.style.display = "block";
+      video.play().then(() => {
+        video.volume = 1.0;
+      }).catch(err => {
+        console.log("Autoplay blocked:", err);
+      });
+
+      video.addEventListener("ended", () => {
+        intro.style.transition = "opacity 1s ease";
+        intro.style.opacity = "0";
+        setTimeout(() => {
+          intro.style.display = "none";
+          document.body.style.overflow = "auto";
+          sessionStorage.setItem("introShown", "true");
+        }, 1000);
+      });
+    });
   }
+} else {
+  // If intro elements are not present, ensure body can scroll
+  document.body.style.overflow = document.body.style.overflow || 'auto';
+}
 
 // Hide spinner after page load
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        const spinner = document.getElementById('spinner');
-        if (spinner) {
-          spinner.classList.add('hidden');
-        }
-      }, 1000);
-    });
-
-    // Add smooth interaction effects
-    const flexSlides = document.querySelectorAll('.flex-slide');
-    
-    flexSlides.forEach(slide => {
-      slide.addEventListener('mouseenter', function() {
-        // Add active class for additional effects if needed
-        this.classList.add('active');
-      });
-      
-      slide.addEventListener('mouseleave', function() {
-        this.classList.remove('active');
-      });
-    });
-
-    // Mobile touch support
-    if ('ontouchstart' in window) {
-      flexSlides.forEach(slide => {
-        slide.addEventListener('touchstart', function() {
-          flexSlides.forEach(s => s.classList.remove('active'));
-          this.classList.add('active');
-        });
-      });
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    const spinner = document.getElementById('spinner');
+    if (spinner) {
+      spinner.classList.add('hidden');
     }
+  }, 1000);
+});
+
+// Add smooth interaction effects
+const flexSlides = document.querySelectorAll('.flex-slide');
+
+flexSlides.forEach(slide => {
+  slide.addEventListener('mouseenter', function() {
+    // Add active class for additional effects if needed
+    this.classList.add('active');
+  });
+
+  slide.addEventListener('mouseleave', function() {
+    this.classList.remove('active');
+  });
+});
+
+// Mobile touch support
+if ('ontouchstart' in window) {
+  flexSlides.forEach(slide => {
+    slide.addEventListener('touchstart', function() {
+      flexSlides.forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+}
+
+// ===============================================
+// TEAM / PROFILE CAROUSEL
+// ===============================================
 
 // Team Members Data - UPDATE THIS WITH YOUR ACTUAL TEAM INFO
 const teamMembers = [
@@ -613,6 +631,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize
   updateCarousel(0);
 });
+
+// ===============================================
+// EDUCATION PAGE
+// ===============================================
 
 // === Education Carousel Logic ===
 document.addEventListener('DOMContentLoaded', () => {
@@ -1084,6 +1106,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// ===============================================
+// CAREER PAGE
+// ===============================================
+
 // === Career Page Split Screen Logic ===
 document.addEventListener('DOMContentLoaded', () => {
   const fulltimeBtn = document.getElementById('fulltimeBtn');
@@ -1293,6 +1319,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ===============================================
+// BUSINESS / PORTFOLIO PAGE ANIMATIONS
+// ===============================================
 
 // Parallax scroll effects for corporate shapes
     window.addEventListener('scroll', () => {
@@ -1739,6 +1769,10 @@ ScrollTrigger.matchMedia({
 }
 
 
+// ===============================================
+// HOME PAGE: EXTRA ANIMATIONS
+// ===============================================
+
 // ===== Index Page Hero + Cards (no zoom) =====
 if (typeof gsap !== 'undefined') {
 (function initIndexPage() {
@@ -1882,6 +1916,10 @@ document.addEventListener('DOMContentLoaded', () => {
     statNumbers.forEach(stat => observer.observe(stat));
   }
 });
+
+// ===============================================
+// GALLERY PAGE: LIGHTBOX
+// ===============================================
 
 // Lightbox Functionality
 const galleryData = [
@@ -2034,6 +2072,10 @@ document.addEventListener('click', (e) => {
     closeLightbox();
   }
 });
+
+// ===============================================
+// GALLERY PAGE: CARD DATA AND FILTERING
+// ===============================================
 
 // Interactive Gallery Implementation
 (() => {
