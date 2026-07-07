@@ -2243,6 +2243,33 @@ document.addEventListener('click', (e) => {
       date: "2026",
       location: "Mantin"
     },
+    {
+      id: 19,
+      image: "assets/gallery/simposiumkt.jpg",
+      title: "Simposium Pendidikan Kota Tinggi",
+      description: "Academic gathering in Kota Tinggi focusing on educational excellence.",
+      category: "events",
+      date: " July 2026",
+      location: "Kota Tinggi"
+    },
+    {
+      id: 20,
+      image: "assets/gallery/simposiumjb.jpg",
+      title: "Simposium Pendidikan Johor Bahru",
+      description: "Academic gathering in Johor Bahru focusing on educational excellence.",
+      category: "events",
+      date: "July 2026",
+      location: "Johor Bahru"
+    },
+    {
+      id: 21,
+      image: "assets/gallery/simposiumpon.jpg",
+      title: "Simposium Pendidikan Pontian",
+      description: "Academic gathering in Pontian focusing on educational excellence.",
+      category: "events",
+      date: "July 2026",
+      location: "Pontian"
+    },
   ];
 
   // State management
