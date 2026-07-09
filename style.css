@@ -398,7 +398,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #2e043b; /* fallback color */
-  background-image: url(assets/wallpaper01.png); /* your image file name or URL */
+  background-image: url(assets/wallpaper01-optimized.jpg); /* optimized background */
   background-size: cover;       /* make it cover the whole page */
   background-repeat: no-repeat; /* don’t repeat the image */
   background-attachment: fixed; /* make it stay still while scrolling */
@@ -686,7 +686,7 @@ body:not(.index-page) {
     }
 
     .about {
-      background: url('assets/about3.jpg') center/cover no-repeat;
+      background: url('assets/about3-optimized.jpg') center/cover no-repeat;
       position: relative;
     }
 
@@ -2215,7 +2215,7 @@ body:not(.index-page) {
 
 /* Hero backgrounds for each page */
 .hero-about {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/about3.jpg') center/cover no-repeat !important;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/about3-optimized.jpg') center/cover no-repeat !important;
 }
 
 .hero-education {
@@ -2237,7 +2237,7 @@ body:not(.index-page) {
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/ceoheader.jpg') center/cover no-repeat !important;
 }
 .hero-business{
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/businessheader.jpg') center/cover no-repeat !important;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/businessheader-optimized.jpg') center/cover no-repeat !important;
 }
 
 /* Director Profile Section */
@@ -2257,7 +2257,7 @@ body:not(.index-page) {
     rgba(0,0,0,0.7) 80%, 
     #000 100%); */
 
-  background-image: url(assets/wallpaper.jpg);
+  background-image: url(assets/wallpaper-optimized.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -7940,29 +7940,29 @@ footer {
 }
 
 /* ===== INDIVIDUAL CARD BACKGROUND IMAGES ===== */
-.career-card-automotive::before { background-image: url('assets/program/automotif.png'); }
-.career-card-welding::before { background-image: url('assets/program/welding.png'); }
-.career-card-automation::before { background-image: url('assets/program/automotif.png'); }
+.career-card-automotive::before { background-image: url('assets/program/automotif-optimized.jpg'); }
+.career-card-welding::before { background-image: url('assets/program/welding-optimized.jpg'); }
+.career-card-automation::before { background-image: url('assets/program/automotif-optimized.jpg'); }
 .career-card-elektrik::before { background-image: url('assets/program/elektrik.jpeg'); }
-.career-card-beauty::before { background-image: url('assets/program/beauty.png'); }
-.career-card-computer-system::before { background-image: url('assets/program/computer system.png'); }
+.career-card-beauty::before { background-image: url('assets/program/beauty-optimized.jpg'); }
+.career-card-computer-system::before { background-image: url('assets/program/computer-system-optimized.jpg'); }
 .career-card-child::before { background-image: url('assets/program/child.png'); }
 .career-card-food-preparation::before { background-image: url('assets/program/foodprepare.png'); }
-.career-card-bread::before { background-image: url('assets/program/bread.png'); }
+.career-card-bread::before { background-image: url('assets/program/bread-optimized.jpg'); }
 .career-card-culinary::before { background-image: url('assets/program/culinary.png'); }
-.career-card-computer-network::before { background-image: url('assets/program/computer network.png'); }
+.career-card-computer-network::before { background-image: url('assets/program/computer-network-optimized.jpg'); }
 .career-card-secretary::before { background-image: url('assets/program/secretary.png'); }
 .career-card-admin::before { background-image: url('assets/program/admin.png'); }
 .career-card-pastry::before { background-image: url('assets/program/pastry.png'); }
 .career-card-elderly::before { background-image: url('assets/elderly.png'); }
-.career-card-pest-control::before { background-image: url('assets/pestcontrol.png'); }
+.career-card-pest-control::before { background-image: url('assets/program/pestcontrol-optimized.jpg'); }
 .career-card-accounting::before { background-image: url('assets/program/accounting.png'); }
 .career-card-business::before { background-image: url('assets/program/business.png'); }
-.career-card-retail::before { background-image: url('assets/program/retail.png'); }
-.career-card-management::before { background-image: url('assets/program/management.png'); }
+.career-card-retail::before { background-image: url('assets/program/retail-optimized.jpg'); }
+.career-card-management::before { background-image: url('assets/program/management-optimized.jpg'); }
 .career-card-techno-manage::before { background-image: url('assets/program/technomanage.png'); }
-.career-card-property::before { background-image: url('assets/program/property.png'); }
-.career-card-islamic::before { background-image: url('assets/program/islamic.png'); }
+.career-card-property::before { background-image: url('assets/program/property-optimized.jpg'); }
+.career-card-islamic::before { background-image: url('assets/program/islamic-optimized.jpg'); }
 .career-card-hotel::before { background-image: url('assets/program/hotel.png'); }
 .career-card-mechatronics::before { background-image: url('assets/program/mekatronik.jpeg'); }
 
@@ -7976,29 +7976,29 @@ footer {
 .career-card-eco-workshop::before { background-image: url('assets/program/workshopmanagement.png'); }
 
 /* Noble School Engineering - No background images (to be added later) */
-.career-card-noble-auto::before { background-image: url('assets/program/automotif.png'); }
-.career-card-noble-welding::before { background-image: url('assets/program/welding.png'); }
-.career-card-noble-automation::before { background-image: url('assets/program/automotif.png'); }
+.career-card-noble-auto::before { background-image: url('assets/program/automotif-optimized.jpg'); }
+.career-card-noble-welding::before { background-image: url('assets/program/welding-optimized.jpg'); }
+.career-card-noble-automation::before { background-image: url('assets/program/automotif-optimized.jpg'); }
 
 /* Noble School City Campus - No background images (to be added later) */
 .career-card-noble-food::before { background-image: url('assets/program/foodprepare.png'); }
 .career-card-noble-electrical::before { background-image: url('assets/program/elektrik.jpeg'); }
-.career-card-noble-aesthetic::before { background-image: url('assets/program/beauty.png'); }
-.career-card-noble-bread::before { background-image: url('assets/program/bread.png'); }
+.career-card-noble-aesthetic::before { background-image: url('assets/program/beauty-optimized.jpg'); }
+.career-card-noble-bread::before { background-image: url('assets/program/bread-optimized.jpg'); }
 .career-card-noble-foodst::before { background-image: url('assets/program/foodprepare.png'); }
 .career-card-noble-electricst::before { background-image: url('assets/program/elektrik.jpeg'); }
 .career-card-noble-culinary::before { background-image: url('assets/program/culinary.png'); }
 
 /* Workers Institute Technology - No background images (to be added later) */
-.career-card-wit-automotive::before { background-image: url('assets/program/automotif.png'); }
+.career-card-wit-automotive::before { background-image: url('assets/program/automotif-optimized.jpg'); }
 .career-card-wit-electrical::before { background-image: url('assets/program/elektrik.jpeg'); }
-.career-card-wit-beauty::before { background-image: url('assets/program/beauty.png'); }
-.career-card-wit-computer::before { background-image: url('assets/program/computer system.png'); }
-.career-card-wit-welding::before { background-image: url('assets/program/welding.png'); }
+.career-card-wit-beauty::before { background-image: url('assets/program/beauty-optimized.jpg'); }
+.career-card-wit-computer::before { background-image: url('assets/program/computer-system-optimized.jpg'); }
+.career-card-wit-welding::before { background-image: url('assets/program/welding-optimized.jpg'); }
 
 /* KTIS - No background images (to be added later) */
 .career-card-ktis-office::before { background-image: url('assets/program/admin.png'); }
-.career-card-ktis-computer::before { background-image: url('assets/program/computer system.png'); }
+.career-card-ktis-computer::before { background-image: url('assets/program/computer-system-optimized.jpg'); }
 .career-card-ktis-culinary::before { background-image: url('assets/program/culinary.png'); }
 
 /* KTEB - No background images (to be added later) */
@@ -8016,7 +8016,7 @@ footer {
 .career-card-silverspoon-pastry::before { background-image: url('assets/program/pastry.png'); }
 
 /* Azmida Technical College - No background images (to be added later) */
-.career-card-azmida-boiler::before { background-image: url('assets/program/welding.png'); }
+.career-card-azmida-boiler::before { background-image: url('assets/program/welding-optimized.jpg'); }
 .career-card-azmida-electrical::before { background-image: url('assets/program/elektrik.jpeg'); }
 
 /* Iman Motors Academy */
@@ -8027,7 +8027,7 @@ footer {
 .career-card-aftvet-graphic::before { background-image: url('assets/aftvetdigital.jpg'); }
 
 /* Eakon Academy */
-.career-card-eakon-hvac::before { background-image: url('assets/program/aekon.png'); }
+.career-card-eakon-hvac::before { background-image: url('assets/program/aekon-optimized.jpg'); }
 
 /* Future Edge College */
 .career-card-futureedge-networking::before { background-image: url('assets/program/cnsfec.png'); }
@@ -8221,6 +8221,7 @@ footer {
   gap: 30px;
   width: max-content;
   animation: tvet-scroll-seamless 60s linear infinite;
+  will-change: transform;
   padding: 20px 0;
 }
 
@@ -8229,8 +8230,7 @@ footer {
     transform: translateX(0);
   }
   100% {
-    /* Move by exactly one set of original cards (18 cards) */
-    transform: translateX(calc(-1 * (350px + 30px) * 18));
+    transform: translateX(calc(-1 * var(--scroll-distance, 0px)));
   }
 }
 
@@ -8243,15 +8243,6 @@ footer {
   .tvet-slide-track {
     animation: tvet-scroll-seamless 60s linear infinite;
   }
-  
-  @keyframes tvet-scroll-seamless {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-1 * (320px + 30px) * 18));
-    }
-  }
 }
 
 @media (max-width: 768px) {
@@ -8259,30 +8250,12 @@ footer {
     animation: tvet-scroll-seamless 50s linear infinite;
     gap: 20px;
   }
-  
-  @keyframes tvet-scroll-seamless {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-1 * (300px + 20px) * 18));
-    }
-  }
 }
 
 @media (max-width: 480px) {
   .tvet-slide-track {
     animation: tvet-scroll-seamless 45s linear infinite;
     gap: 15px;
-  }
-  
-  @keyframes tvet-scroll-seamless {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-1 * (280px + 15px) * 18));
-    }
   }
 }
 
@@ -8481,7 +8454,7 @@ footer {
 
 /* Gallery Hero */
 .hero-gallery {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/gallery/galleryheader.png') center/cover no-repeat;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('assets/gallery/galleryheader-optimized.jpg') center/cover no-repeat;
   position: relative;
   overflow: hidden;
 }

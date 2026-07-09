@@ -808,12 +808,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Show the appropriate content based on selected institution
-    // Check if institution has 5 or more cards - use carousel
+    // Use carousel whenever there is more than one card to cycle through
     const selectedCards = document.querySelectorAll(`.career-salary-card[data-institution="${selectedInstitution}"]`);
-    const useCarousel = selectedCards.length >= 5;
+    const useCarousel = selectedCards.length > 1;
     
     if (useCarousel) {
-      // Use carousel for institutions with 5+ cards
+      // Use carousel for institutions with multiple cards
       if (tvetCarouselSection) {
         tvetCarouselSection.style.display = 'block';
         tvetCarouselSection.setAttribute('data-institution', selectedInstitution);
@@ -862,8 +862,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const tvetSection = document.querySelector('.tvet-carousel-section');
     if (!tvetSection) return;
     
-    const tvetSlideTrack = tvetSection.querySelector('.tvet-slide-track');
-    
+    const existingTrack = tvetSection.querySelector('.tvet-slide-track');
+    if (!existingTrack) return;
+
+    // Replace the track node to clear old listeners and timers before re-initializing
+    if (existingTrack._animationHealthCheck) {
+      clearInterval(existingTrack._animationHealthCheck);
+    }
+
+    const tvetSlideTrack = existingTrack.cloneNode(false);
+    existingTrack.parentNode.replaceChild(tvetSlideTrack, existingTrack);
+
     // Clear existing slides
     tvetSlideTrack.innerHTML = '';
     
@@ -879,6 +888,8 @@ document.addEventListener('DOMContentLoaded', () => {
       institutionCards = Array.from(document.querySelectorAll(`.career-salary-card[data-institution="${institution}"]`));
     }
     
+    if (institutionCards.length <= 1) return;
+
     // For seamless infinite loop, we need to duplicate the cards
     // Create enough copies to fill the screen plus one extra set
     const screenWidth = window.innerWidth;
@@ -888,16 +899,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const setsNeeded = cardsPerScreen + 2; // Extra 2 sets for smooth looping
     
     // Create multiple sets for seamless looping
+    const firstSetClones = [];
+
     for (let i = 0; i < setsNeeded; i++) {
       institutionCards.forEach(card => {
         const clone = card.cloneNode(true);
         clone.style.display = 'flex';
         tvetSlideTrack.appendChild(clone);
+        if (i === 0) {
+          firstSetClones.push(clone);
+        }
       });
     }
     
-    // Calculate total width of ONE set
-    const totalSetWidth = (cardWidth + gap) * institutionCards.length;
+    // Calculate total width of one original set so the loop distance matches the content exactly
+    const computedGap = parseFloat(window.getComputedStyle(tvetSlideTrack).gap) || gap;
+    const totalSetWidth =
+      firstSetClones.reduce((sum, card) => sum + card.getBoundingClientRect().width, 0) +
+      (Math.max(firstSetClones.length - 1, 0) * computedGap);
     
     // Calculate animation duration - ALL institutions use same timing as TVET (5 seconds per card)
     // This ensures consistent visual speed: each card is visible for exactly 5 seconds
@@ -905,6 +924,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const animationDuration = institutionCards.length * secondsPerCard;
     
     // Reset animation to start position
+    tvetSlideTrack.style.setProperty('--scroll-distance', `${totalSetWidth}px`);
     tvetSlideTrack.style.animation = 'none';
     void tvetSlideTrack.offsetWidth; // Force reflow
     tvetSlideTrack.style.animation = `tvet-scroll-seamless ${animationDuration}s linear infinite`;
@@ -971,7 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     // Check every 2 seconds
-    setInterval(checkAnimationState, 2000);
+    tvetSlideTrack._animationHealthCheck = setInterval(checkAnimationState, 2000);
   }
 
   // Update Show More button text
@@ -2083,7 +2103,7 @@ document.addEventListener('click', (e) => {
   const interactiveGalleryData = [
     {
       id: 1,
-      image: "assets/gallery/ANNUAL.png",
+      image: "assets/gallery/ANNUAL-optimized.jpg",
       title: "Annual SES 2025",
       description: "Celebrating Excellence Together - A momentous gathering showcasing achievements and milestones.",
       category: "events",
@@ -2092,7 +2112,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 2,
-      image: "assets/gallery/tourtalkjan.webp",
+      image: "assets/gallery/tourtalkjan-optimized.jpg",
       title: "Tour Talk January",
       description: "Educational journey embarking on discovery and learning in the new year.",
       category: "tours",
@@ -2101,7 +2121,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 3,
-      image: "assets/gallery/tourtalkfebipoh.png",
+      image: "assets/gallery/tourtalkfebipoh-optimized.jpg",
       title: "Tour Talk February - Ipoh",
       description: "Academic exploration through cultural landmarks and educational institutions.",
       category: "tours",
@@ -2110,7 +2130,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 4,
-      image: "assets/gallery/programteknomaklumatkv.png",
+      image: "assets/gallery/programteknomaklumatkv-optimized.jpg",
       title: "Program Tekno Maklumat",
       description: "Educational technology visit exploring the intersection of education and technology.",
       category: "tours",
@@ -2119,7 +2139,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 5,
-      image: "assets/gallery/penangtourd1.png",
+      image: "assets/gallery/penangtourd1-optimized.jpg",
       title: "Penang Educational Tour",
       description: "Enriching educational experience in the historic city of Penang.",
       category: "tours",
@@ -2128,7 +2148,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 10,
-      image: "assets/gallery/PINANGD2.png",
+      image: "assets/gallery/PINANGD2-optimized.jpg",
       title: "Penang Educational Tour Day 2",
       description: "Continuing the enriching educational experience in the historic city of Penang.",
       category: "tours",
@@ -2137,7 +2157,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 6,
-      image: "assets/gallery/simposiumjempol.png",
+      image: "assets/gallery/simposiumjempol-optimized.jpg",
       title: "Simposium Jempol",
       description: "Educational symposium bringing together students and educators.",
       category: "events",
@@ -2146,7 +2166,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 7,
-      image: "assets/gallery/simposiumpedas.png",
+      image: "assets/gallery/simposiumpedas-optimized.jpg",
       title: "Simposium Pedas",
       description: "Academic gathering focusing on educational excellence and innovation.",
       category: "events",
@@ -2155,7 +2175,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 8,
-      image: "assets/gallery/SIMPOSIUMPENDIDIKANKL.png",
+      image: "assets/gallery/SIMPOSIUMPENDIDIKANKL-optimized.jpg",
       title: "Simposium Pendidikan KL",
       description: "Educational symposium in Kuala Lumpur promoting academic excellence.",
       category: "events",
@@ -2164,7 +2184,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 9,
-      image: "assets/gallery/SIMPOSIUMPENDIDIKANSHAHALAM.png",
+      image: "assets/gallery/SIMPOSIUMPENDIDIKANSHAHALAM-optimized.jpg",
       title: "Simposium Shah Alam",
       description: "Major educational event showcasing innovations in learning and teaching.",
       category: "events",
@@ -2173,7 +2193,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 11,
-      image: "assets/gallery/spmuar.png",
+      image: "assets/gallery/spmuar-optimized.jpg",
       title: "Simposium Muar",
       description: "Educational symposium in Muar bringing together students and educators.",
       category: "events",
@@ -2182,7 +2202,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 12,
-      image: "assets/gallery/sppontian.png",
+      image: "assets/gallery/sppontian-optimized.jpg",
       title: "Simposium Pontian",
       description: "Academic gathering in Pontian focusing on educational excellence and innovation.",
       category: "events",
@@ -2191,7 +2211,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 13,
-      image: "assets/gallery/simposiumpendidikanpontian.png",
+      image: "assets/gallery/simposiumpendidikanpontian-optimized.jpg",
       title: "Simposium Pendidikan Pontian",
       description: "Educational symposium in Pontian bringing together students and educators.",
       category: "events",
@@ -2200,7 +2220,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 14,
-      image: "assets/gallery/simposiumpendidikanjb.png",
+      image: "assets/gallery/simposiumpendidikanjb-optimized.jpg",
       title: "Simposium Pendidikan Johor Bahru",
       description: "Academic gathering in Johor Bahru focusing on educational excellence.",
       category: "events",
@@ -2209,7 +2229,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 15,
-      image: "assets/gallery/simposiumpendidikanbatupahat.png",
+      image: "assets/gallery/simposiumpendidikanbatupahat-optimized.jpg",
       title: "Simposium Pendidikan Batu Pahat",
       description: "Educational symposium in Batu Pahat promoting academic excellence and innovation.",
       category: "events",
@@ -2218,7 +2238,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 16,
-      image: "assets/gallery/programUIC.jpg",
+      image: "assets/gallery/programUIC-optimized.jpg",
       title: "UIC Student Registration",
       description: "Registration for New Students for the Islamic Sharia Diploma Program at UIC",
       category: "events",
@@ -2227,7 +2247,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 17,
-      image: "assets/gallery/panduanUPU.jpg",
+      image: "assets/gallery/panduanUPU-optimized.jpg",
       title: "UPU Merit Calculation",
       description: "Guide and Calculation of UPU Merit for Form 5 students of SMK METHODIST (P) KLANG",
       category: "tours",
@@ -2236,7 +2256,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 18,
-      image: "assets/gallery/programUITM.jpg",
+      image: "assets/gallery/programUITM-optimized.jpg",
       title: "UiTM Student Registration",
       description: "Registration of New Students for UiTM Pre-Diploma and Diploma Programmes (KKBUITM - UIC)",
       category: "events",
@@ -2245,7 +2265,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 19,
-      image: "assets/gallery/simposiumkt.jpg",
+      image: "assets/gallery/simposiumkt-optimized.jpg",
       title: "Simposium Pendidikan Kota Tinggi",
       description: "Academic gathering in Kota Tinggi focusing on educational excellence.",
       category: "events",
@@ -2254,7 +2274,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 20,
-      image: "assets/gallery/simposiumjb.jpg",
+      image: "assets/gallery/simposiumjb-optimized.jpg",
       title: "Simposium Pendidikan Johor Bahru",
       description: "Academic gathering in Johor Bahru focusing on educational excellence.",
       category: "events",
@@ -2263,13 +2283,13 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 21,
-      image: "assets/gallery/simposiumpon.jpg",
+      image: "assets/gallery/simposiumpon-optimized.jpg",
       title: "Simposium Pendidikan Pontian",
       description: "Academic gathering in Pontian focusing on educational excellence.",
       category: "events",
       date: "July 2026",
       location: "Pontian"
-    },
+    }
   ];
 
   // State management
@@ -2293,7 +2313,7 @@ document.addEventListener('click', (e) => {
     return `
       <div class="gallery-card" data-category="${item.category}" data-id="${item.id}">
         <div class="gallery-card-image">
-          <img src="${item.image}" alt="${item.title}" loading="lazy">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" fetchpriority="low">
           <span class="category-badge">${categoryLabel}</span>
         </div>
         <div class="gallery-card-content">
