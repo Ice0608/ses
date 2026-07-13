@@ -2299,6 +2299,33 @@ document.addEventListener('click', (e) => {
       category: "events",
       date: "July 2026",
       location: "Pontian"
+    },
+    {
+      id: 22,
+      image: "assets/gallery/PPAS SELANGOR.jpg",
+      title: "Simposium Pendidikan Sekinchan",
+      description: "Academic gathering in Sekinchan focusing on educational excellence.",
+      category: "events",
+      date: "July 2026",
+      location: "Sekinchan"
+    },
+    {
+      id: 23,
+      image: "assets/gallery/IPP KUALA SELANGOR.jpg",
+      title: "Simposium Pendidikan Kuala Selangor",
+      description: "Academic gathering in Kuala Selangor focusing on educational excellence.",
+      category: "events",
+      date: "July 2026",
+      location: "Kuala Selangor"
+    },
+    {
+      id: 24,
+      image: "assets/gallery/IPP SABAK BERNAM.jpg",
+      title: "Simposium Pendidikan Sabak Bernam",
+      description: "Academic gathering in Sabak Bernam focusing on educational excellence.",
+      category: "events",
+      date: "July 2026",
+      location: "Sabak Bernam"
     }
   ];
 
