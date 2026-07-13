@@ -498,19 +498,29 @@ if ('ontouchstart' in window) {
 
 // Team Members Data - UPDATE THIS WITH YOUR ACTUAL TEAM INFO
 const teamMembers = [
-  { name: "John Doe", role: "Founder & CEO" },
-  { name: "Jane Smith", role: "Director of Education" },
-  { name: "Ali Khan", role: "Head of Operations" },
-  { name: "Mary Lim", role: "Program Coordinator" },
-  { name: "Sarah Johnson", role: "Academic Director" },
-  { name: "Michael Chen", role: "Technology Lead" },
-  { name: "Fatimah Ahmad", role: "Student Affairs" },
-  { name: "David Lee", role: "Research Coordinator" },
-  { name: "Aisha Rahman", role: "Communications Manager" },
-  { name: "Robert Wong", role: "Finance Director" },
-  { name: "Nurul Huda", role: "Program Developer" },
-  { name: "James Anderson", role: "Quality Assurance" },
-  { name: "Siti Aminah", role: "Community Relations" }
+  { name: "Cik Sofia", role: "Team Member" },
+  { name: "En Rahimi", role: "Team Member" },
+  { name: "En Man", role: "Team Member" },
+  { name: "En Azizi", role: "Team Member" },
+  { name: "En Amirul", role: "Team Member" },
+  { name: "Pn Ros", role: "Team Member" },
+  { name: "En Amri", role: "Team Member" },
+  { name: "Cik Aryuni", role: "Team Member" },
+  { name: "Hasif", role: "Team Member" },
+  { name: "Ammar", role: "Team Member" },
+  { name: "Alif", role: "Team Member" },
+  { name: "Shakiera", role: "Team Member" },
+  { name: "Cik Ain", role: "Team Member" },
+  { name: "Cik Aleya", role: "Team Member" },
+  { name: "Cik Alisya", role: "Team Member" },
+  { name: "Cik Marsya", role: "Team Member" },
+  { name: "Cik Nani", role: "Team Member" },
+  { name: "Cik Sofia", role: "Team Member" },
+  { name: "En Amir", role: "Team Member" },
+  { name: "En Indera", role: "Team Member" },
+  { name: "En Izzat", role: "Team Member" },
+  { name: "En Shahrul", role: "Team Member" },
+  { name: "En Syahputra", role: "Team Member" }
 ];
 
 // Initialize carousel once DOM is ready and only if carousel exists on page
