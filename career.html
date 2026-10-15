@@ -124,7 +124,8 @@
         <div class="form-container">
           <h3>Fulltime Job Application</h3>
           <p class="form-subtitle">Please fill in the following information</p>
-          <form class="career-form">
+          <form class="career-form" data-application-type="fulltime" action="submit-application.php" method="post" enctype="multipart/form-data">
+            <div class="application-status" role="status" aria-live="polite"></div>
             <div class="form-group">
               <label for="ft-name">Full Name</label>
               <input type="text" id="ft-name" name="Nama Penuh" required placeholder="Ahmad bin Abdullah">
@@ -204,7 +205,8 @@
         <div class="form-container">
           <h3>Internship Application</h3>
           <p class="form-subtitle">Please fill in the following information</p>
-          <form class="career-form">
+          <form class="career-form" data-application-type="internship" action="submit-application.php" method="post" enctype="multipart/form-data">
+            <div class="application-status" role="status" aria-live="polite"></div>
             <div class="form-group">
               <label for="int-name">Full Name</label>
               <input type="text" id="int-name" name="Nama Penuh" required placeholder="Fatimah binti Hassan">
@@ -257,8 +259,8 @@
               <label for="int-duration">Need Hostel ?</label>
               <select id="int-duration" name="Status Asrama" required>
                 <option value="">Yes or No</option>
-                <option value="1month">Yes</option>
-                <option value="3months">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
             </div>
             <div class="form-group">

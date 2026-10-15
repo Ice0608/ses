@@ -1178,152 +1178,48 @@ document.addEventListener('DOMContentLoaded', () => {
     internshipForm.classList.remove('active');
   });
 
-  // Helper function to convert file to Base64
-  function toBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  // Form submissions
+  // Submit every current field and file as multipart form data.
   const careerForms = document.querySelectorAll('.career-form');
   careerForms.forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      // Determine form type
-      const isInternship = e.target.closest('#internshipForm');
-      const isFulltime = e.target.closest('#fulltimeForm');
-      const formType = isInternship ? 'Internship' : 'Fulltime';
-      
-      // Get current timestamp
-      const now = new Date();
-      const timestamp = now.toLocaleString('en-MY', { 
-        timeZone: 'Asia/Kuala_Lumpur',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      });
-      
+      const submitButton = form.querySelector('button[type="submit"]');
+      const status = form.querySelector('.application-status');
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
+      submitButton.dataset.originalText = submitButton.innerHTML;
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Application...';
+      status.textContent = 'Submitting application...';
+      status.className = 'application-status';
+
       try {
-        let data = {
-          Timestamp: timestamp
-        };
-        
-        let scriptURL = "";
-
-        // Handle INTERNSHIP form
-        if (isInternship) {
-          scriptURL = "https://script.google.com/macros/s/AKfycbzqajm45pYtmTg0AqqGj2D7bYe2XR24W5dqL2u7nHCdisPrOATnDao91NLzzvN8VyKp/exec";
-          
-          data = {
-            ...data,
-            'Nama Penuh': e.target.querySelector('[name="Nama Penuh"]')?.value || '',
-            Email: e.target.querySelector('[name="Email"]')?.value || '',
-            IC: e.target.querySelector('[name="IC"]')?.value || '',
-            Jantina: e.target.querySelector('[name="Jantina"]')?.value || '',
-            'No. Tel': e.target.querySelector('[name="No. Tel"]')?.value || '',
-            'No. Tel Kecemasan': e.target.querySelector('[name="No. Tel Kecemasan"]')?.value || '',
-            'Alamat terkini': e.target.querySelector('[name="Alamat terkini"]')?.value || '',
-            Institusi: e.target.querySelector('[name="Institusi"]')?.value || '',
-            Jurusan: e.target.querySelector('[name="Jurusan"]')?.value || '',
-            'Tarikh Lapor Diri': e.target.querySelector('[name="Tarikh Lapor Diri"]')?.value || '',
-            'Tarikh Akhir': e.target.querySelector('[name="Tarikh Akhir"]')?.value || '',
-            'Status Asrama': e.target.querySelector('[name="Status Asrama"]')?.value || ''
-          };
-
-          // Handle internship file uploads
-          const resumeInput = e.target.querySelector('#int-resume');
-          const transcriptInput = e.target.querySelector('#int-transcript');
-          const replyInput = e.target.querySelector('#int-reply');
-
-          if (resumeInput && resumeInput.files[0]) {
-            const resumeFile = resumeInput.files[0];
-            data['Resume'] = await toBase64(resumeFile);
-            data['ResumeFileName'] = resumeFile.name;
-          }
-
-          if (transcriptInput && transcriptInput.files[0]) {
-            const transcriptFile = transcriptInput.files[0];
-            data['Transkrip Akademik'] = await toBase64(transcriptFile);
-            data['Transkrip AkademikFileName'] = transcriptFile.name;
-          }
-
-          if (replyInput && replyInput.files[0]) {
-            const replyFile = replyInput.files[0];
-            data['Reply Form'] = await toBase64(replyFile);
-            data['Reply FormFileName'] = replyFile.name;
-          }
-        }
-        
-        // Handle FULLTIME form
-        else if (isFulltime) {
-          // Replace this with your FULLTIME Google Sheets URL
-          scriptURL = "https://script.google.com/macros/s/AKfycbxu9fQfNsOGogd_yDZ-W2aENqn8W-Ii2_TshBX03-RTg5wGwSIRpebIdzgmN2JwZVn2hQ/exec";
-          
-          data = {
-            ...data,
-            'Nama Penuh': e.target.querySelector('[name="Nama Penuh"]')?.value || '',
-            Email: e.target.querySelector('[name="Email"]')?.value || '',
-            IC: e.target.querySelector('[name="IC"]')?.value || '',
-            Jantina: e.target.querySelector('[name="Jantina"]')?.value || '',
-            'No. Tel': e.target.querySelector('[name="No. Tel"]')?.value || '',
-            'No. Tel Kecemasan': e.target.querySelector('[name="No. Tel Kecemasan"]')?.value || '',
-            Address: e.target.querySelector('[name="Address"]')?.value || '',
-            'Work Experience': e.target.querySelector('[name="Work Experience"]')?.value || '',
-            'Highest Qualification': e.target.querySelector('[name="Highest Qualification"]')?.value || '',
-            'Hostel Status': e.target.querySelector('[name="Hostel Status"]')?.value || '',
-            'Work Experience 1': e.target.querySelector('[name="Work Experience 1"]')?.value || '',
-            'Work Experience 2': e.target.querySelector('[name="Work Experience 2"]')?.value || '',
-            'Work Experience 3': e.target.querySelector('[name="Work Experience 3"]')?.value || ''
-          };
-
-          // Handle fulltime file upload (Resume/CV only)
-          const resumeInput = e.target.querySelector('#ft-resume');
-          if (resumeInput && resumeInput.files[0]) {
-            const resumeFile = resumeInput.files[0];
-            data['Resume'] = await toBase64(resumeFile);
-            data['ResumeFileName'] = resumeFile.name;
-          }
-        }
-
-        console.log('Sending data to Google Sheets:', data);
-
-        // Send to Google Sheets and WAIT for response
-        const response = await fetch(scriptURL, {
+        const formData = new FormData(form);
+        formData.append('application_type', form.dataset.applicationType);
+        const response = await fetch(form.action, {
           method: 'POST',
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'text/plain'
-          }
+          body: formData
         });
-
-        console.log('Response received:', response);
-
         const result = await response.json();
-        console.log('Result:', result);
-
-        if (result.result === 'success') {
-          alert('Thank you! Your application has been received. We will contact you soon.');
-          
-          // Reset form and close overlay AFTER success
-          e.target.reset();
+        if (!response.ok || !result.success) throw new Error(result.message || 'Submission failed');
+        status.textContent = result.message;
+        status.className = 'application-status success';
+        form.reset();
+        setTimeout(() => {
           fulltimeForm.classList.remove('active');
           internshipForm.classList.remove('active');
-        } else {
-          throw new Error(result.message || 'Submission failed');
-        }
-        
+        }, 1800);
       } catch (error) {
         console.error('Error submitting form:', error);
-        alert('Maaf, terdapat masalah semasa menghantar permohonan. Sila cuba lagi.');
+        status.textContent = 'Your application could not be submitted at this time. Please try again later.';
+        status.className = 'application-status error';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.removeAttribute('aria-busy');
+        submitButton.innerHTML = submitButton.dataset.originalText;
       }
     });
   });
@@ -1892,7 +1788,7 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryItems.forEach(item => {
           const category = item.getAttribute('data-category');
           
-          if (filter === 'all' || category === filter) {
+          if (category === filter) {
             item.classList.remove('hidden');
             setTimeout(() => {
               item.style.opacity = '1';
@@ -2260,7 +2156,7 @@ document.addEventListener('click', (e) => {
       image: "assets/gallery/panduanUPU-optimized.jpg",
       title: "UPU Merit Calculation",
       description: "Guide and Calculation of UPU Merit for Form 5 students of SMK METHODIST (P) KLANG",
-      category: "tours",
+      category: "program-csr-sekolah",
       date: "2026",
       location: "Klang"
     },
@@ -2326,85 +2222,306 @@ document.addEventListener('click', (e) => {
       category: "events",
       date: "July 2026",
       location: "Sabak Bernam"
+    },
+    {
+      id: 29,
+      image: "assets/gallery/jerantut.jpg",
+      title: "Academic Tour Jerantut",
+      description: "Educational tour supporting discovery, learning, and student development.",
+      category: "seminar-simposium",
+      date: "2026",
+      location: "Jerantut"
+    },
+    {
+      id: 30,
+      image: "assets/gallery/kuantan.jpg",
+      title: "Academic Tour Kuantan",
+      description: "Educational tour supporting discovery, learning, and student development.",
+      category: "seminar-simposium",
+      date: "2026",
+      location: "Kuantan"
+    },
+    {
+      id: 31,
+      image: "assets/gallery/temerloh.jpg",
+      title: "Academic Tour Temerloh",
+      description: "Educational tour supporting discovery, learning, and student development.",
+      category: "seminar-simposium",
+      date: "2026",
+      location: "Temerloh"
+    },
+    {
+      id: 32,
+      image: "assets/gallery/CSR.jpg",
+      title: "CSR SMK (P) Methodist Klang",
+      description: "Educational sharing session with students of SMK (P) Methodist Klang.",
+      category: "program-csr-sekolah",
+      date: "2026",
+      location: "Klang"
+    },
+    {
+      id: 33,
+      image: "assets/gallery/outreach komuniti.jpg",
+      title: "Outreach Komuniti",
+      description: "Community outreach supporting engagement, guidance, and educational opportunity.",
+      category: "outreach-komuniti",
+      date: "2026",
+      location: "Malaysia"
+    },
+    {
+      id: 41,
+      image: "assets/gallery/outreach komuniiti 2.jpg",
+      title: "Outreach Komuniti 2",
+      description: "Community outreach supporting engagement, guidance, and educational opportunity.",
+      category: "outreach-komuniti",
+      date: "2026",
+      location: "Malaysia"
+    },
+    {
+      id: 35,
+      image: "assets/gallery/SIMPOSIUM.jpg",
+      title: "Seminar Simposium",
+      description: "A seminar and symposium bringing together students, educators, and the community.",
+      category: "seminar-simposium",
+      date: "2026",
+      location: "SES Main Hall"
+    },
+    {
+      id: 38,
+      image: "assets/gallery/SIMPOSIUM 2.jpg",
+      title: "Seminar Simposium 2",
+      description: "A seminar and symposium bringing together students, educators, and the community.",
+      category: "seminar-simposium",
+      date: "2026",
+      location: "SES Main Hall"
+    },
+    {
+      id: 39,
+      image: "assets/gallery/SMART TAHFIZ.jpg",
+      title: "Smart Tahfiz / Fast Track SPM",
+      description: "Supporting students through focused academic and tahfiz development.",
+      category: "smart-tahfiz-fast-track-spm",
+      date: "2026",
+      location: "Smart Education Society"
+    },
+    {
+      id: 40,
+      image: "assets/gallery/pendaftaran murni nursing college.jpg",
+      title: "Pendaftaran Murni Nursing College",
+      description: "Student registration and programme guidance for Murni Nursing College.",
+      category: "pendaftaran",
+      date: "2026",
+      location: "Murni Nursing College"
+    },
+    {
+      id: 42,
+      image: "TALK.jpg",
+      title: "Career Talk SMK (P) Methodist Klang",
+      description: "Career guidance and academic development session with students of SMK (P) Methodist Klang.",
+      category: "program-csr-sekolah",
+      date: "2026",
+      location: "Klang"
+    },
+    {
+      id: 43,
+      image: "assets/gallery/intern 1.png",
+      title: "Internship Programme 1",
+      description: "Student internship experience supporting professional and personal development.",
+      category: "pembangunan-pelajar",
+      date: "2026",
+      location: "Smart Education Society"
+    },
+    {
+      id: 44,
+      image: "assets/gallery/intern 2.png",
+      title: "Internship Programme 2",
+      description: "Student internship experience supporting professional and personal development.",
+      category: "pembangunan-pelajar",
+      date: "2026",
+      location: "Smart Education Society"
+    },
+    {
+      id: 45,
+      image: "assets/gallery/intern 3.png",
+      title: "Internship Programme 3",
+      description: "Student internship experience supporting professional and personal development.",
+      category: "pembangunan-pelajar",
+      date: "2026",
+      location: "Smart Education Society"
+    },
+    {
+      id: 46,
+      image: "assets/gallery/intern 4.png",
+      title: "Internship Programme 4",
+      description: "Student internship experience supporting professional and personal development.",
+      category: "pembangunan-pelajar",
+      date: "2026",
+      location: "Smart Education Society"
+    },
+    {
+      id: 47,
+      image: "assets/gallery/SMART TAHFIZFAST TRACK SPM.jpg",
+      title: "Smart Tahfiz / Fast Track SPM 1",
+      description: "Supporting students through focused academic and tahfiz development.",
+      category: "smart-tahfiz-fast-track-spm",
+      date: "2026",
+      location: "Smart Education Society"
+    },
+    {
+      id: 48,
+      image: "assets/gallery/SMART TAHFIZFAST TRACK SPM 2.jpg",
+      title: "Smart Tahfiz / Fast Track SPM 2",
+      description: "Supporting students through focused academic and tahfiz development.",
+      category: "smart-tahfiz-fast-track-spm",
+      date: "2026",
+      location: "Smart Education Society"
     }
   ];
 
-  // State management
-  let currentFilter = 'all';
-  let itemsToShow = Infinity; // Show all items
+  const categoryNames = {
+    events: 'Events',
+    'academic-tours': 'Academic Tours',
+    'program-csr-sekolah': 'Program CSR Sekolah',
+    'outreach-komuniti': 'Outreach Komuniti',
+    'seminar-simposium': 'Seminar Simposium',
+    'pembangunan-pelajar': 'Pembangunan Pelajar',
+    pendaftaran: 'Pendaftaran',
+    'smart-tahfiz-fast-track-spm': 'Smart Tahfiz / Fast Track SPM'
+  };
+  const categoryAssignments = {
+    1: 'events', 2: 'academic-tours', 3: 'academic-tours', 4: 'academic-tours',
+    5: 'academic-tours', 10: 'academic-tours', 6: 'seminar-simposium',
+    7: 'seminar-simposium', 8: 'seminar-simposium', 9: 'seminar-simposium',
+    11: 'seminar-simposium', 12: 'seminar-simposium', 13: 'seminar-simposium',
+    14: 'seminar-simposium', 15: 'seminar-simposium', 16: 'pendaftaran',
+    17: 'program-csr-sekolah', 18: 'pendaftaran', 19: 'seminar-simposium',
+    20: 'seminar-simposium', 21: 'seminar-simposium', 22: 'seminar-simposium',
+    23: 'seminar-simposium', 24: 'seminar-simposium', 26: 'seminar-simposium',
+    27: 'seminar-simposium', 28: 'seminar-simposium', 29: 'seminar-simposium',
+    30: 'seminar-simposium', 31: 'seminar-simposium', 32: 'program-csr-sekolah',
+    33: 'outreach-komuniti', 34: 'pendaftaran', 35: 'seminar-simposium',
+    36: 'pendaftaran', 37: 'pendaftaran', 38: 'seminar-simposium',
+    39: 'smart-tahfiz-fast-track-spm', 40: 'pendaftaran', 41: 'outreach-komuniti',
+    42: 'program-csr-sekolah', 43: 'pembangunan-pelajar', 44: 'pembangunan-pelajar',
+    45: 'pembangunan-pelajar', 46: 'pembangunan-pelajar',
+    47: 'smart-tahfiz-fast-track-spm', 48: 'smart-tahfiz-fast-track-spm'
+  };
+  interactiveGalleryData.forEach(item => {
+    item.category = categoryAssignments[item.id] || item.category;
+  });
 
-  // DOM Elements
+  let currentFilter = 'events';
+  let currentPage = 1;
+  const itemsPerPage = 6;
   const galleryGrid = document.getElementById('galleryGrid');
   const filterButtons = document.querySelectorAll('.filter-btn');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  const pagination = document.getElementById('galleryPagination');
+  const lightbox = document.getElementById('galleryLightbox');
+  const lightboxImage = document.getElementById('galleryLightboxImage');
+  const lightboxTitle = document.getElementById('galleryLightboxTitle');
+  const lightboxMeta = document.getElementById('galleryLightboxMeta');
+  let lightboxIndex = 0;
 
-  // Skip if not on gallery page
-  if (!galleryGrid) {
-    return;
+  if (!galleryGrid) return;
+
+  function filteredItems() {
+    return interactiveGalleryData.filter(item => item.category === currentFilter);
   }
 
-  // Create gallery card HTML
   function createGalleryCard(item) {
-    const categoryLabel = item.category.charAt(0).toUpperCase() + item.category.slice(1);
-    
     return `
-      <div class="gallery-card" data-category="${item.category}" data-id="${item.id}">
+      <article class="gallery-card" data-id="${item.id}" tabindex="0" role="button" aria-label="Open ${item.title}">
         <div class="gallery-card-image">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async" fetchpriority="low">
-          <span class="category-badge">${categoryLabel}</span>
+          <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async">
+          <span class="category-badge">${categoryNames[item.category]}</span>
         </div>
         <div class="gallery-card-content">
           <h3 class="gallery-card-title">${item.title}</h3>
           <p class="gallery-card-description">${item.description}</p>
-          <div class="gallery-card-meta">
-            <span class="meta-item">
-              <i class="fas fa-calendar-alt"></i>
-              ${item.date}
-            </span>
-            <span class="meta-item">
-              <i class="fas fa-map-marker-alt"></i>
-              ${item.location}
-            </span>
-          </div>
+          <div class="gallery-card-meta"><span class="meta-item"><i class="fas fa-calendar-alt"></i>${item.date}</span><span class="meta-item"><i class="fas fa-map-marker-alt"></i>${item.location}</span></div>
         </div>
-      </div>
-    `;
+      </article>`;
   }
 
-  // Filter gallery items
-  function filterGallery(category) {
-    currentFilter = category;
-    renderGallery();
+  function renderPagination(totalPages) {
+    pagination.innerHTML = '';
+    pagination.hidden = totalPages <= 1;
+    if (totalPages <= 1) return;
+    const addButton = (label, page, disabled = false, active = false) => {
+      const button = document.createElement('button');
+      button.className = `gallery-page-btn${active ? ' active' : ''}`;
+      button.type = 'button';
+      button.textContent = label;
+      button.disabled = disabled;
+      button.setAttribute('aria-label', `Go to page ${page}`);
+      button.addEventListener('click', () => { currentPage = page; renderGallery(); });
+      pagination.appendChild(button);
+    };
+    addButton('Previous', currentPage - 1, currentPage === 1);
+    for (let page = 1; page <= totalPages; page += 1) addButton(page, page, false, page === currentPage);
+    addButton('Next', currentPage + 1, currentPage === totalPages);
   }
 
-  // Render gallery
   function renderGallery() {
-    const filteredData = currentFilter === 'all' 
-      ? interactiveGalleryData 
-      : interactiveGalleryData.filter(item => item.category === currentFilter);
-
-    galleryGrid.innerHTML = filteredData.map(item => createGalleryCard(item)).join('');
+    const items = filteredItems();
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+    const start = (currentPage - 1) * itemsPerPage;
+    const pageItems = items.slice(start, start + itemsPerPage);
+    galleryGrid.innerHTML = pageItems.length
+      ? pageItems.map(createGalleryCard).join('')
+      : '<p class="gallery-empty">No gallery images available for this category yet.</p>';
+    renderPagination(totalPages);
+    galleryGrid.querySelectorAll('.gallery-card').forEach(card => {
+      const open = () => openGalleryLightbox(Number(card.dataset.id));
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
+    });
   }
 
-  // Filter button event listeners
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Remove active class from all buttons
-      filterButtons.forEach(b => b.classList.remove('active'));
-      
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      // Get category and filter
-      const category = this.getAttribute('data-category');
-      filterGallery(category);
-    });
-  });
+  function openGalleryLightbox(id) {
+    const items = filteredItems();
+    lightboxIndex = Math.max(0, items.findIndex(item => item.id === id));
+    updateGalleryLightbox();
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
 
-  // Initialize gallery
-  console.log('Initializing interactive gallery...');
+  function updateGalleryLightbox() {
+    const items = filteredItems();
+    const item = items[lightboxIndex];
+    if (!item) return;
+    lightboxImage.src = item.image;
+    lightboxImage.alt = item.title;
+    lightboxTitle.textContent = item.title;
+    lightboxMeta.textContent = `${categoryNames[item.category]} | ${lightboxIndex + 1} / ${items.length}`;
+  }
+
+  function closeGalleryLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  filterButtons.forEach(button => button.addEventListener('click', () => {
+    filterButtons.forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+    currentFilter = button.dataset.category;
+    currentPage = 1;
+    renderGallery();
+  }));
+  document.getElementById('galleryLightboxClose').addEventListener('click', closeGalleryLightbox);
+  document.getElementById('galleryLightboxPrev').addEventListener('click', () => { const items = filteredItems(); lightboxIndex = (lightboxIndex - 1 + items.length) % items.length; updateGalleryLightbox(); });
+  document.getElementById('galleryLightboxNext').addEventListener('click', () => { const items = filteredItems(); lightboxIndex = (lightboxIndex + 1) % items.length; updateGalleryLightbox(); });
+  lightbox.addEventListener('click', event => { if (event.target === lightbox) closeGalleryLightbox(); });
+  document.addEventListener('keydown', event => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (event.key === 'Escape') closeGalleryLightbox();
+    if (event.key === 'ArrowLeft') document.getElementById('galleryLightboxPrev').click();
+    if (event.key === 'ArrowRight') document.getElementById('galleryLightboxNext').click();
+  });
+  filterButtons[0]?.classList.add('active');
   renderGallery();
-  console.log('Gallery initialized successfully');
 
 })();
 

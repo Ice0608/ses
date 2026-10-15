@@ -12,6 +12,26 @@
   <link rel="stylesheet" href="style.css?v=9">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    nav.navbar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      background: #290938 !important;
+      z-index: 1100 !important;
+      min-height: 72px !important;
+      box-sizing: border-box !important;
+    }
+    nav.navbar .logo img {
+      height: 80px !important;
+      width: auto !important;
+      object-fit: contain !important;
+    }
+    @media (max-width: 768px) {
+      nav.navbar .logo img {
+        height: 56px !important;
+      }
+    }
     /* Force gallery layout - overrides any cached/conflicting rules */
 
     .interactive-gallery-section {
@@ -173,6 +193,58 @@
     .category-badge {
       color: #667eea !important;
     }
+
+    .gallery-filters {
+      justify-content: flex-start !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      scrollbar-width: thin;
+      padding: 4px 4px 12px !important;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-btn {
+      min-height: 44px !important;
+      background: rgba(255,255,255,0.96) !important;
+      color: #4b2a6d !important;
+      border: 1px solid rgba(255,255,255,0.65) !important;
+      box-shadow: 0 8px 20px rgba(15, 4, 24, 0.2) !important;
+    }
+    .filter-btn.active {
+      background: #5a3c83 !important;
+      color: #fff !important;
+      border-color: #5a3c83 !important;
+    }
+    .gallery-card { cursor: zoom-in !important; }
+    .gallery-card-image { aspect-ratio: 16 / 10 !important; height: auto !important; }
+    .gallery-card-image img { transition: transform .45s ease, filter .3s ease !important; }
+    .gallery-card:hover .gallery-card-image img { transform: scale(1.06) !important; filter: saturate(1.08); }
+    .gallery-empty { grid-column: 1 / -1; padding: 60px 20px; color: #fff; text-align: center; }
+    .gallery-pagination { display: flex !important; justify-content: center; align-items: center; gap: 8px; min-height: 42px; margin: 34px auto 0; padding: 0 0 12px; position: relative; z-index: 2; flex-wrap: wrap; }
+    .gallery-page-btn { min-width: 42px; min-height: 42px; border: 1px solid rgba(255,255,255,.45); border-radius: 10px; background: rgba(255,255,255,.95); color: #4b2a6d; cursor: pointer; font-weight: 700; }
+    .gallery-page-btn.active { background: #5a3c83; color: #fff; border-color: #5a3c83; }
+    .gallery-page-btn:disabled { opacity: .45; cursor: not-allowed; }
+    .gallery-lightbox { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; background: rgba(10, 5, 16, .92); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+    .gallery-lightbox.is-open { opacity: 1; visibility: visible; }
+    .gallery-lightbox-panel { position: relative; width: min(100%, 980px); max-height: 92vh; display: flex; flex-direction: column; align-items: center; gap: 14px; color: #fff; transform: translateY(18px) scale(.98); transition: transform .25s ease; }
+    .gallery-lightbox.is-open .gallery-lightbox-panel { transform: none; }
+    .gallery-lightbox-image { max-width: 100%; max-height: 72vh; object-fit: contain; border-radius: 14px; box-shadow: 0 18px 60px rgba(0,0,0,.45); }
+    .gallery-lightbox-close, .gallery-lightbox-nav { position: absolute; display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 50%; background: rgba(255,255,255,.95); color: #4b2a6d; cursor: pointer; font-size: 1.15rem; }
+    .gallery-lightbox-close { top: -8px; right: -8px; }
+    .gallery-lightbox-nav { top: 45%; }
+    .gallery-lightbox-prev { left: 12px; }
+    .gallery-lightbox-next { right: 12px; }
+    .gallery-lightbox-caption { text-align: center; }
+    .gallery-lightbox-title { margin: 0; font-size: 1.15rem; }
+    .gallery-lightbox-meta { margin: 4px 0 0; color: rgba(255,255,255,.72); font-size: .9rem; }
+    @media (max-width: 600px) {
+      .gallery-lightbox { padding: 14px; }
+      .gallery-lightbox-image { max-height: 68vh; }
+      .gallery-lightbox-close { top: -12px; right: 0; }
+      .gallery-lightbox-nav { top: auto; bottom: 72px; }
+      .gallery-lightbox-prev { left: 25%; }
+      .gallery-lightbox-next { right: 25%; }
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <script src="https://kit.fontawesome.com/351048854e.js" crossorigin="anonymous"></script>
@@ -181,7 +253,7 @@
 <body>
 
   <!-- Navigation Bar -->
-  <nav>
+  <nav class="navbar" id="navbar">
     <div class="logo">
       <a href="index.html">
         <img src="assets/logo/ses logo white.png" alt="SES Logo">
@@ -243,9 +315,14 @@
     
     <!-- Category Filter -->
     <div class="gallery-filters">
-      <button class="filter-btn active" data-category="all">All</button>
       <button class="filter-btn" data-category="events">Events</button>
-      <button class="filter-btn" data-category="tours">Academic Tours</button>
+      <button class="filter-btn" data-category="academic-tours">Academic Tours</button>
+      <button class="filter-btn" data-category="program-csr-sekolah">Program CSR Sekolah</button>
+      <button class="filter-btn" data-category="outreach-komuniti">Outreach Komuniti</button>
+      <button class="filter-btn" data-category="seminar-simposium">Seminar Simposium</button>
+      <button class="filter-btn" data-category="pembangunan-pelajar">Pembangunan Pelajar</button>
+      <button class="filter-btn" data-category="pendaftaran">Pendaftaran</button>
+      <button class="filter-btn" data-category="smart-tahfiz-fast-track-spm">Smart Tahfiz / Fast Track SPM</button>
     </div>
     
     <!-- Gallery Grid -->
@@ -253,8 +330,21 @@
       <!-- Gallery items will be dynamically loaded (js : row 2083)-->
     </div>
     
-    <div id="loadMoreBtn" style="display:none;"></div>
+    <nav class="gallery-pagination" id="galleryPagination" aria-label="Gallery pages"></nav>
   </section>
+
+  <div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-labelledby="galleryLightboxTitle" aria-hidden="true">
+    <div class="gallery-lightbox-panel">
+      <button class="gallery-lightbox-close" id="galleryLightboxClose" type="button" aria-label="Close image preview"><i class="fas fa-times" aria-hidden="true"></i></button>
+      <button class="gallery-lightbox-nav gallery-lightbox-prev" id="galleryLightboxPrev" type="button" aria-label="Previous image"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+      <img class="gallery-lightbox-image" id="galleryLightboxImage" alt="">
+      <button class="gallery-lightbox-nav gallery-lightbox-next" id="galleryLightboxNext" type="button" aria-label="Next image"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+      <div class="gallery-lightbox-caption">
+        <h2 class="gallery-lightbox-title" id="galleryLightboxTitle"></h2>
+        <p class="gallery-lightbox-meta" id="galleryLightboxMeta"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
