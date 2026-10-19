@@ -1152,22 +1152,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Exit if not on career page
   if (!fulltimeBtn || !internshipBtn) return;
 
-  // Fulltime Apply Now - toggle form on right
-  fulltimeBtn.addEventListener('click', () => {
-    // Toggle fulltime form
-    fulltimeForm.classList.toggle('active');
-    // Close internship form if open
-    internshipForm.classList.remove('active');
-  });
-
-  // Internship Apply Now - toggle form on left
-  internshipBtn.addEventListener('click', () => {
-    // Toggle internship form
-    internshipForm.classList.toggle('active');
-    // Close fulltime form if open
-    fulltimeForm.classList.remove('active');
-  });
-
   // Close Fulltime Form
   closeFulltimeForm.addEventListener('click', () => {
     fulltimeForm.classList.remove('active');
@@ -2261,7 +2245,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 33,
-      image: "assets/gallery/outreach komuniti.jpg",
+      image: "assets/gallery/outreach_komuniti.jpg",
       title: "Outreach Komuniti",
       description: "Community outreach supporting engagement, guidance, and educational opportunity.",
       category: "outreach-komuniti",
@@ -2270,7 +2254,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 41,
-      image: "assets/gallery/outreach komuniiti 2.jpg",
+      image: "assets/gallery/outreach komuniiti2.jpg",
       title: "Outreach Komuniti 2",
       description: "Community outreach supporting engagement, guidance, and educational opportunity.",
       category: "outreach-komuniti",
@@ -2288,7 +2272,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 38,
-      image: "assets/gallery/SIMPOSIUM 2.jpg",
+      image: "assets/gallery/SIMPOSIUM2.jpg",
       title: "Seminar Simposium 2",
       description: "A seminar and symposium bringing together students, educators, and the community.",
       category: "seminar-simposium",
@@ -2297,7 +2281,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 39,
-      image: "assets/gallery/SMART TAHFIZ.jpg",
+      image: "assets/gallery/SMARTTAHFIZ.jpg",
       title: "Smart Tahfiz / Fast Track SPM",
       description: "Supporting students through focused academic and tahfiz development.",
       category: "smart-tahfiz-fast-track-spm",
@@ -2306,7 +2290,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 40,
-      image: "assets/gallery/pendaftaran murni nursing college.jpg",
+      image: "assets/gallery/pendaftaran murni_nursing_college.jpg",
       title: "Pendaftaran Murni Nursing College",
       description: "Student registration and programme guidance for Murni Nursing College.",
       category: "pendaftaran",
@@ -2324,7 +2308,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 43,
-      image: "assets/gallery/intern 1.png",
+      image: "assets/gallery/intern1.png",
       title: "Internship Programme 1",
       description: "Student internship experience supporting professional and personal development.",
       category: "pembangunan-pelajar",
@@ -2333,7 +2317,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 44,
-      image: "assets/gallery/intern 2.png",
+      image: "assets/gallery/intern2.png",
       title: "Internship Programme 2",
       description: "Student internship experience supporting professional and personal development.",
       category: "pembangunan-pelajar",
@@ -2342,7 +2326,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 45,
-      image: "assets/gallery/intern 3.png",
+      image: "assets/gallery/intern3.png",
       title: "Internship Programme 3",
       description: "Student internship experience supporting professional and personal development.",
       category: "pembangunan-pelajar",
@@ -2351,7 +2335,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 46,
-      image: "assets/gallery/intern 4.png",
+      image: "assets/gallery/intern4.png",
       title: "Internship Programme 4",
       description: "Student internship experience supporting professional and personal development.",
       category: "pembangunan-pelajar",
@@ -2360,7 +2344,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 47,
-      image: "assets/gallery/SMART TAHFIZFAST TRACK SPM.jpg",
+      image: "assets/gallery/SMARTTAHFIZFAST_TRACK_SPM.jpg",
       title: "Smart Tahfiz / Fast Track SPM 1",
       description: "Supporting students through focused academic and tahfiz development.",
       category: "smart-tahfiz-fast-track-spm",
@@ -2369,7 +2353,7 @@ document.addEventListener('click', (e) => {
     },
     {
       id: 48,
-      image: "assets/gallery/SMART TAHFIZFAST TRACK SPM 2.jpg",
+      image: "assets/gallery/SMARTTAHFIZFAST_TRACK_SPM 2.jpg",
       title: "Smart Tahfiz / Fast Track SPM 2",
       description: "Supporting students through focused academic and tahfiz development.",
       category: "smart-tahfiz-fast-track-spm",
